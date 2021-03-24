@@ -2917,6 +2917,10 @@ input[type="submit"].btn-block {
         right: 0;
         left: auto;
     }
+    .navbar-dark .dropdown-item{
+        color: var(--dark) !important;
+    
+    }
 }
 @media (min-width: 1200px) {
     .dropdown-menu-xl-left {
