@@ -11,7 +11,7 @@ if (isset($_POST['ok'])):
 	$_1->Setpass($pass);
 
 	if($_1->logar()):
-	header("Location:painel-controle.php");
+	header("Location:log-login.php");
 	else:
 ?>
 	<script>

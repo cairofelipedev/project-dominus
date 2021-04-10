@@ -2,7 +2,14 @@
 (function ($) {
     "use strict";
 
-
+ // Preloader
+ $(window).on('load', function() {
+    if ($('#preloader').length) {
+      $('#preloader').delay(500).fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }
+  });
     /*==================================================================
     [ Focus input ]*/
     $('.input100').each(function(){

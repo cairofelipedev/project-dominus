@@ -81,7 +81,7 @@
             {
           ?>
             <div class="pt-4 col-xs-12">
-            <div class="alert alert-info">
+            <div class="alert alert-warning">
               Sem post cadastrado ...
                 </div>
             </div>

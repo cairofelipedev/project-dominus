@@ -13,8 +13,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/logofonte.png">
-  <link rel="icon" type="image/png" href="../assets/img/logofonte.png">
+  <link rel="icon" href="../assets/images/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Distribuidora Dominus / Painel de Controle

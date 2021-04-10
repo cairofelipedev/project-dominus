@@ -1,7 +1,7 @@
 <?php
 require_once './admin/dbconfig.php';
 ?>
-<!doctype html>
+<!doctype php>
 <html lang="pt-br">
 
 <head>
@@ -20,9 +20,7 @@ require_once './admin/dbconfig.php';
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
   <!-- Theme CSS -->
   <link rel="stylesheet" href="./assets/css/theme.css">
   <title>Distribuidora Dominus </title>
@@ -43,9 +41,9 @@ require_once './admin/dbconfig.php';
           <div class="carousel-item-a intro-item">
             <img class="img-fluid" src="admin/uploads/banners/<?php echo $row['img']; ?>">
           </div>
-        <?php
+      <?php
         }
-      } 
+      }
       ?>
     </div>
   </div><!-- End Intro Section -->
@@ -56,7 +54,7 @@ require_once './admin/dbconfig.php';
       <div class="row promotions">
         <!-- Item -->
         <div class="col-md-6 col-lg-3 py-2">
-          <a href="product.html">
+          <a href="product.php">
             <div class="card">
               <!-- Image -->
               <div class="card-img">
@@ -70,7 +68,7 @@ require_once './admin/dbconfig.php';
 
         <!-- Item -->
         <div class="col-md-6 col-lg-3 py-2">
-          <a href="product.html">
+          <a href="product.php">
             <div class="card">
               <!-- Image -->
               <div class="card-img">
@@ -85,7 +83,7 @@ require_once './admin/dbconfig.php';
 
         <!-- Item -->
         <div class="col-md-6 col-lg-3 py-2">
-          <a href="product.html">
+          <a href="product.php">
             <div class="card">
               <!-- Image -->
               <div class="card-img">
@@ -101,7 +99,7 @@ require_once './admin/dbconfig.php';
 
         <!-- Item -->
         <div class="col-md-6 col-lg-3 py-2">
-          <a href="product.html">
+          <a href="product.php">
             <div class="card">
               <!-- Image -->
               <div class="card-img">
@@ -126,7 +124,7 @@ require_once './admin/dbconfig.php';
       <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": false,"cellAlign": "center", "contain": true, "groupCells": true, "pageDots": false}'>
 
         <div class="category">
-          <a href="search.html">
+          <a href="search.php">
             <div class="category-icon">
               <i class="fas fa-box-open"></i>
             </div>
@@ -136,7 +134,7 @@ require_once './admin/dbconfig.php';
         </div>
 
         <div class="category">
-          <a href="search.html">
+          <a href="search.php">
             <div class="category-icon">
               <i class="fas fa-cog"></i>
             </div>
@@ -146,7 +144,7 @@ require_once './admin/dbconfig.php';
         </div>
 
         <div class="category">
-          <a href="search.html">
+          <a href="search.php">
             <div class="category-icon">
               <i class="fas fa-heart"></i>
             </div>
@@ -156,7 +154,7 @@ require_once './admin/dbconfig.php';
         </div>
 
         <div class="category">
-          <a href="search.html">
+          <a href="search.php">
             <div class="category-icon">
               <i class="fas fa-coffee"></i>
             </div>
@@ -165,7 +163,7 @@ require_once './admin/dbconfig.php';
         </div>
 
         <div class="category">
-          <a href="search.html">
+          <a href="search.php">
             <div class="category-icon">
               <i class="fas fa-seedling"></i>
             </div>
@@ -201,7 +199,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -212,12 +210,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -246,7 +244,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -257,12 +255,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -291,7 +289,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -302,12 +300,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -335,7 +333,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -346,12 +344,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -380,7 +378,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -391,12 +389,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -442,7 +440,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -453,12 +451,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -487,7 +485,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -498,12 +496,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -532,7 +530,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -543,12 +541,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -576,7 +574,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -587,12 +585,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -621,7 +619,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -632,12 +630,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -684,7 +682,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -695,12 +693,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -729,7 +727,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -740,12 +738,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -774,7 +772,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -785,12 +783,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -818,7 +816,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -829,12 +827,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -863,7 +861,7 @@ require_once './admin/dbconfig.php';
                 <div class="card-img">
 
                   <!-- Image -->
-                  <a class="card-img-hover" href="product.html">
+                  <a class="card-img-hover" href="product.php">
                     <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
                   </a>
 
@@ -874,12 +872,12 @@ require_once './admin/dbconfig.php';
 
                   <!-- Category -->
                   <div class="font-size-xs">
-                    <a class="text-muted" href="search.html">Utilidades Domésticas</a>
+                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
                   </div>
 
                   <!-- Title -->
                   <div class="font-weight-bold">
-                    <a class="text-body" href="product.html">
+                    <a class="text-body" href="product.php">
                       Conjunto chá completo azul
                     </a>
                   </div>
@@ -919,7 +917,7 @@ require_once './admin/dbconfig.php';
       <div class="row">
         <div class="col-12 col-md-4">
           <!-- Card -->
-          <a href="blog-post.html">
+          <a href="blog-post.php">
             <div class="card mb-7 shadow shadow-hover lift h-100">
               <!-- Image -->
               <div class="card-img">
@@ -943,7 +941,7 @@ require_once './admin/dbconfig.php';
         </div>
         <div class="col-12 col-md-4">
           <!-- Card -->
-          <a href="blog-post.html">
+          <a href="blog-post.php">
             <div class="card mb-7 shadow shadow-hover lift h-100">
               <!-- Image -->
               <div class="card-img">
@@ -968,7 +966,7 @@ require_once './admin/dbconfig.php';
         </div>
         <div class="col-12 col-md-4">
           <!-- Card -->
-          <a href="blog-post.html">
+          <a href="blog-post.php">
             <div class="card mb-7 shadow shadow-hover lift h-100">
               <!-- Image -->
               <div class="card-img">
@@ -997,7 +995,7 @@ require_once './admin/dbconfig.php';
 
           <!-- Link -->
           <div class="mt-7 text-center">
-            <a class="link-underline" href="blog.html">Descubra mais</a>
+            <a class="link-underline" href="blog.php">Descubra mais</a>
           </div>
 
         </div>
@@ -1005,11 +1003,38 @@ require_once './admin/dbconfig.php';
     </div>
   </section>
 
-  <!-- Whatsapp -->
+  <!-- Whatsapp 
   <div class="whatsapp">
     <a href="https://wa.me/5586994459897" target="_blank" class="text-white"><i class="fab fa-whatsapp"></i></a>
   </div>
+  -->
+  <div class="contact-btn">
+  <!-- Button trigger modal -->
+  <button type="button" class="whatsapp btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="fab fa-whatsapp"></i>
+  </button>
+  </div>
 
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <section class="py-8" id="leads">
     <div class="container">
       <div class="row">
@@ -1091,6 +1116,9 @@ require_once './admin/dbconfig.php';
               <li>
                 <a class="text-gray-300" href="tel:86994459897"><i class="fas fa-phone-alt"></i> (86) 99445-9897</a>
               </li>
+              <li>
+                <a class="text-gray-300" href="admin/login.php"><i class="fas fa-sign-out-alt"></i> Login</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1113,7 +1141,8 @@ require_once './admin/dbconfig.php';
   <!-- Libs JS -->
   <script src="./assets/libs/js/jquery.min.js"></script>
   <script src="./assets/libs/js/jquery.fancybox.min.js"></script>
-  <script src="./assets/libs/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
   <!-- <script src="https://flickity.metafizzy.co/flickity.pkgd.js"></script> -->
   <script src="./assets/libs/js/flickity.js"></script>
   <script src="./assets/libs/js/highlight.pack.min.js"></script>
@@ -1122,25 +1151,23 @@ require_once './admin/dbconfig.php';
   <script src="./assets/libs/js/simplebar.min.js"></script>
   <script src="./assets/libs/js/smooth-scroll.min.js"></script>
   <script src="./assets/libs/js/flickity-fade.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
   <!-- Theme JS -->
   <script src="./assets/js/theme.min.js"></script>
   <script src="./assets/js/custom.js"></script>
 
   <script>
-  $('#carousel').owlCarousel({
-    loop: true,
-    margin: -1,
-    items: 1,
-    nav: true,
-    navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true
-  });
+    $('#carousel').owlCarousel({
+      loop: true,
+      margin: -1,
+      items: 1,
+      nav: true,
+      navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
+      autoplay: true,
+      autoplayTimeout: 3000,
+      autoplayHoverPause: true
+    });
   </script>
 </body>
 
-</html>
+</php>

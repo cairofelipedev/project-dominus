@@ -1,12 +1,12 @@
 <?php
-  session_start();
-  date_default_timezone_set('America/Sao_Paulo');
-	require_once 'dbconfig.php';
-	ini_set('default_charset','utf-8');	
-  if(isset($_SESSION['logado'])):
-  else:
-	  header("Location: login.php");
-  endif;
+session_start();
+date_default_timezone_set('America/Sao_Paulo');
+require_once 'dbconfig.php';
+ini_set('default_charset', 'utf-8');
+if (isset($_SESSION['logado'])) :
+else :
+  header("Location: login.php");
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,43 +32,52 @@
 
 <body class="">
   <div class="wrapper ">
-    <?php include 'nav.php';?>
-      <div class="content">
-        <div class="row">
+    <?php include 'nav.php'; ?>
+    <div class="content">
+      <div class="row">
         <?php
-          $stmt = $DB_con->prepare("SELECT id, nome, whats,email,mensagem,opc,data_envio,tipo FROM forms ORDER BY id DESC");
-          $stmt->execute();
-          if($stmt->rowCount() > 0) {
-            while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-          extract($row);
+        $stmt = $DB_con->prepare("SELECT id, nome, whats,email,mensagem,opc,data_envio,tipo FROM forms ORDER BY id DESC");
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
         ?>
-          <div class="col-lg-4">
-            <div class="card card-chart pb-3">
-              <div class="card-header">
-              <i class="fas fa-fw fa-clock"></i> <?php $date = new DateTime($data_envio);echo $date->format('H:i d-m-Y');?>
-              <br>
-              <i class="fas fa-fw fa-user"></i> <?php echo $nome;?>
-              <br>
-              <i class="fab fa-whatsapp"></i> <?php echo $whats;?>
-              <br>
-              <i class="fas fa-at"></i> <?php echo $email;?>
-              <br>
-              <i class="fas fa-comment-alt"></i> <?php echo $mensagem;?>
+            <div class="col-lg-4">
+              <div class="card card-chart pb-3">
+                <div class="card-header">
+                  <i class="fas fa-fw fa-clock"></i> <?php $date = new DateTime($data_envio);
+                                                      echo $date->format('H:i d-m-Y'); ?>
+                  <br>
+                  <i class="fas fa-fw fa-user"></i> <?php echo $nome; ?>
+                  <br>
+                  <i class="fab fa-whatsapp"></i> <?php echo $whats; ?>
+                  <br>
+                  <i class="fas fa-at"></i> <?php echo $email; ?>
+                  <br>
+                  <i class="fas fa-comment-alt"></i> <?php echo $mensagem; ?>
+                </div>
               </div>
             </div>
-          </div>
-        <?php 
-            }
+          <?php
           }
+        } else {
           ?>
-        </div>     
+          <div class="pt-4 col-xs-12">
+            <div class="alert alert-warning">
+              Sem registro ...
+            </div>
+          </div>
+        <?php
+        }
+        ?>
       </div>
-    <?php include 'footer.php';?>
     </div>
+    <?php include 'footer.php'; ?>
+  </div>
   </div>
   <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Notifications Plugin    -->
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
