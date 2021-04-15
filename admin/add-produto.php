@@ -51,7 +51,7 @@ if (isset($_POST['btnsave'])) {
       if ($imgSize < 5000000) {
         move_uploaded_file($tmp_dir, $upload_dir . $userpic);
       } else {
-        $errMSG = "Imagem muito grande.";
+        $errMSG = "Imagem 1 muito grande.";
       }
     }
     if (in_array($imgExt2, $valid_extensions)) {
@@ -153,53 +153,55 @@ if (isset($_POST['btnsave'])) {
               <form method="POST" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Nome do produto</label>
-                      <input value="<?php echo $nome; ?>" name="nome" type="text" class="form-control" placeholder="Nome">
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Valor</label>
-                          <input value="<?php echo $price; ?>" name="price" type="text" class="form-control" placeholder="Valor do produto">
+                    <p class="title text-center">Informações</p>
+                    <div class="border p-3 rounded">
+                      <div class="form-group">
+                        <label class="title">Nome do produto</label>
+                        <input value="<?php echo $nome; ?>" name="nome" type="text" class="form-control" placeholder="Nome">
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Valor</label>
+                            <input value="<?php echo $price; ?>" name="price" type="text" class="form-control" placeholder="Valor do produto">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Categoria</label>
+                            <select name="category" class="form-control">
+                              <option value='Utilidades Domésticas'>Utilidades Domésticas</option>
+                              <option value='Jardinagem'>Jardinagem</option>
+                              <option value='Embalagem'>Embalagem</option>
+                              <option value='Pets'>Pets</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Categoria</label>
-                          <select name="category" class="form-control">
-                            <option value='Utilidades Domésticas'>Utilidades Domésticas</option>
-                            <option value='Jardinagem'>Jardinagem</option>
-                            <option value='Embalagem'>Embalagem</option>
-                            <option value='Pets'>Pets</option>
-                          </select>
-                        </div>
+                      <div class="form-group">
+                        <label class="title">Descrição</label>
+                        <textarea rows="4" cols="80" name="descricao" class="form-control" placeholder="Descreva as principais caracteristicas do seu produto"><?php echo $descricao; ?></textarea>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Imagem</label>
-                      <br>
-                      <input type="file" name="user_image" accept="image/*" />
-                    </div>
-                    <div class="form-group">
-                      <label>Imagem 2</label>
-                      <br>
-                      <input type="file" name="user_image2" accept="image/*" />
-                    </div>
-                    <div class="form-group">
-                      <label>Imagem 3</label>
-                      <br>
-                      <input type="file" name="user_image3" accept="image/*" />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Descrição</label>
-                      <textarea rows="4" cols="80" name="descricao" class="form-control" placeholder="Descreva as principais caracteristicas do seu produto"><?php echo $descricao; ?></textarea>
+                  <p class="title text-center">Imagens</p>
+                    <div class="border p-3 rounded">
+                      <div class="form-group">
+                        <label class="title">Imagem 1</label>
+                        <br>
+                        <input type="file" name="user_image" accept="image/*" />
+                      </div>
+                      <div class="form-group">
+                        <label class="title">Imagem 2</label>
+                        <br>
+                        <input type="file" name="user_image2" accept="image/*" />
+                      </div>
+                      <div class="form-group">
+                        <label class="title">Imagem 3</label>
+                        <br>
+                        <input type="file" name="user_image3" accept="image/*" />
+                      </div>
                     </div>
                   </div>
                 </div>
