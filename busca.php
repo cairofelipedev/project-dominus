@@ -1,116 +1,45 @@
+<?php 
+require_once 'admin/dbconfig.php';
+
+// palavra digitada na busca 
+$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : ''; $sql = "SELECT * FROM produtos WHERE nome LIKE :pesquisa OR category LIKE :pesquisa"; 
+
+// cria o Prepared Statement e o executa
+$stmt = $DB_con->prepare($sql);
+$stmt->bindValue(':pesquisa', '%' . $pesquisa . '%');
+$stmt->execute();
+ 
+// cria um array com os resultados
+$busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content="Vestindo sua essência" name="description">
-    <!-- Favicons -->
-    <link rel="icon" href="./assets/images//favicon.ico">
-    <!-- Libs CSS -->
-    <link rel="stylesheet" href="./assets/libs/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="./assets/libs/flickity.min.css">
-    <link rel="stylesheet" href="./assets/libs/vs2015.css">
-    <link rel="stylesheet" href="./assets/libs/simplebar.min.css">
-    <link rel="stylesheet" href="./assets/libs/flickity-fade.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="./assets/css/theme.css">
-    <title>Dominus Distribuidora</title>
-  </head>
+<html lang="pt-br">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta content="Distribuidora Dominus" name="description">
+  <!-- Favicons -->
+  <link rel="icon" href="./assets/images/favicon.ico">
+  <!-- Libs CSS -->
+  <link rel="stylesheet" href="./assets/libs/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="./assets/libs/flickity.min.css">
+  <link rel="stylesheet" href="./assets/libs/vs2015.css">
+  <link rel="stylesheet" href="./assets/libs/simplebar.min.css">
+  <link rel="stylesheet" href="./assets/libs/flickity-fade.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="./assets/css/theme.css">
+  <title>Distribuidora Dominus </title>
+</head>
 
   <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-xl navbar-dark sticky-top">
-    <div class="container">
-      <div class="row w-100 no-gutters">
-        <div class="col d-lg-flex justify-content-between align-items-center">
-          <a class="navbar-brand d-xl-none" href="./index.html">
-            <img class="img-fluid" src="./assets/images/logo3.png" width="150" alt="logo">
-          </a>
-  
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarClassicCollapse" aria-controls="navbarClassicCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-  
-          <a class="navbar-brand d-none d-xl-block" href="./index.html">
-            <img class="img-fluid" src="./assets/images/logo3.png" width="150" alt="logo">
-          </a>
-
-          <form class="search mt-3 mt-lg-0">
-            <input type="search" placeholder="Pesquisar..." />
-            <button class="btn" ><i class="fas fa-search"></i></button>
-          </form>
-
-          <ul class="navbar-nav d-none d-xl-flex">
-            <li class="nav-item">
-              <a href="search.html" class="nav-link active">Produtos</a>
-            </li>
-            <li class="nav-item">
-              <li class="nav-item">
-                <a href="blog.html" class="nav-link">Blog</a>
-              </li>
-            </li>
-          </ul>
-
-          
-        </div>
-      </div>
-
-      <div class="row w-100 no-gutters py-2" id="category-bar">
-        <div class="col">
-          <div class="collapse navbar-collapse" id="navbarClassicCollapse">
-            <ul class="navbar-nav w-100 justify-content-center">
-              <!-- <li class="nav-item dropdown hidden-">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Todos</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="search.html">Embalagens</a>
-                  <a class="dropdown-item" href="search.html">Máquinas e Equipamentos</a>
-                  <a class="dropdown-item" href="search.html">Saúde</a>
-                  <a class="dropdown-item" href="search.html">Utilidades Domésticas</a>
-                  <a class="dropdown-item" href="search.html">Jardinagem</a>
-              </li> -->
-              <li class="nav-item">
-                <a href="search.html" class="nav-link">Embalagens</a>
-              </li>
-              <li class="nav-item">
-                <a href="search.html" class="nav-link">Máquinas e Equipamentos</a>
-              </li>
-              <li class="nav-item">
-                <a href="search.html" class="nav-link">Saúde</a>
-              </li>
-              <li class="nav-item">
-                <a href="search.html" class="nav-link">Utilidades Domésticas</a>
-              </li>
-              <li class="nav-item ">
-                <a href="search.html" class="nav-link">Jardinagem</a>
-              </li>
-              <li class="d-xl-none">
-                <div class="dropdown-divider"></div>
-                <ul class="navbar-nav">  
-                  <li class="nav-item">
-                    <a href="search.html" class="nav-link active">Produtos</a>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item">
-                      <a href="blog.html" class="nav-link">Blog</a>
-                    </li>
-                  </li>
-
-                </ul>
-                
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </div>
-      <!-- Collapse -->
-    </div>
-  </nav>
-  
+  <?php include "views/nav.php" ?>
     <!-- CONTENT -->
     <section class="py-11">
       <div class="container">
@@ -313,6 +242,7 @@
 
             <!-- Products -->
             <div class="row">
+            
               <div class="col-12 col-md-4">
 
                 <!-- Card -->
@@ -359,221 +289,7 @@
 
               </div>
 
-              <div class="col-12 col-md-4">
-
-                <!-- Card -->
-                <div class="card mb-7">
-
-                  <!-- Image -->
-                  <div class="card-img">
-
-                    <!-- Image -->
-                    <a class="card-img-hover" href="product.html">
-                      <img class="card-img-top" src="assets/images/produto1.jpeg" alt="...">
-                    </a>
-
-                  </div>
-
-                  <!-- Body -->
-                  <div class="card-body px-0">
-
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="product.html">
-                        Cachaça Burama 600ml
-                      </a>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      $11,00
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="col-12 col-md-4">
-
-                <!-- Card -->
-                <div class="card mb-7">
-
-                  <!-- Badge -->
-                  <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                    -10%
-                  </div>
-
-                  <!-- Image -->
-                  <div class="card-img">
-
-                    <!-- Image -->
-                    <a class="card-img-hover" href="product.html">
-                      <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
-                    </a>
-
-                  </div>
-
-                  <!-- Body -->
-                  <div class="card-body px-0">
-
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="product.html">
-                        Conjunto chá completo azul
-                      </a>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="font-weight-bold">
-                      <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                      <span class="text-primary">$230,00</span>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="col-12 col-md-4">
-
-                <!-- Card -->
-                <div class="card mb-7">
-
-                  <!-- Image -->
-                  <div class="card-img">
-
-                    <!-- Image -->
-                    <a href="#!">
-                      <img class="card-img-top" src="assets/images/produto2.jpeg" alt="...">
-                    </a>
-
-                  </div>
-
-                  <!-- Body -->
-                  <div class="card-body px-0">
-
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="product.html">
-                        Tapete higiênico para carro
-                      </a>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      $109,00
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="col-12 col-md-4">
-
-                <!-- Card -->
-                <div class="card mb-7">
-
-                  <!-- Badge -->
-                  <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                    -25%
-                  </div>
-
-                  <!-- Image -->
-                  <div class="card-img">
-
-                    <!-- Image -->
-                    <a class="card-img-hover" href="product.html">
-                      <img class="card-img-top" src="assets/images/produto13.jpeg" alt="...">
-                    </a>
-
-                  </div>
-
-                  <!-- Body -->
-                  <div class="card-body px-0">
-
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="product.html">
-                        Vasos floridos
-                      </a>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="font-weight-bold">
-                      <span class="font-size-xs text-gray-350 text-decoration-line-through">$79,00</span>
-                      <span class="text-primary">$49.00</span>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="col-12 col-md-4">
-
-                <!-- Card -->
-                <div class="card mb-7">
-
-                  <!-- Image -->
-                  <div class="card-img">
-
-                    <!-- Image -->
-                    <a href="#!">
-                      <img class="card-img-top" src="assets/images/produto10.jpeg" alt="...">
-                    </a>
-                  </div>
-
-                  <!-- Body -->
-                  <div class="card-body px-0">
-
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="product.html">
-                        Pote de jarro (und)
-                      </a>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      $26,00
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
+            
 
               
             </div>

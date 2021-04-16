@@ -11,7 +11,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
     
-            <a class="navbar-brand d-none d-xl-block" href="./index.html">
+            <a class="navbar-brand d-none d-xl-block" href="./index.php">
               <img class="img-fluid" src="./assets/images/logo3.png" width="150" alt="logo">
             </a>
 
