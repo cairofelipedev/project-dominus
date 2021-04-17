@@ -13,11 +13,11 @@ endif;
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/images/favicon.ico">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    ÁguDaBoaFonthe / Painel de Controle
+    Formulários / Distribuidora Dominus
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -43,7 +43,11 @@ endif;
             extract($row);
         ?>
             <div class="col-lg-4">
-              <div class="card card-chart pb-3">
+              <div class="card card-chart pb-3" <?php
+                                                if ($tipo == '1') {
+                                                  echo "style='background-color:#0c3333;color:white;'";
+                                                }
+                                                ?>>
                 <div class="card-header">
                   <i class="fas fa-fw fa-clock"></i> <?php $date = new DateTime($data_envio);
                                                       echo $date->format('H:i d-m-Y'); ?>
@@ -52,9 +56,19 @@ endif;
                   <br>
                   <i class="fab fa-whatsapp"></i> <?php echo $whats; ?>
                   <br>
-                  <i class="fas fa-at"></i> <?php echo $email; ?>
-                  <br>
-                  <i class="fas fa-comment-alt"></i> <?php echo $mensagem; ?>
+                  <?php
+                  if ($tipo == '1') { ?>
+                    <i class="fas fa-at"></i> <?php echo $email; ?>
+                    <br>
+                    <i class="fas fa-comment-alt"></i>
+                  <?php
+                    if ($mensagem == '') {
+                      echo "(sem mensgem)";
+                    } else {
+                      echo $mensagem;
+                    }
+                  }
+                  ?>
                 </div>
               </div>
             </div>

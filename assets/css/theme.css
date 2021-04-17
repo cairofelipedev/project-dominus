@@ -400,6 +400,7 @@ h6 {
     font-size: 1.125rem;
     font-weight: 400;
 }
+
 .display-1 {
     font-size: 6.875rem;
     font-weight: 500;
@@ -2168,6 +2169,13 @@ textarea.form-control.is-invalid {
 
 #leads{
     background-color: #f3fffb;
+}
+
+#leads h4 {
+    font-weight: bold;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:var(--secondary);
+    padding-top:10px;
 }
 @media (min-width: 576px) {
     .form-inline label {
@@ -5060,6 +5068,8 @@ a.close.disabled {
 .modal-title {
     margin-bottom: 0;
     line-height: 1.5;
+    font-size:16px;
+    font-weight: bold;
 }
 .modal-body {
     position: relative;

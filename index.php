@@ -1,5 +1,7 @@
 <?php
 require_once './admin/dbconfig.php';
+include './admin/lead-insert.php';
+$dv = $_GET['dv'];
 ?>
 <!doctype php>
 <html lang="pt-br">
@@ -106,7 +108,28 @@ require_once './admin/dbconfig.php';
       </div>
     </div>
   </section>
+  <section class="py-8" id="leads">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <h4>NÓS LIGAMOS PRA VOCÊ</h4>
+        </div>
 
+        <div class="col-lg-8">
+          <form class="form-inline" action="" method="POST">
+            <input type="text" name="nome" class="form-control mb-2" placeholder="Nome" required />
+            <input type="text" class="form-control mb-2" name="whats" placeholder="Número" required />
+            <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
+            <input type="hidden" name="tipo" value="2">
+            <input type="hidden" name="status" value="1">
+            <button type="submit" name="submit2" class="btn btn-primary mb-2">Casdastrar</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
   <!-- Produtos -->
   <section class="py-4">
     <div class="container">
@@ -512,68 +535,7 @@ require_once './admin/dbconfig.php';
     </div>
   </section>
 
-  <!-- Whatsapp 
-  <div class="whatsapp">
-    <a href="https://wa.me/5586994459897" target="_blank" class="text-white"><i class="fab fa-whatsapp"></i></a>
-  </div>
-  -->
-  <div class="contact-btn">
-    <!-- Button trigger modal -->
-    <button type="button" class="whatsapp btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <i class="fab fa-whatsapp"></i>
-    </button>
-  </div>
 
-
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Dúvidas ou mais informações? Nós entramos em contato com você!</h5>
-          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fab fa-close"></i></button>
-        </div>
-        <div class="modal-body">
-          <form action="" method="POST">
-            <div class="row">
-              <div class="form-group col-lg-6 col-6">
-                <label class="modal-label" for="NomeSobrenome">Nome</label>
-                <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
-              </div>
-              <div class="form-group col-lg-6 col-6">
-                <label class="modal-label" for="Whats">Whats-App</label>
-                <input size="20" maxlength="14" type="tel" class="form-control shadow-none" name="whats" placeholder="Whats-App" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="modal-label" for="Email">Email</label>
-              <input type="text" class="form-control shadow-none" name="email" id="email" placeholder="E-mail" required />
-            </div>
-            <div class="form-group">
-              <label class="modal-label" for="Assunto">Assunto</label>
-              <select name="opc" id="opc" class="form-control shadow-none">
-                <option value='casas'>Casas</option>
-                <option value='financeiro'>Financeiro</option>
-                <option value='consultoria'>Consultoria</option>
-                <option value='feed'>FeedBack</option>
-              </select>
-            </div>
-            <div class="form-group pb-3">
-              <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>
-            </div>
-            <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
-            <input type="hidden" name="tipo" value="1">
-            <input type="hidden" name="status" value="1">
-            <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <section class="py-8" id="leads">
     <div class="container">
       <div class="row">

@@ -6,13 +6,14 @@ $nome = $_POST['nome'];
 $whats = $_POST['whats'];
 $email = $_POST['email'];
 $mensagem = $_POST['mensagem'];
-$opc = $_POST['opc'];
+$tipo = $_POST['tipo'];
+$dv = $_POST['dv'];
+$status = $_POST['status'];
 
 $nome2 = trim($nome);
 $whats2 = trim($whats);
 
 $msg_explodida = (explode(" ",$mensagem));
-$texto = "porn";
 if(in_array($texto, $msg_explodida)){ 
     $errMSG = "Mensagem não enviada";
 }
@@ -73,19 +74,20 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 if(!isset($errMSG))
 {
-    $stmt = $DB_con->prepare('INSERT INTO forms (nome,whats,email,mensagem,opc) VALUES(:unome,:uwhats,:uemail,:umensagem,:uopc)');
+    $stmt = $DB_con->prepare('INSERT INTO forms (nome,whats,email,mensagem,tipo,dv,status) VALUES(:unome,:uwhats,:uemail,:umensagem,:utipo,:udv,:ustatus)');
     $stmt->bindParam(':unome',$nome);
     $stmt->bindParam(':uwhats',$whats);
     $stmt->bindParam(':uemail',$email);
     $stmt->bindParam(':umensagem',$mensagem);
-    $stmt->bindParam(':uopc',$opc);
+    $stmt->bindParam(':utipo',$tipo);
+    $stmt->bindParam(':udv',$dv);
+    $stmt->bindParam(':ustatus',$status);
 
 
 
     if($stmt->execute())
     {
-      echo("<script type= 'text/javascript'>alert('Obrigado! Em breve nossa equipe entrará em contato com você');</script>
-      <script>window.location = 'index.php';</script>");
+      echo("<script>window.location = 'obrigado.php';</script>");
     }
     else
     {
@@ -93,4 +95,67 @@ if(!isset($errMSG))
     }
 }
 }
+
+if(isset($_POST["submit2"])){
+
+    $nome = $_POST['nome'];
+    $whats = $_POST['whats'];
+    $tipo = $_POST['tipo'];
+    $dv = $_POST['dv'];
+    $status = $_POST['status'];
+    
+    $nome2 = trim($nome);
+    $whats2 = trim($whats);
+    
+    
+    function phoneValidate($phone)
+    {
+        $regex = '/^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/';
+    
+        if (preg_match($regex, $phone) == false) {
+    
+            // O número não foi validado.
+            return false;
+        } else {
+    
+            // Telefone válido.
+            return true;
+        }        
+    }
+    
+ 
+    if (phoneValidate( $whats ) == false) {
+        $errMSG = "Por favor, insira um número válido";
+    }
+    
+    if(empty($nome2)){
+        $errMSG = "Por favor insira o nome";
+    }
+    
+    if(empty($whats2)){
+        $errMSG = "Por favor insira um número";
+    }
+    
+ 
+    if(!isset($errMSG))
+    {
+        $stmt = $DB_con->prepare('INSERT INTO forms (nome,whats,tipo,dv,status) VALUES(:unome,:uwhats,:utipo,:udv,:ustatus)');
+        $stmt->bindParam(':unome',$nome);
+        $stmt->bindParam(':uwhats',$whats);
+        $stmt->bindParam(':utipo',$tipo);
+        $stmt->bindParam(':udv',$dv);
+        $stmt->bindParam(':ustatus',$status);
+    
+    
+    
+        if($stmt->execute())
+        {
+          echo("<script>window.location = 'obrigado.php';</script>");
+        }
+        else
+        {
+            $errMSG = "Erro!";
+        }
+    }
+    }
 ?>

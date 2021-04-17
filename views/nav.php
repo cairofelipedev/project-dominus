@@ -86,3 +86,51 @@
         <!-- Collapse -->
       </div>
     </nav>
+    <div class="contact-btn">
+    <!-- Button trigger modal -->
+    <button type="button" class="whatsapp btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+  </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Dúvidas ou mais informações? Nós entramos em contato com você!</h5>
+          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+            <div class="row">
+              <div class="form-group col-lg-6 col-6">
+                <label class="modal-label" for="NomeSobrenome">Nome</label>
+                <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
+              </div>
+              <div class="form-group col-lg-6 col-6">
+                <label class="modal-label" for="Whats">Whats-App</label>
+                <input size="20" maxlength="14" type="tel" class="form-control shadow-none" name="whats" placeholder="Whats-App" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="modal-label" for="Email">Email</label>
+              <input type="text" class="form-control shadow-none" name="email" id="email" placeholder="E-mail" required />
+            </div>
+            <div class="form-group pb-3">
+              <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>
+            </div>
+            <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
+            <input type="hidden" name="tipo" value="1">
+            <input type="hidden" name="status" value="1">
+            <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
