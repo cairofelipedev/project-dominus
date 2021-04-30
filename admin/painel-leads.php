@@ -43,11 +43,13 @@ endif;
             extract($row);
         ?>
             <div class="col-lg-4">
-              <div class="card card-chart pb-3" <?php
-                                                if ($tipo == '1') {
-                                                  echo "style='background-color:#0c3333;color:white;'";
-                                                }
-                                                ?>>
+              <div class="card card-chart pb-3" 
+              <?php
+                if ($tipo == '1') {
+                  echo "style='background-color:#0c3333;color:white;'";
+                }
+                ?>
+               >
                 <div class="card-header">
                   <i class="fas fa-fw fa-clock"></i> <?php $date = new DateTime($data_envio);
                                                       echo $date->format('H:i d-m-Y'); ?>
