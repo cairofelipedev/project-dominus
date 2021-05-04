@@ -1,36 +1,3 @@
-/*!
-
- =========================================================
- * site.product_name - vsite.current_version
- =========================================================
-
- * Product Page: site.link_tim
- * Copyright site.year Creative Tim (http://www.creative-tim.com)
-
- * Designed by www.invisionapp.com Coded by www.creative-tim.com
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
-/*!
-
- =========================================================
- * Now UI Dashboard - v1.5.0
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/now-ui-dashboard
- * Copyright 2019 Creative Tim (http://www.creative-tim.com)
-
- * Designed by www.invisionapp.com Coded by www.creative-tim.com
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
 
 (function() {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
@@ -188,3 +155,38 @@ function hexToRGB(hex, alpha) {
     return "rgb(" + r + ", " + g + ", " + b + ")";
   }
 }
+
+$(".owl-produtos").owlCarousel({
+  items: 4,
+  loop:false,
+  margin:10,
+  responsive: {
+    0: {
+      items: 1
+    },
+    768: {
+      items: 2
+    },
+    900: {
+      items: 4
+    }
+  }
+});
+
+$(".owl-produtos2").owlCarousel({
+  items: 4,
+  autoWidth:true,
+  margin:10,
+  dots:false,
+  responsive: {
+    0: {
+      items: 1
+    },
+    768: {
+      items: 2
+    },
+    900: {
+      items: 3
+    }
+  }
+});
