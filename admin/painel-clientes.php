@@ -49,6 +49,7 @@
         </div>
         <div class="col-4 text-right">
           <a href="add-cliente.php"><button class="btn btn-primary">Adicionar Cliente</button></a>
+          <a href="gerador-excel.php"><button class="btn btn-primary">Excel</button></a>
         </div>
       </div>
         <div class="row">
