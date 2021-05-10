@@ -4,7 +4,7 @@
             <ul>
               <li>
                 <a href="">
-                  ÁguaDaBoaFonthe
+                  Distribuidora Dominus
                 </a>
               </li>
               <li>
@@ -22,7 +22,7 @@
           <div class="copyright" id="copyright">
             &copy; <script>
               document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, ÁguaDaBoaFonthe
+            </script>, Distribuidora Dominus
           </div>
         </div>
       </footer>

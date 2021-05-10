@@ -1,7 +1,19 @@
 <?php
+require "classes/Helper.php";
+require "classes/Url.class.php";
+$URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
-$nome2 = $_GET['nome'];
+$url = explode("/", $_SERVER['REQUEST_URI']);
+(is_numeric($url[3])) ? $idProduto = $url[3] : $idProduto = 1;
+
+$stmt = $DB_con->prepare("SELECT nome,category FROM produtos where id='$idProduto' ORDER BY id DESC");
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+  extract($row);
+  $produto = $nome;
+  $category2 = $category;
+}
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -12,20 +24,20 @@ $nome2 = $_GET['nome'];
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta content="Distribuidora Dominus" name="description">
   <!-- Favicons -->
-  <link rel="icon" href="./assets/images/favicon.ico">
+  <link rel="icon" href="<?php echo $URI->base('/assets/images/favicon.ico') ?>">
   <!-- Libs CSS -->
-  <link rel="stylesheet" href="./assets/libs/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="./assets/libs/flickity.min.css">
-  <link rel="stylesheet" href="./assets/libs/vs2015.css">
-  <link rel="stylesheet" href="./assets/libs/simplebar.min.css">
-  <link rel="stylesheet" href="./assets/libs/flickity-fade.css">
-
+  <link rel="stylesheet" href="<?php echo $URI->base('/assets/libs/jquery.fancybox.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo $URI->base('/assets/libs/flickity.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo $URI->base('/assets/libs/vs2015.css') ?>">
+  <link rel="stylesheet" href="<?php echo $URI->base('/assets/libs/simplebar.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo $URI->base('/assets/libs/flickity-fade.css') ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="./assets/css/theme.css">
-  <title><?php echo $nome2 ?></title>
+  
+  <link rel="stylesheet" href="<?php echo $URI->base('/assets/css/theme.css') ?>">
+  <title><?php echo $produto ?></title>
 </head>
 
 <body>
@@ -41,13 +53,13 @@ $nome2 = $_GET['nome'];
           <!-- Breadcrumb -->
           <ol class="breadcrumb mb-0 font-size-xs text-gray-400">
             <li class="breadcrumb-item">
-              <a class="text-gray-400" href="index.html">Página inicial <i class="fas fa-angle-right"></i></a>
+              <a class="text-gray-400" href="<?php echo $URI->base('/home')?>">Página inicial <i class="fas fa-angle-right"></i></a>
             </li>
             <li class="breadcrumb-item">
-              <a class="text-gray-400" href="search.html">Utilidades Domésticas <i class="fas fa-angle-right"></i></a>
+              <a class="text-gray-400" href="<?php echo $URI->base('/busca.php?pesquisa='.$category2.''); ?>">Utilidades Domésticas <i class="fas fa-angle-right"></i></a>
             </li>
             <li class="breadcrumb-item active">
-              Tapete higiênico para carro
+              <?php echo $produto; ?>
             </li>
           </ol>
         </div>
@@ -58,7 +70,7 @@ $nome2 = $_GET['nome'];
   <!-- PRODUCT -->
   <?php
 
-  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3 FROM produtos where nome='$nome2'");
+  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3 FROM produtos where nome='$produto'");
   $stmt->execute();
 
   if ($stmt->rowCount() > 0) {
@@ -81,15 +93,15 @@ $nome2 = $_GET['nome'];
                     <div class="mb-4" data-flickity='{"draggable": false, "fade": true, "wrapAround": true}' id="productSlider">
                       <!-- Item -->
                       <a href="assets/images/produto2.jpeg" class="w-100" data-fancybox>
-                        <img src="admin/uploads/produtos/<?php echo $row['img']; ?>" alt="..." class="card-img-top">
+                        <img src="<?php echo $URI->base('/admin/uploads/produtos/'.$row['img'].'')?>" alt="..." class="card-img-top">
                       </a>
                       <!-- Item -->
                       <a href="assets/images/produto3.jpeg" class="w-100" data-fancybox>
-                        <img src="admin/uploads/produtos/<?php echo $row['img2']; ?>" alt="..." class="card-img-top">
+                        <img src="<?php echo $URI->base('/admin/uploads/produtos/'.$row['img2'].'')?>" alt="..." class="card-img-top">
                       </a>
                       <!-- Item -->
                       <a href="assets/images/produto12.jpeg" class="w-100" data-fancybox>
-                        <img src="admin/uploads/produtos/<?php echo $row['img3']; ?>" alt="..." class="card-img-top">
+                        <img src="<?php echo $URI->base('/admin/uploads/produtos/'.$row['img3'].'')?>" alt="..." class="card-img-top">
                       </a>
                     </div>
                   </div>
@@ -98,17 +110,17 @@ $nome2 = $_GET['nome'];
                     <!-- Item -->
                     <div class="col-12 px-2" style="max-width: 113px;">
                       <!-- Image -->
-                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(admin/uploads/produtos/<?php echo $row['img']; ?>);"></div>
+                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/'.$row['img'].'')?>);"></div>
                     </div>
                     <!-- Item -->
                     <div class="col-12 px-2" style="max-width: 113px;">
                       <!-- Image -->
-                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(admin/uploads/produtos/<?php echo $row['img2']; ?>);"></div>
+                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/'.$row['img2'].'')?>);"></div>
                     </div>
                     <!-- Item -->
                     <div class="col-12 px-2" style="max-width: 113px;">
                       <!-- Image -->
-                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(admin/uploads/produtos/<?php echo $row['img3']; ?>);"></div>
+                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/'.$row['img3'].'')?>);"></div>
                     </div>
                   </div>
                 </div>
@@ -133,7 +145,7 @@ $nome2 = $_GET['nome'];
                     <!-- Label -->
                     <h6>Descrição</h6>
                     <p class="mb-5">
-                    <?php echo $descricao ?>
+                      <?php echo $descricao ?>
                     </p>
                     <!-- Radio -->
 
@@ -408,20 +420,19 @@ $nome2 = $_GET['nome'];
 
   <!-- JAVASCRIPT -->
   <!-- Libs JS -->
-  <script src="./assets/libs/js/jquery.min.js"></script>
-  <script src="./assets/libs/js/jquery.fancybox.min.js"></script>
-  <script src="./assets/libs/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/libs/js/flickity.js"></script>
-  <script src="./assets/libs/js/highlight.pack.min.js"></script>
-  <script src="./assets/libs/js/jarallax.min.js"></script>
-  <script src="./assets/libs/js/list.min.js"></script>
-  <script src="./assets/libs/js/simplebar.min.js"></script>
-  <script src="./assets/libs/js/smooth-scroll.min.js"></script>
-  <script src="./assets/libs/js/flickity-fade.js"></script>
-  <!-- Map (replace the API key to enable) -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnKt8_N4-FKOnhI_pSaDL7g_g-XI1-R9E"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/jquery.fancybox.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/flickity.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/highlight.pack.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/jarallax.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/list.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/simplebar.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/smooth-scroll.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/flickity-fade.js') ?>"></script>
+
   <!-- Theme JS -->
-  <script src="./assets/js/theme.min.js"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>./assets/js/theme.min.js"></script>
 </body>
 
 </html>

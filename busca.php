@@ -1,4 +1,7 @@
 <?php 
+require "classes/Helper.php";
+require "classes/Url.class.php";
+$URI = new URI();
 require_once 'admin/dbconfig.php';
 
 // palavra digitada na busca 
