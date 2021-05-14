@@ -40,9 +40,9 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="painel-clientes.php">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Úsuarios</p>
+              <p>Clientes</p>
             </a>
           </li>
         </ul>

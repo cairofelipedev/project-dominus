@@ -165,7 +165,7 @@ if (isset($_POST['btnsave'])) {
             <div class="card-body">
               <form method="POST" enctype="multipart/form-data">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <p class="title text-center">Informações</p>
                     <div class="border p-3 rounded">
                       <div class="form-group">
@@ -208,7 +208,7 @@ if (isset($_POST['btnsave'])) {
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <p class="title text-center">Imagens</p>
                     <div class="border p-3 rounded">
                       <div class="form-group">
