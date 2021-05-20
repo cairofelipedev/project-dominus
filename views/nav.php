@@ -29,6 +29,11 @@
                   <a href="<?php echo $URI->base('/blog')?>" class="nav-link">Blog</a>
                 </li>
               </li>
+              <li class="nav-item">
+                <li class="nav-item">
+                  <a href="<?php echo $URI->base('/sobre')?>" class="nav-link">Sobre Nós</a>
+                </li>
+              </li>
             </ul>
 
             
