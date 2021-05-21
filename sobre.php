@@ -1,4 +1,9 @@
-<!doctype php>
+<?php
+require "classes/Helper.php";
+require "classes/Url.class.php";
+$URI = new URI();
+?>
+<!doctype html>
 <html lang="pt-br">
 
   <head>
