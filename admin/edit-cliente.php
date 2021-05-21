@@ -251,8 +251,8 @@ if (($_SESSION['type'] != 1) and ($_SESSION['type'] != 2)) {
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label>Whats</label>
-                        <input value="<?php echo $whats; ?>" type="text" name="whats" class="form-control" placeholder="Whats-App">
+                        <label>Whatsapp</label>
+                        <input value="<?php echo $whats; ?>" type="text" name="whats" class="form-control" placeholder="Número">
                       </div>
                     </div>
                     <div class="col-md-4">

@@ -116,8 +116,8 @@
                 <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
               </div>
               <div class="form-group col-lg-6 col-6">
-                <label class="modal-label" for="Whats">Whats-App</label>
-                <input size="20" maxlength="14" type="tel" class="form-control shadow-none" name="whats" placeholder="Whats-App" required>
+                <label class="modal-label" for="Whats">Whatsapp</label>
+                <input size="20" maxlength="14" type="tel" class="form-control shadow-none" name="whats" placeholder="Número" required>
               </div>
             </div>
             <div class="form-group">
