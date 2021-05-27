@@ -72,9 +72,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="../index.php" target="_blank">
                   <i class="now-ui-icons media-1_button-play"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Estatisticas</span>
-                  </p>
                 </a>
               </li>
               <li class="nav-item dropdown">

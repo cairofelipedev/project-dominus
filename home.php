@@ -121,7 +121,7 @@ $dv = $_GET['dv'];
         <div class="col-lg-8">
           <form class="form-inline" action="" method="POST">
             <input type="text" name="nome" class="form-control mb-2" placeholder="Nome" required />
-            <input type="text" class="form-control mb-2" name="whats" placeholder="Número" required />
+            <input type="text" class="form-control mb-2 phone" name="whats" placeholder="Número" required />
             <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
             <input type="hidden" name="tipo" value="2">
             <input type="hidden" name="status" value="1">
@@ -547,10 +547,13 @@ $dv = $_GET['dv'];
         </div>
 
         <div class="col-lg-8">
-          <form class="form-inline">
-            <input type="text" class="form-control mb-2" placeholder="Nome" required />
-            <input type="email" class="form-control mb-2" placeholder="Email" required />
-            <button type="submit" class="btn btn-primary mb-2">Casdastrar</button>
+        <form class="form-inline" action="" method="POST">
+            <input type="text" name="nome" class="form-control mb-2" placeholder="Nome" required />
+            <input type="text" class="form-control mb-2" name="email" placeholder="Email" required />
+            <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
+            <input type="hidden" name="tipo" value="3">
+            <input type="hidden" name="status" value="1">
+            <button type="submit" name="submit3" class="btn btn-primary mb-2">Casdastrar</button>
           </form>
         </div>
 
@@ -576,9 +579,11 @@ $dv = $_GET['dv'];
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
   <!-- Theme JS -->
   <script src="./assets/js/theme.min.js"></script>
+  <script src="./assets/js/jquery.mask.min.js"></script>
   <script src="./assets/js/custom.js"></script>
 
   <script>
+    $('.phone').mask('(00) 00000-0000');
     $('#carousel').owlCarousel({
       loop: true,
       margin: -1,

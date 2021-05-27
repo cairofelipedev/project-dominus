@@ -15,8 +15,8 @@
               <img class="img-fluid" src="<?php echo $URI->base('/assets/images/logo3.png')?>" width="150" alt="logo">
             </a>
 
-            <form class="search mt-3 mt-lg-0">
-              <input type="search" placeholder="Pesquisar pelo seu produto" />
+            <form class="search mt-3 mt-lg-0" action="busca.php">
+              <input type="search"  name="pesquisa" id="pesquisa" placeholder="Pesquisar pelo seu produto" />
               <button class="btn" ><i class="fas fa-search"></i></button>
             </form>
 
@@ -117,7 +117,7 @@
               </div>
               <div class="form-group col-lg-6 col-6">
                 <label class="modal-label" for="Whats">Whatsapp</label>
-                <input size="20" maxlength="14" type="tel" class="form-control shadow-none" name="whats" placeholder="Número" required>
+                <input size="20" maxlength="14" type="tel" class="form-control shadow-none phone" name="whats" placeholder="Número" required>
               </div>
             </div>
             <div class="form-group">

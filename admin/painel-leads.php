@@ -7,6 +7,15 @@ if (isset($_SESSION['logado'])) :
 else :
   header("Location: login.php");
 endif;
+
+if (isset($_GET['delete_id'])) {
+  // it will delete an actual record from db
+  $stmt_delete = $DB_con->prepare('DELETE FROM forms WHERE id =:uid');
+  $stmt_delete->bindParam(':uid', $_GET['delete_id']);
+  $stmt_delete->execute();
+
+  header("Location: painel-leads.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,6 +44,22 @@ endif;
     <?php include 'nav.php'; ?>
     <div class="content">
       <div class="row">
+        <div class="col-8">
+        <div class="row pb-4">
+        <div class="col-12">
+          <ul class="nav">
+            <li class="n-l"></li><span>GERAL</span>
+            <li class="n-v ml-2"></li><span>LIGAMOS</span>
+            <li class="n-o ml-2"></li><span>NOVIDADES</span>
+          </ul>
+        </div>
+      </div>
+        </div>
+        <div class="col-4 text-right">
+          <a href="gerador-excel-leads.php" class="baixar-excel"><i class="bi bi-download"></i><i class="bi bi-file-earmark-excel-fill"></i></a>
+        </div>
+      </div>
+      <div class="row">
         <?php
         $stmt = $DB_con->prepare("SELECT id, nome, whats,email,mensagem,opc,data_envio,tipo FROM forms ORDER BY id DESC");
         $stmt->execute();
@@ -43,25 +68,32 @@ endif;
             extract($row);
         ?>
             <div class="col-lg-4">
-              <div class="card card-chart pb-3" 
-              <?php
-                if ($tipo == '1') {
-                  echo "style='background-color:#0c3333;color:white;'";
-                }
-                ?>
-               >
+              <div class="card card-chart pb-3" <?php
+                                                if ($tipo == '1') {
+                                                  echo "style='background-color:#0c3333;color:white;'";
+                                                }
+                                                if ($tipo == '3') {
+                                                  echo "style='background-color:#bfdaf5;color:black;'";
+                                                }
+                                                ?>>
                 <div class="card-header">
                   <i class="fas fa-fw fa-clock"></i> <?php $date = new DateTime($data_envio);
                                                       echo $date->format('H:i d-m-Y'); ?>
                   <br>
                   <i class="fas fa-fw fa-user"></i> <?php echo $nome; ?>
                   <br>
-                  <i class="fab fa-whatsapp"></i> <?php echo $whats; ?>
+                  <?php
+                  if (($tipo == '2') or ($tipo == '1')) { ?>
+                    <i class="fab fa-whatsapp"></i> <?php echo $whats; ?>
+                    <br>
+                  <?php } ?>
+                  <?php
+                  if (($tipo == '1') or ($tipo == '3')) { ?>
+                    <i class="fas fa-at"></i> <?php echo $email; ?>
+                  <?php } ?>
                   <br>
                   <?php
                   if ($tipo == '1') { ?>
-                    <i class="fas fa-at"></i> <?php echo $email; ?>
-                    <br>
                     <i class="fas fa-comment-alt"></i>
                   <?php
                     if ($mensagem == '') {
@@ -72,8 +104,14 @@ endif;
                   }
                   ?>
                 </div>
+                <div class="row container">
+                  <div class="col-6">
+                    <a class="btn btn-danger" href="?delete_id=<?php echo $row['id']; ?>" title="clique para deletar" onclick="return confirm('Excluir Lead?')"><i class="now-ui-icons ui-1_simple-remove"></i> Excluir</a>
+                  </div>
+                </div>
               </div>
             </div>
+
           <?php
           }
         } else {
