@@ -3050,7 +3050,6 @@ img {
     display: inline-block;
     font: normal normal normal 14px/1 'Nucleo Outline';
     font-size: inherit;
-    speak: none;
     text-transform: none;
     /* Better Font Rendering */
     -webkit-font-smoothing: antialiased;
@@ -4151,7 +4150,6 @@ img {
 
 .footer nav {
     display: inline-block;
-    float: left;
     padding-left: 7px;
 }
 
@@ -4345,7 +4343,6 @@ img {
 }
 
 .fixed-plugin .adjustments-line p {
-    float: left;
     display: inline-block;
     margin-bottom: 0;
     font-size: 1em;
@@ -4554,8 +4551,8 @@ img {
 }
 
 .card .avatar {
-    width: 30px;
-    height: 30px;
+    width: 90px;
+    height: 90px;
     overflow: hidden;
     border-radius: 50%;
     margin-bottom: 15px;

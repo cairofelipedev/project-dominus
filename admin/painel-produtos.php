@@ -45,6 +45,7 @@ if (isset($_GET['delete_id'])) {
       <a href="add-produto.php">
         <div class="text-right">
           <button class="btn btn-info">Adicionar produto</button>
+          <a href="gerador-excel-produtos.php" class="baixar-excel"><i class="bi bi-download"></i><i class="bi bi-file-earmark-excel-fill"></i></a>
         </div>
       </a>
       <div class="row">

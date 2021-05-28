@@ -11,7 +11,7 @@
         <ul class="nav">
           <li class="active ">
             <a href="painel-controle.php">
-              <i class="now-ui-icons design_app"></i>
+            <i class="bi bi-bullseye"></i>
               <p>Painel de Controle</p>
             </a>
           </li>
@@ -41,8 +41,14 @@
           </li>
           <li>
             <a href="painel-clientes.php">
-              <i class="now-ui-icons users_single-02"></i>
+            <i class="fas fa-hands-helping"></i>
               <p>Clientes</p>
+            </a>
+          </li>
+          <li>
+            <a href="painel-users.php">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Usuários</p>
             </a>
           </li>
         </ul>
@@ -82,7 +88,7 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item text-info" href="#">Editar Perfil</a>
+                  <a class="dropdown-item text-info" href="edit-user.php?edit_id=<?php echo $_SESSION['id']; ?>">Editar Perfil</a>
                   <a class="dropdown-item text-danger" href="logout.php">Sair</a>
                 </div>
               </li>
