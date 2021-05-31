@@ -50,7 +50,7 @@ if (isset($_GET['delete_id'])) {
       </a>
       <div class="row">
         <?php
-        $stmt = $DB_con->prepare("SELECT id, nome, img,data_add,descricao,price,status FROM produtos ORDER BY id DESC");
+        $stmt = $DB_con->prepare("SELECT id, nome,img,data_add,descricao,price,status FROM produtos ORDER BY id DESC");
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
