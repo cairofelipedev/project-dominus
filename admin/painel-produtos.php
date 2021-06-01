@@ -50,7 +50,7 @@ if (isset($_GET['delete_id'])) {
       </a>
       <div class="row">
         <?php
-        $stmt = $DB_con->prepare("SELECT id, nome,img,data_add,descricao,price,status FROM produtos ORDER BY id DESC");
+        $stmt = $DB_con->prepare("SELECT id, nome,img,data_add,descricao,price,status,desconto,valor_desconto FROM produtos ORDER BY id DESC");
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -65,15 +65,24 @@ if (isset($_GET['delete_id'])) {
                   </div>
                   <div class="col-md-6">
                   <h4><?php echo $nome ?></h4>
-                  <?php if ($status == 'ATIVO') { ?>
+                  <?php if ($status == '1') { ?>
                     <p style="color:green;font-weight:bold;">ATIVO</p>
                   <?php } ?>
-                  <?php if ($status == 'DESATIVADO') { ?>
-                    <p style="color:red;font-weight:bold;">DESATIVADO</p>
+                  <?php if ($status == '2') { ?>
+                    <p style="color:blue;font-weight:bold;">OFERTA</p>
                   <?php } ?>
+                  <?php if ($status == '3') { ?>
+                    <p style="color:yellow;font-weight:bold;">NOVIDADE</p>
+                  <?php } ?>
+                  <?php if ($status == '3') { ?>
+                    <p style="color:red;font-weight:bold;">DESATIVADO</p>
+                  <?php } ?>    
+                  <h5 style="margin:0%;"><?php echo "R$ ".$price ?></h5>
+                  <?php if ($desconto != '') { ?>
                   
-                  <h3><?php echo $price ?></h3>
-                  
+                  <p style="margin:0%;text-decoration: line-through;"><?php echo $desconto."%" ?></p>
+                  <p style="margin:0%;"><?php echo "Valor com desconto: ".$valor_desconto ?></p>
+                  <?php } ?>
                   <a data-toggle="collapse" href="#collapseExample<?php echo $id ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
                     Descrição <i class='fas fa-angle-down'></i>
                   </a>

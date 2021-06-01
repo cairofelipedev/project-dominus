@@ -185,7 +185,7 @@ if (isset($_POST['btnsave'])) {
                             <select name="category" class="form-control">
 
                               <option value='<?php echo $category; ?>'><?php echo $category; ?></option>
-                              <option value='Utilidades Domésticas'>Utilidades Domésticas</option>
+                              <option value='2'>Utilidades Domésticas</option>
                               <option value='Jardinagem'>Jardinagem</option>
                               <option value='Embalagem'>Embalagem</option>
                               <option value='Pets'>Pets</option>
@@ -202,8 +202,10 @@ if (isset($_POST['btnsave'])) {
                         <select name="status" class="form-control">
 
                           <option value='<?php echo $status; ?>'><?php echo $status; ?></option>
-                          <option value='ATIVO'>SIM</option>
-                          <option value='DESATIVADO'>NÃO</option>
+                          <option value='1'>ATIVO</option>
+                              <option value='2'>OFERTA</option>
+                              <option value='3'>NOVIDADE</option>
+                              <option value='4'>DESATIVADO</option>
                         </select>
                       </div>
                     </div>

@@ -7,6 +7,14 @@ if (isset($_SESSION['logado'])) :
 else :
   header("Location: login.php");
 endif;
+if (isset($_GET['delete_produto'])) {
+  // it will delete an actual record from db
+  $stmt_delete = $DB_con->prepare('DELETE FROM produtos WHERE id =:uid');
+  $stmt_delete->bindParam(':uid', $_GET['delete_produto']);
+  $stmt_delete->execute();
+
+  header("Location: painel-controle.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -177,7 +185,7 @@ endif;
                 }
               } else {
                 ?>
-                <div class="pt-4 col-xs-12">
+                <div class="pt-4 col-xs-12 container">
                   <div class="alert alert-danger">
                     Sem produto cadastrado ...
                   </div>

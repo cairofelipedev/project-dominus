@@ -142,10 +142,11 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':ucor4', $cor4);
     $stmt->bindParam(':ucor5', $cor5);
     $stmt->bindParam(':udesconto', $desconto);
+    $valor_desconto = $price - ($price / 100 * $desconto);
     $stmt->bindParam(':uvalor_desconto', $valor_desconto);
     $stmt->bindParam(':upeso', $peso);
     $stmt->bindParam(':upic', $userpic);
-
+  
     if (empty($imgFile2)) {
       $stmt->bindValue(':upic2', $nulo);
       $nulo = '';
@@ -276,9 +277,6 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Desconto</label>
                             <input value="<?php echo $desconto; ?>" name="desconto" type="text" class="form-control" placeholder="Desconto (Opcional)">
-                            <?php
-                            $valor_desconto = $price - ($price / 100 * $desconto);
-                            ?>
                             <input value="<?php echo $valor_desconto; ?>" name="valor_desconto" type="hidden">
                           </div>
                         </div>

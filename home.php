@@ -139,13 +139,13 @@ $dv = $_GET['dv'];
       <div class="row">
         <div class="col-12">
           <!-- Heading -->
-          <h4 class="mb-5 pl-8">Mais Vendidos</h4>
+          <h4 class="mb-5 pl-8">Ofertas especiais</h4>
           <!-- Slider -->
           <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": true}'>
 
             <!-- Item -->
             <?php
-            $stmt = $DB_con->prepare("SELECT id,nome,price,category,img FROM produtos ORDER BY id DESC");
+            $stmt = $DB_con->prepare("SELECT id,nome,price,category,img,desconto,valor_desconto FROM produtos where status='2' ORDER BY id DESC");
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
               while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -154,9 +154,11 @@ $dv = $_GET['dv'];
                 <div class="col-lg-3 col-md-6" style="min-width: 220px;">
                   <div class="card mb-7">
                     <!-- Badge -->
+                    <?php if ($desconto != '') { ?>
                     <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                      -10%
+                    -<?php echo $desconto."%" ?>
                     </div>
+                    <?php } ?>
                     <!-- Image -->
                     <div class="card-img">
                       <!-- Image -->
@@ -178,8 +180,11 @@ $dv = $_GET['dv'];
                       </div>
                       <!-- Price -->
                       <div class="font-weight-bold">
-                        <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                        <span class="text-primary">$230,00</span>
+                        
+                        <?php if ($valor_desconto  != '') { ?>
+                        <span class="font-size-xs text-gray-350 text-decoration-line-through"><?php echo "R$ ".$price ?></span>
+                        <span class="text-primary"><?php echo "R$ ".$valor_desconto ?></span>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
@@ -200,241 +205,60 @@ $dv = $_GET['dv'];
       <div class="row">
         <div class="col-12">
           <!-- Heading -->
-          <h4 class="mb-5 pl-8">Ofertas especiais</h4>
+          <h4 class="mb-5 pl-8">Nossos produtos</h4>
           <!-- Slider -->
           <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": true}'>
 
             <!-- Item -->
-            <div class="col-lg-3 col-md-6" style="min-width: 220px;">
-              <div class="card mb-7">
-
-                <!-- Badge -->
-                <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                  -10%
-                </div>
-
-                <!-- Image -->
-                <div class="card-img">
-
-                  <!-- Image -->
-                  <a class="card-img-hover" href="product.php">
-                    <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
-                  </a>
-
-                </div>
-
-                <!-- Body -->
-                <div class="card-body px-0">
-
-                  <!-- Category -->
-                  <div class="font-size-xs">
-                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
+            <?php
+            $stmt = $DB_con->prepare("SELECT id,nome,price,category,img,desconto,valor_desconto FROM produtos where status='1' ORDER BY id DESC");
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+            ?>
+                <div class="col-lg-3 col-md-6" style="min-width: 220px;">
+                  <div class="card mb-7">
+                  
+                    <!-- Image -->
+                    <div class="card-img">
+                      <!-- Image -->
+                      <a class="card-img-hover" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                        <img class="card-img-top" src="admin/uploads/produtos/<?php echo $row['img']; ?>" alt="...">
+                      </a>
+                    </div>
+                    <!-- Body -->
+                    <div class="card-body px-0">
+                      <!-- Category -->
+                      <div class="font-size-xs">
+                        <a class="text-muted" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>"><?php echo $category ?></a>
+                      </div>
+                      <!-- Title -->
+                      <div class="font-weight-bold">
+                        <a class="text-body" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                          <?php echo $nome ?>
+                        </a>
+                      </div>
+                      <!-- Price -->
+                      <div class="font-weight-bold">
+                        
+                        <?php if ($valor_desconto  != '') { ?>
+                        <span class="text-primary"><?php echo "R$ ".$price ?></span>
+                        <?php } ?>
+                      </div>
+                    </div>
                   </div>
-
-                  <!-- Title -->
-                  <div class="font-weight-bold">
-                    <a class="text-body" href="product.php">
-                      Conjunto chá completo azul
-                    </a>
-                  </div>
-
-                  <!-- Price -->
-                  <div class="font-weight-bold">
-                    <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                    <span class="text-primary">$230,00</span>
-                  </div>
-
                 </div>
-
-              </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6" style="min-width: 220px;">
-              <div class="card mb-7">
-
-                <!-- Badge -->
-                <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                  -10%
-                </div>
-
-                <!-- Image -->
-                <div class="card-img">
-
-                  <!-- Image -->
-                  <a class="card-img-hover" href="product.php">
-                    <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
-                  </a>
-
-                </div>
-
-                <!-- Body -->
-                <div class="card-body px-0">
-
-                  <!-- Category -->
-                  <div class="font-size-xs">
-                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
-                  </div>
-
-                  <!-- Title -->
-                  <div class="font-weight-bold">
-                    <a class="text-body" href="product.php">
-                      Conjunto chá completo azul
-                    </a>
-                  </div>
-
-                  <!-- Price -->
-                  <div class="font-weight-bold">
-                    <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                    <span class="text-primary">$230,00</span>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6" style="min-width: 220px;">
-              <div class="card mb-7">
-
-                <!-- Badge -->
-                <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                  -10%
-                </div>
-
-                <!-- Image -->
-                <div class="card-img">
-
-                  <!-- Image -->
-                  <a class="card-img-hover" href="product.php">
-                    <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
-                  </a>
-
-                </div>
-
-                <!-- Body -->
-                <div class="card-body px-0">
-
-                  <!-- Category -->
-                  <div class="font-size-xs">
-                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
-                  </div>
-
-                  <!-- Title -->
-                  <div class="font-weight-bold">
-                    <a class="text-body" href="product.php">
-                      Conjunto chá completo azul
-                    </a>
-                  </div>
-
-                  <!-- Price -->
-                  <div class="font-weight-bold">
-                    <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                    <span class="text-primary">$230,00</span>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6" style="min-width: 220px;">
-              <div class="card mb-7">
-
-                <!-- Badge -->
-                <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                  -10%
-                </div>
-
-                <!-- Image -->
-                <div class="card-img">
-
-                  <!-- Image -->
-                  <a class="card-img-hover" href="product.php">
-                    <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
-                  </a>
-
-                </div>
-
-                <!-- Body -->
-                <div class="card-body px-0">
-
-                  <!-- Category -->
-                  <div class="font-size-xs">
-                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
-                  </div>
-
-                  <!-- Title -->
-                  <div class="font-weight-bold">
-                    <a class="text-body" href="product.php">
-                      Conjunto chá completo azul
-                    </a>
-                  </div>
-
-                  <!-- Price -->
-                  <div class="font-weight-bold">
-                    <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                    <span class="text-primary">$230,00</span>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6" style="min-width: 220px;">
-              <div class="card mb-7">
-
-                <!-- Badge -->
-                <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                  -10%
-                </div>
-
-                <!-- Image -->
-                <div class="card-img">
-
-                  <!-- Image -->
-                  <a class="card-img-hover" href="product.php">
-                    <img class="card-img-top" src="assets/images/produto8.jpeg" alt="...">
-                  </a>
-
-                </div>
-
-                <!-- Body -->
-                <div class="card-body px-0">
-
-                  <!-- Category -->
-                  <div class="font-size-xs">
-                    <a class="text-muted" href="search.php">Utilidades Domésticas</a>
-                  </div>
-
-                  <!-- Title -->
-                  <div class="font-weight-bold">
-                    <a class="text-body" href="product.php">
-                      Conjunto chá completo azul
-                    </a>
-                  </div>
-
-                  <!-- Price -->
-                  <div class="font-weight-bold">
-                    <span class="font-size-xs text-gray-350 text-decoration-line-through">$300,00</span>
-                    <span class="text-primary">$230,00</span>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
+            <?php
+              }
+            }
+            ?>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- BLOG -->
   <section class="py-8 bg-light">

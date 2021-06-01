@@ -10,7 +10,7 @@
   if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
   {
       $id = $_GET['edit_id'];
-      $stmt_edit = $DB_con->prepare('SELECT home,text_intro,texto1,texto2,texto3,texto4,texto5, img, img2 FROM quem_somos WHERE id =:uid');
+      $stmt_edit = $DB_con->prepare('SELECT home,text_intro,texto1,texto2,texto3,texto4,texto5 FROM quem_somos WHERE id =:uid');
       $stmt_edit->execute(array(':uid'=>$id));
       $edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
       extract($edit_row);
@@ -31,71 +31,7 @@
     $texto4 = $_POST['texto4'];
     $texto5 = $_POST['texto5'];
 		
-		$imgFile = $_FILES['user_image']['name'];
-		$tmp_dir = $_FILES['user_image']['tmp_name'];
-    $imgSize = $_FILES['user_image']['size'];
-        
-    $imgFile2 = $_FILES['user_image2']['name'];
-		$tmp_dir2 = $_FILES['user_image2']['tmp_name'];
-		$imgSize2 = $_FILES['user_image2']['size'];
-		
-		if($imgFile)
-		{
-			$upload_dir = 'uploads/'; // upload directory	
-			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
-			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
-			$userpic = rand(1000,1000000).".".$imgExt;
-			if(in_array($imgExt, $valid_extensions))
-			{			
-				if($imgSize < 5000000)
-				{
-					unlink($upload_dir.$edit_row['img']);
-					move_uploaded_file($tmp_dir,$upload_dir.$userpic);
-				}
-				else
-				{
-					$errMSG = "Imagem grande demais, max 5MB";
-				}
-			}
-			else
-			{
-				$errMSG = "Imagens apenas nos formatos JPG, JPEG, PNG & GIF";		
-			}	
-		}
-		else
-		{
-			// if no image selected the old image remain as it is.
-			$userpic = $edit_row['img']; // old image from database
-        }
-      if($imgFile2)
-		{
-			$upload_dir = 'uploads/'; // upload directory	
-			$imgExt2 = strtolower(pathinfo($imgFile2,PATHINFO_EXTENSION)); // get image extension
-			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
-			$userpic2 = rand(1000,1000000).".".$imgExt2;
-			if(in_array($imgExt2, $valid_extensions))
-			{			
-				if($imgSize2 < 5000000)
-				{
-					unlink($upload_dir.$edit_row['img2']);
-					move_uploaded_file($tmp_dir2,$upload_dir.$userpic2);
-				}
-				else
-				{
-					$errMSG = "Imagem grande demais, max 5MB";
-				}
-			}
-			else
-			{
-				$errMSG = "Imagens apenas nos formatos JPG, JPEG, PNG & GIF";		
-			}	
-		}
-		else
-		{
-			// if no image selected the old image remain as it is.
-		$userpic2 = $edit_row['img2']; // old image from database
-    }    
-		// if no error occured, continue ....
+
 		if(!isset($errMSG))
 		{
 			$stmt = $DB_con->prepare('UPDATE quem_somos
@@ -106,9 +42,7 @@
        texto2=:utexto2,
        texto3=:utexto3,
        texto4=:utexto4,
-       texto5=:utexto5,
-		   img=:upic,
-       img2=:upic2
+       texto5=:utexto5
        WHERE id=:uid');
 			$stmt->bindParam(':uhome',$home);
 			$stmt->bindParam(':utext_intro',$text_intro);
@@ -117,15 +51,13 @@
       $stmt->bindParam(':utexto3',$texto3);
       $stmt->bindParam(':utexto4',$texto4);
       $stmt->bindParam(':utexto5',$texto5);
-      $stmt->bindParam(':upic',$userpic);
-			$stmt->bindParam(':upic2',$userpic2);
 			$stmt->bindParam(':uid',$id);
 				
 			if($stmt->execute()){
 				?>
         <script>
 				  alert('Quem somos Atualizado ...');
-				  window.location.href='painel_quemsomos.php?edit_id=1';
+				  window.location.href='painel-controle.php';
 				</script>
       <?php
 			  }
@@ -140,11 +72,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/logosemfundo.png">
-  <link rel="icon" type="image/png" href="../assets/img/logosemfundo.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/images/favicon.ico">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Painel Quem Somos / ÁguaDaBoaFonthe
+    Painel Quem Somos / Distribuidora Dominus
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -187,45 +119,33 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Texto da Home</label>
+                        <label>Texto 1</label>
                         <textarea style="max-height: 300px;" rows="5" cols="80" name="home" class="form-control" ><?php echo $home; ?></textarea>
                       </div>
                       <div class="form-group">
-                        <label>Imagem 1</label>
-                        <img src="uploads/<?php echo $img; ?>" class="img-fluid" onerror="this.src='./img/sem.jpg'" />
-                        <br>
-                        <input  type="file" name="user_image" accept="image/*" />
+                        <label>Texto 2</label>
+                        <textarea style="max-height: 300px;" rows="5" cols="80" name="text_intro" class="form-control"><?php echo $text_intro; ?></textarea>
                       </div>
                       <div class="form-group">
-                        <label>Texto da Intro</label>
-                        <textarea style="max-height: 300px;" rows="2" cols="80" name="text_intro" class="form-control"><?php echo $text_intro; ?></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label>Imagem 2</label>
-                        <br>
-                        <img src="uploads/<?php echo $img2; ?>" class="img-fluid" onerror="this.src='./img/sem.jpg'" />
-                        <input  type="file" name="user_image2" accept="image/*" />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group pt-3">
-                      <label>Texto 1</label>
+                      <label>Texto 3</label>
                       <textarea style="max-height: 300px;" rows="5" cols="80" name="texto1" class="form-control" placeholder="Texto principal da postagem"><?php echo $texto1; ?></textarea>
                     </div>
                       <div class="form-group pt-3">
-                        <label>Texto 2</label>
+                        <label>Texto 4</label>
                         <textarea style="max-height: 500px;"  rows="5" cols="80" name="texto2" class="form-control"><?php echo $texto2; ?></textarea>
                       </div>
+                    </div>
+                    <div class="col-md-6">
                       <div class="form-group pt-3">
-                        <label>Texto 3</label>
+                        <label>Texto 5</label>
                         <textarea style="max-height: 500px;" rows="5" cols="80" name="texto3" class="form-control"><?php echo $texto3; ?></textarea>
                       </div>
                       <div class="form-group pt-3">
-                        <label>Texto 4</label>
+                        <label>Texto 6</label>
                         <textarea style="max-height: 500px;" rows="5" cols="80" name="texto4" class="form-control"><?php echo $texto4; ?></textarea>
                       </div>
                       <div class="form-group pt-3">
-                        <label>Texto 5</label>
+                        <label>Texto 7</label>
                         <textarea style="max-height: 500px;" rows="5" cols="80" name="texto5" class="form-control" ><?php echo $texto5; ?></textarea>
                       </div>
                     </div>

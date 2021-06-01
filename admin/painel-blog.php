@@ -23,11 +23,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/logofonte.png">
-  <link rel="icon" type="image/png" href="../assets/img/logofonte.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/images/favicon.ico">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Painel Blog / ÁguaDaBoaFonthe
+    Painel Blog / Distribuidora Dominus
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -81,8 +81,8 @@
             {
           ?>
             <div class="pt-4 col-xs-12">
-            <div class="alert alert-warning">
-              Sem post cadastrado ...
+            <div class="alert bg-primary">
+              Sem nenhuma postagem ...
                 </div>
             </div>
         <?php

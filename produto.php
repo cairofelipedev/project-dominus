@@ -5,7 +5,7 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[4])) ? $idProduto = $url[4] : $idProduto = 1;
+(is_numeric($url[3])) ? $idProduto = $url[3] : $idProduto = 1;
 
 $stmt = $DB_con->prepare("SELECT nome,category FROM produtos where id='$idProduto' ORDER BY id DESC");
 $stmt->execute();
@@ -35,9 +35,9 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
   <!-- Theme CSS -->
-  
+
   <link rel="stylesheet" href="<?php echo $URI->base('/assets/css/theme.css') ?>">
-  <title><?php echo $produto ?></title>
+  <title><?php echo $produto ?> - Distribuidora Dominus</title>
 </head>
 
 <body>
@@ -53,10 +53,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           <!-- Breadcrumb -->
           <ol class="breadcrumb mb-0 font-size-xs text-gray-400">
             <li class="breadcrumb-item">
-              <a class="text-gray-400" href="<?php echo $URI->base('/home')?>">Página inicial <i class="fas fa-angle-right"></i></a>
+              <a class="text-gray-400" href="<?php echo $URI->base('/home') ?>">Página inicial <i class="fas fa-angle-right"></i></a>
             </li>
             <li class="breadcrumb-item">
-              <a class="text-gray-400" href="<?php echo $URI->base('/busca.php?pesquisa='.$category2.''); ?>">Utilidades Domésticas <i class="fas fa-angle-right"></i></a>
+              <a class="text-gray-400" href="<?php echo $URI->base('/busca.php?pesquisa=' . $category2 . ''); ?>"><?php echo $category2; ?><i class="fas fa-angle-right"></i></a>
             </li>
             <li class="breadcrumb-item active">
               <?php echo $produto; ?>
@@ -70,7 +70,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <!-- PRODUCT -->
   <?php
 
-  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3 FROM produtos where nome='$produto'");
+  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3,status,desconto,valor_desconto,altura,largura,profu,peso FROM produtos where nome='$produto'");
   $stmt->execute();
 
   if ($stmt->rowCount() > 0) {
@@ -86,42 +86,56 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   <!-- Card -->
                   <div class="card">
                     <!-- Badge -->
-                    <div class="badge badge-danger card-badge text-uppercase">
-                      -40%
-                    </div>
+                    <?php if ($desconto != '') { ?>
+                      <div class="badge badge-danger card-badge text-uppercase">
+                        -40%
+                      </div>
+                    <?php } ?>
                     <!-- Slider -->
                     <div class="mb-4" data-flickity='{"draggable": false, "fade": true, "wrapAround": true}' id="productSlider">
                       <!-- Item -->
-                      <a href="assets/images/produto2.jpeg" class="w-100" data-fancybox>
-                        <img src="<?php echo $URI->base('/admin/uploads/produtos/'.$row['img'].'')?>" alt="..." class="card-img-top">
-                      </a>
+                      <?php if ($img != '') { ?>
+                        <a class="w-100">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>" alt="..." class="card-img-top">
+                        </a>
+                      <?php } ?>
                       <!-- Item -->
-                      <a href="assets/images/produto3.jpeg" class="w-100" data-fancybox>
-                        <img src="<?php echo $URI->base('/admin/uploads/produtos/'.$row['img2'].'')?>" alt="..." class="card-img-top">
-                      </a>
+                      <?php if ($img2 != '') { ?>
+                        <a class="w-100">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img2'] . '') ?>" alt="..." class="card-img-top">
+                        </a>
+                      <?php } ?>
                       <!-- Item -->
-                      <a href="assets/images/produto12.jpeg" class="w-100" data-fancybox>
-                        <img src="<?php echo $URI->base('/admin/uploads/produtos/'.$row['img3'].'')?>" alt="..." class="card-img-top">
-                      </a>
+                      <?php if ($img3 != '') { ?>
+                        <a class="w-100">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>" alt="..." class="card-img-top">
+                        </a>
+                      <?php } ?>
                     </div>
                   </div>
                   <!-- Slider -->
                   <div class="flickity-nav mx-n2 mb-10 mb-md-0" data-flickity='{"asNavFor": "#productSlider", "contain": true, "wrapAround": false}'>
                     <!-- Item -->
-                    <div class="col-12 px-2" style="max-width: 113px;">
-                      <!-- Image -->
-                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/'.$row['img'].'')?>);"></div>
-                    </div>
+                    <?php if ($img != '') { ?>
+                      <div class="col-12 px-2" style="max-width: 113px;">
+                        <!-- Image -->
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>);"></div>
+                      </div>
+                    <?php } ?>
                     <!-- Item -->
-                    <div class="col-12 px-2" style="max-width: 113px;">
-                      <!-- Image -->
-                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/'.$row['img2'].'')?>);"></div>
-                    </div>
+                    <?php if ($img2 != '') { ?>
+                      <div class="col-12 px-2" style="max-width: 113px;">
+                        <!-- Image -->
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img2'] . '') ?>);"></div>
+                      </div>
+                    <?php } ?>
                     <!-- Item -->
-                    <div class="col-12 px-2" style="max-width: 113px;">
-                      <!-- Image -->
-                      <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/'.$row['img3'].'')?>);"></div>
-                    </div>
+                    <?php if ($img3 != '') { ?>
+                      <div class="col-12 px-2" style="max-width: 113px;">
+                        <!-- Image -->
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>);"></div>
+                      </div>
+                    <?php } ?>
                   </div>
                 </div>
                 <div class="col-12 col-md-6 pl-lg-10">
@@ -136,17 +150,40 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   <!-- Heading -->
                   <h3 class="mb-2"><?php echo $nome ?></h3>
                   <!-- Price -->
-                  <div class="mb-7">
-                    <span class="text-gray-350 text-decoration-line-through font-size-lg font-weight-bold">R$170,99</span>
-                    <span class="text-primary font-size-h5 font-weight-bold"><?php echo $price ?></span>
-                  </div>
+                  <?php if ($status == '2') { ?>
+                    <div class="mb-7">
+                      <span class="text-gray-350 text-decoration-line-through font-size-lg font-weight-bold">R$ <?php echo "R$ " . $price; ?></span>
+                      <span class="text-primary font-size-h5 font-weight-bold"><?php echo "R$ " . $valor_desconto ?></span>
+                    </div>
+                  <?php } ?>
+                  <?php if ($status == '1') { ?>
+                    <div class="mb-7">
+                      <span class="text-primary font-size-h5 font-weight-bold"><?php echo "R$ " . $price ?></span>
+                    </div>
+                  <?php } ?>
 
                   <div class="form-group">
                     <!-- Label -->
-                    <h6>Descrição</h6>
+                    <h6>Descrição: </h6>
                     <p class="mb-5">
                       <?php echo $descricao ?>
                     </p>
+                    <hr>
+                    <p>Especificações: </p>
+                    <div class="row" style="font-size:14px;">
+                      <div class="col-md-6">
+                        <p><span style="font-weight: bold;">Altura:</span> <?php echo $altura; ?></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p><span style="font-weight: bold;">Largura:</span> <?php echo $largura; ?></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p><span style="font-weight: bold;">Profundidade:</span> <?php echo $profu; ?></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p><span style="font-weight: bold;">Peso:</span> <?php echo $peso; ?></p>
+                      </div>
+                    </div>
                     <!-- Radio -->
 
                     <div class="form-row mb-7">
