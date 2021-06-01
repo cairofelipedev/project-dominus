@@ -155,9 +155,9 @@ $dv = $_GET['dv'];
                   <div class="card mb-7">
                     <!-- Badge -->
                     <?php if ($desconto != '') { ?>
-                    <div class="badge badge-danger card-badge card-badge-left text-uppercase">
-                    -<?php echo $desconto."%" ?>
-                    </div>
+                      <div class="badge badge-danger card-badge card-badge-left text-uppercase">
+                        -<?php echo $desconto . "%" ?>
+                      </div>
                     <?php } ?>
                     <!-- Image -->
                     <div class="card-img">
@@ -180,10 +180,10 @@ $dv = $_GET['dv'];
                       </div>
                       <!-- Price -->
                       <div class="font-weight-bold">
-                        
+
                         <?php if ($valor_desconto  != '') { ?>
-                        <span class="font-size-xs text-gray-350 text-decoration-line-through"><?php echo "R$ ".$price ?></span>
-                        <span class="text-primary"><?php echo "R$ ".$valor_desconto ?></span>
+                          <span class="font-size-xs text-gray-350 text-decoration-line-through"><?php echo "R$ " . $price ?></span>
+                          <span class="text-primary"><?php echo "R$ " . $valor_desconto ?></span>
                         <?php } ?>
                       </div>
                     </div>
@@ -219,7 +219,7 @@ $dv = $_GET['dv'];
             ?>
                 <div class="col-lg-3 col-md-6" style="min-width: 220px;">
                   <div class="card mb-7">
-                  
+
                     <!-- Image -->
                     <div class="card-img">
                       <!-- Image -->
@@ -241,9 +241,9 @@ $dv = $_GET['dv'];
                       </div>
                       <!-- Price -->
                       <div class="font-weight-bold">
-                        
+
                         <?php if ($valor_desconto  != '') { ?>
-                        <span class="text-primary"><?php echo "R$ ".$price ?></span>
+                          <span class="text-primary"><?php echo "R$ " . $price ?></span>
                         <?php } ?>
                       </div>
                     </div>
@@ -259,7 +259,6 @@ $dv = $_GET['dv'];
     </div>
   </section>
 
-
   <!-- BLOG -->
   <section class="py-8 bg-light">
     <div class="container">
@@ -272,96 +271,53 @@ $dv = $_GET['dv'];
           <!-- Heading -->
           <h2 class="mb-10 text-center">Últimas do blog</h2>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-4">
-          <!-- Card -->
-          <a href="blog-post.php">
-            <div class="card mb-7 shadow shadow-hover lift h-100">
-              <!-- Image -->
-              <div class="card-img">
-                <img src="assets/images/blog1.jpg" alt="..." class="card-img-top">
-              </div>
-
-              <!-- Body -->
-              <div class="card-body px-8 py-7">
-                <!-- Time -->
-                <p class="mb-3 font-size-xs">
-                  <span class="text-muted">Dez 23, 2020</span>
-                </p>
-                <!-- Heading -->
-                <h6 class="mb-0">
-                  Como higienizar os produtos durante a pandemia
-                </h6>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col-12 col-md-4">
-          <!-- Card -->
-          <a href="blog-post.php">
-            <div class="card mb-7 shadow shadow-hover lift h-100">
-              <!-- Image -->
-              <div class="card-img">
-                <img src="assets/images/blog2.jpg" alt="..." class="card-img-top">
-              </div>
-              <!-- Body -->
-
-              <div class="card-body px-8 py-7 h-100">
-                <!-- Time -->
-                <p class="mb-3 font-size-xs">
-                  <span class="text-muted">Jan 22, 2021</span>
-                </p>
-
-                <!-- Heading -->
-                <h6 class="mb-0">
-                  Reciclando garrafas PET em casa
-                </h6>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col-12 col-md-4">
-          <!-- Card -->
-          <a href="blog-post.php">
-            <div class="card mb-7 shadow shadow-hover lift h-100">
-              <!-- Image -->
-              <div class="card-img">
-                <img src="assets/images/blog3.jpg" alt="..." class="card-img-top">
-              </div>
-              <!-- Body -->
-              <div class="card-body px-8 py-7">
-
-                <!-- Time -->
-                <p class="mb-3 font-size-xs">
-                  <span class="text-muted">Fev 08, 2021</span>
-                </p>
-
-                <!-- Heading -->
-                <h6 class="mb-0">
-                  Dicas de como aproveitar o carnaval em casa
-                </h6>
-
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-12">
+          <!-- Heading -->
+          <!-- Slider -->
+          <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": true}'>
 
-          <!-- Link -->
-          <div class="mt-7 text-center">
-            <a class="link-underline" href="blog.php">Descubra mais</a>
+            <!-- Item -->
+            <?php
+            $stmt = $DB_con->prepare("SELECT id,titulo,categoria_1,img1,data_criacao FROM posts ORDER BY id DESC");
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+            ?>
+                <div class="col-lg-3 col-md-6" style="min-width: 220px;">
+                  <div class="card mb-7">
+
+                    <!-- Image -->
+                    <div class="card-img">
+                      <!-- Image -->
+                      <a class="card-img-hover" href="<?php echo $URI->base('/blog-post/' . $id . '/' . slugify($titulo)); ?>">
+                        <img class="card-img-top" src="admin/uploads/blog/<?php echo $row['img1']; ?>" alt="...">
+                      </a>
+                    </div>
+                    <!-- Body -->
+                    <div class="card-body px-0">
+                      <!-- Category -->
+                      <div class="font-size-xs">
+                        <a class="text-muted" href="<?php echo $URI->base('/blog-post/' . $id . '/' . slugify($titulo)); ?>"><?php echo $categoria_1 ?></a>
+                      </div>
+                      <!-- Title -->
+                      <div class="font-weight-bold">
+                        <a class="text-body" href="<?php echo $URI->base('/blog-post/' . $id . '/' . slugify($titulo)); ?>">
+                          <?php echo $titulo ?>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <?php
+              }
+            }
+            ?>
           </div>
-
         </div>
       </div>
     </div>
   </section>
-
 
   <section class="py-8" id="leads">
     <div class="container">
@@ -371,7 +327,7 @@ $dv = $_GET['dv'];
         </div>
 
         <div class="col-lg-8">
-        <form class="form-inline" action="" method="POST">
+          <form class="form-inline" action="" method="POST">
             <input type="text" name="nome" class="form-control mb-2" placeholder="Nome" required />
             <input type="text" class="form-control mb-2" name="email" placeholder="Email" required />
             <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />

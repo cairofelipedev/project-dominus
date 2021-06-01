@@ -5,4 +5,4 @@ RewriteRule ^(.*)$ index.php?url=$1
 
 RewriteRule ^(produto)/([^/]*)/([^/]*)(/.*)?$ produto.php?id=$2&slug=$3 [L,QSA,NC]
 
-RewriteRule ^(blog)/([^/]*)/([^/]*)(/.*)?$ blog.php?id=$2&slug=$3 [L,QSA,NC]
+RewriteRule ^(blog-post)/([^/]*)/([^/]*)(/.*)?$ blog-post.php?id=$2&slug=$3 [L,QSA,NC]

@@ -50,7 +50,7 @@ if (isset($_POST['btnsave'])) {
   } else if (empty($imgFile)) {
     $errMSG = "Selecione a imagem.";
   } else {
-    $upload_dir = 'uploads/'; // upload directory
+    $upload_dir = 'uploads/blog/'; // upload directory
 
     $imgExt =  strtolower(pathinfo($imgFile, PATHINFO_EXTENSION));
     $imgExt2 = strtolower(pathinfo($imgFile2, PATHINFO_EXTENSION));

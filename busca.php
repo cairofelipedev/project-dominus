@@ -1,23 +1,25 @@
-<?php 
+<?php
 require "classes/Helper.php";
 require "classes/Url.class.php";
 $URI = new URI();
 require_once 'admin/dbconfig.php';
-
+include './admin/lead-insert.php';
 // palavra digitada na busca 
-$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : ''; $sql = "SELECT * FROM produtos WHERE nome LIKE :pesquisa OR category LIKE :pesquisa"; 
+$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
+$sql = "SELECT * FROM produtos WHERE nome LIKE :pesquisa OR category LIKE :pesquisa";
 
 // cria o Prepared Statement e o executa
 $stmt = $DB_con->prepare($sql);
 $stmt->bindValue(':pesquisa', '%' . $pesquisa . '%');
 $stmt->execute();
- 
+
 // cria um array com os resultados
 $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -40,413 +42,199 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <title>Distribuidora Dominus </title>
 </head>
 
-  <body>
+<body>
 
   <?php include "views/nav.php" ?>
-    <!-- CONTENT -->
-    <section class="py-11">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-4 col-lg-3">
+  <!-- CONTENT -->
+  <section class="py-11">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-4 col-lg-3">
 
-            <!-- Filters -->
-            <form class="mb-10 mb-md-0 mr-5">
-              <ul class="nav nav-vertical" id="filterNav">
-                <li class="nav-item">
-                  <div class="border-bottom mb-6 w-100"><b>Categorias</b></div>
-                  <!-- Collapse -->
-                  <div class="collapse show" id="categoryCollapse">
-                    <div class="form-group">
-                      <ul class="list-styled mb-0" id="productsNav">
-                        <li class="list-styled-item">
-                          <a class="list-styled-link" href="#">
-                            Todos os produtos
-                          </a>
-                        </li>
-                        <li class="list-styled-item">
+          <!-- Filters -->
+          <form class="mb-10 mb-md-0 mr-5">
+            <ul class="nav nav-vertical" id="filterNav">
+              <li class="nav-item">
+                <div class="border-bottom mb-6 w-100"><b>Categorias</b></div>
+                <!-- Collapse -->
+                <div class="collapse show" id="categoryCollapse">
+                  <div class="form-group">
+                    <ul class="list-styled mb-0" id="productsNav">
+                      <li class="list-styled-item">
+                        <a class="list-styled-link" href="busca.php">
+                          Todos os produtos
+                        </a>
+                      </li>
+                      <li class="list-styled-item">
 
-                          <!-- Toggle -->
-                          <a class="list-styled-link" data-toggle="collapse" href="#blousesCollapse">
-                            Embalagens
-                          </a>
+                        <!-- Toggle -->
+                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=embalagens')?>">
+                          Embalagens
+                        </a>
 
-                          <!-- Collapse -->
-                          <div class="collapse" id="blousesCollapse" data-parent="#productsNav">
-                            <div class="py-4 pl-5">
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="blousesOne" type="checkbox">
-                                <label class="custom-control-label" for="blousesOne">
-                                  Todos
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="blousesTwo" type="checkbox">
-                                <label class="custom-control-label" for="blousesTwo">
-                                  Subcategoria 1
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="blousesThree" type="checkbox">
-                                <label class="custom-control-label" for="blousesThree">
-                                  Subcategoria 2
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" id="blousesFour" type="checkbox">
-                                <label class="custom-control-label" for="blousesFour">
-                                  Subcategoria 3
-                                </label>
-                              </div>
-                            </div>
-                          </div>
+                      </li>
+                      <li class="list-styled-item">
 
-                        </li>
-                        <li class="list-styled-item">
+                        <!-- Toggle -->
+                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=maquinas')?>">
+                          Máquinas e Equipamentos
+                        </a>
 
-                          <!-- Toggle -->
-                          <a class="list-styled-link" data-toggle="collapse" href="#coatsCollapse">
-                            Máquinas e Equipamentos
-                          </a>
+                      </li>
+                      <li class="list-styled-item">
 
-                          <!-- Collapse -->
-                          <div class="collapse" id="coatsCollapse" data-parent="#productsNav">
-                            <div class="py-4 pl-5">
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="coatsOne" type="checkbox">
-                                <label class="custom-control-label" for="coatsOne">
-                                  Todos
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="coatsTwo" type="checkbox">
-                                <label class="custom-control-label" for="coatsTwo">
-                                  Subcategoria 1
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" id="coatsThree" type="checkbox">
-                                <label class="custom-control-label" for="coatsThree">
-                                  Subcategoria 2
-                                </label>
-                              </div>
-                            </div>
-                          </div>
+                        <!-- Toggle -->
+                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=saude')?>" aria-expanded="false">
+                          Saúde
+                        </a>
 
-                        </li>
-                        <li class="list-styled-item">
+                      </li>
+                      <li class="list-styled-item">
 
-                          <!-- Toggle -->
-                          <a class="list-styled-link" data-toggle="collapse" href="#dressesCollapse" aria-expanded="false">
-                            Saúde
-                          </a>
+                        <!-- Toggle -->
+                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=utilidades')?>">
+                          Utilidades Domésticas
+                        </a>
 
-                          <!-- Collapse -->
-                          <div class="collapse" id="dressesCollapse" data-parent="#productsNav">
-                            <div class="py-4 pl-5">
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="dressesOne" type="checkbox">
-                                <label class="custom-control-label" for="dressesOne">
-                                  Todos
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="dressesTwo" type="checkbox">
-                                <label class="custom-control-label" for="dressesTwo">
-                                  Subcategoria 1
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="dressesThree" type="checkbox">
-                                <label class="custom-control-label" for="dressesThree">
-                                  Subcategoria 2
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" id="dressesFour" type="checkbox">
-                                <label class="custom-control-label" for="dressesFour">
-                                  Subcategoria 3
-                                </label>
-                              </div>
-                            </div>
-                          </div>
+                      </li>
 
-                        </li>
-                        <li class="list-styled-item">
-
-                          <!-- Toggle -->
-                          <a class="list-styled-link" data-toggle="collapse" href="#hoodiesCollapse">
-                            <b>Utilidades Domésticas</b>
-                          </a>
-
-                          <!-- Collapse -->
-                          <div class="collapse show" id="hoodiesCollapse" data-parent="#productsNav">
-                            <div class="py-4 pl-5">
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="hoodiesOne" type="checkbox" checked>
-                                <label class="custom-control-label" for="hoodiesOne">
-                                  Todos
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="hoodiesTwo" type="checkbox" checked>
-                                <label class="custom-control-label" for="hoodiesTwo">
-                                  Subcategoria 1
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox mb-3">
-                                <input class="custom-control-input" id="hoodiesThree" type="checkbox" checked>
-                                <label class="custom-control-label" for="hoodiesThree">
-                                  Subcategoria 2
-                                </label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" id="hoodiesFour" type="checkbox" checked>
-                                <label class="custom-control-label" for="hoodiesFour">
-                                  Subcategoria 3
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                        </li>
-
-                      </ul>
-                    </div>
+                    </ul>
                   </div>
-
-                </li>
-
-              </ul>
-            </form>
-
-          </div>
-          <div class="col-12 col-md-8 col-lg-9">
-
-            <!-- Header -->
-            <div class="row align-items-center mb-7">
-              <div class="col-12 col-md">
-
-                <!-- Heading -->
-                <h3 class="mb-1">Utilidades Domésticas</h3>
-
-                <!-- Breadcrumb -->
-                <ol class="breadcrumb mb-0 font-size-xs text-gray-400">
-                  <li class="breadcrumb-item">
-                    <a class="text-gray-400" href="index.html">Página inicial <i class="fas fa-angle-right"></i></a>
-                  </li>
-                  <li class="breadcrumb-item active">
-                    Utilidades Domésticas
-                  </li>
-                </ol>
-
-              </div>
-
-            </div>
-
-            <!-- Products -->
-            <div class="row">
-            
-              <div class="col-12 col-md-4">
-
-                <!-- Card -->
-                <div class="card mb-7">
-
-                  <!-- Badge -->
-                  <div class="badge badge-white card-badge card-badge-left text-uppercase d-none">
-                    New
-                  </div>
-
-                  <!-- Image -->
-                  <div class="card-img">
-
-                    <!-- Image -->
-                    <a class="card-img-hover" href="product.html">
-                      <img class="card-img-top" src="assets/images/produto5.jpeg" alt="...">
-                    </a>
-
-                  </div>
-
-                  <!-- Body -->
-                  <div class="card-body px-0">
-
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="product.html">
-                        Porcelana (und)
-                      </a>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      $16,00
-                    </div>
-
-                  </div>
-
                 </div>
 
-              </div>
+              </li>
 
-            
+            </ul>
+          </form>
 
-              
+        </div>
+        <div class="col-12 col-md-8 col-lg-9">
+
+          <!-- Header -->
+          <div class="row align-items-center mb-7">
+            <div class="col-12 col-md">
+
+              <!-- Heading -->
+              <h3 class="mb-1"><?php echo $pesquisa ?></h3>
+
+              <!-- Breadcrumb -->
+              <ol class="breadcrumb mb-0 font-size-xs text-gray-400">
+                <li class="breadcrumb-item">
+                  <a class="text-gray-400" href="home">Página inicial <i class="fas fa-angle-right"></i></a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <?php echo $pesquisa ?>
+                </li>
+              </ol>
+
             </div>
 
-            <!-- Pagination -->
-            <nav class="d-flex justify-content-center justify-content-md-end">
-              <ul class="pagination pagination-sm text-gray-400">
-                <li class="page-item">
-                  <a class="page-link page-link-arrow" href="#">
-                    <i class="fa fa-caret-left"></i>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link page-link-arrow" href="#">
-                    <i class="fa fa-caret-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+          </div>
 
+          <!-- Products -->
+          <div class="row">
+            <?php
+            if (count($busca) > 0) :
+              foreach ($busca as $busca) :
+            ?>
+
+                <div class="col-12 col-md-4">
+
+                  <!-- Card -->
+                  <div class="card mb-7">
+                    <!-- Image -->
+                    <div class="card-img">
+                      <!-- Image -->
+                      <a class="card-img-hover" href="<?php echo $URI->base('/produto/' . $busca['id'] . '/' . slugify($busca['nome'])); ?>">
+                        <img class="card-img-top" src="./admin/uploads/produtos/<?php echo $busca['img']; ?>" alt="...">
+                      </a>
+
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body px-0">
+                      <!-- Category -->
+                      <div class="font-size-xs">
+                        <a class="text-muted"><?php echo $busca['category']; ?></a>
+                      </div>
+                      <!-- Title -->
+                      <div class="font-weight-bold">
+                        <a class="text-body" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                          <?php echo $busca['nome']; ?>
+                        </a>
+                      </div>
+                      <!-- Price -->
+                      <div class="font-weight-bold text-muted">
+                        R$ <?php echo $busca['price']; ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach;
+            else :
+              ?>
+          </div>
+
+          <div class="search-else">
+            <button class="btn btn-primary">Nenhum resultado encontrado...</button>
+          </div>
+          <div class="form-busca-else pt-4">
+            <form action="" method="POST">
+            <p>Ajudamos você a encontrar o seu produto ideal, preencha o formulário</p>
+            <div class="row">
+              <div class="form-group col-lg-6 col-6">
+                <label class="modal-label" for="NomeSobrenome">Nome</label>
+                <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
+              </div>
+              <div class="form-group col-lg-6 col-6">
+                <label class="modal-label" for="Whats">Whatsapp</label>
+                <input size="20" maxlength="14" type="tel" class="form-control shadow-none phone" name="whats" placeholder="Número" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="modal-label" for="Email">Email</label>
+              <input type="text" class="form-control shadow-none" name="email" id="email" placeholder="E-mail" required />
+            </div>
+            <div class="form-group pb-3">
+              <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>
+            </div>
+            <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
+            <input type="hidden" name="tipo" value="1">
+            <input type="hidden" name="status" value="1">
+            <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
+          </form>
           </div>
         </div>
-      </div>
-    </section>
-
-  <!-- Whatsapp -->
-  <div class="whatsapp">
-    <a href="https://wa.me/5586994459897" target="_blank" class="text-white"><i class="fab fa-whatsapp"></i></a>
-  </div>
-  
-  <section class="py-8" id="leads">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          Quer saber todos os lançamentos e promoções da nossa loja? Deixe seu email com a gente!
-        </div>
-
-        <div class="col-lg-8">
-          <form class="form-inline">
-            <input type="text" class="form-control mb-2" placeholder="Nome" required />
-            <input type="email" class="form-control mb-2" placeholder="Email" required />
-            <button type="submit" class="btn btn-primary mb-2">Casdastrar</button>
-          </form>
-        </div>
-        
+      <?php endif; ?>
       </div>
     </div>
-    
+    </div>
+    </div>
   </section>
+	<?php include "views/footer.php" ?>
+	<!-- JAVASCRIPT -->
+	<!-- Libs JS -->
+	<script src="./assets/libs/js/jquery.min.js"></script>
+	<script src="./assets/libs/js/jquery.fancybox.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+	<!-- <script src="https://flickity.metafizzy.co/flickity.pkgd.js"></script> -->
+	<script src="./assets/libs/js/flickity.js"></script>
+	<script src="./assets/libs/js/highlight.pack.min.js"></script>
+	<script src="./assets/libs/js/jarallax.min.js"></script>
+	<script src="./assets/libs/js/list.min.js"></script>
+	<script src="./assets/libs/js/simplebar.min.js"></script>
+	<script src="./assets/libs/js/smooth-scroll.min.js"></script>
+	<script src="./assets/libs/js/flickity-fade.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+	<!-- Theme JS -->
+	<script src="./assets/js/theme.min.js"></script>
+	<script src="./assets/js/jquery.mask.min.js"></script>
+	<script src="./assets/js/custom.js"></script>
 
- <!-- FOOTER -->
- <footer class="footer">
-  <div class="py-12 border-bottom border-opacity">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-12 my-auto">
-          <h4 class="mb-6 text-white text-center"><img width="200px" src="./assets/images//logo3.png"></h4>
-          <!-- Social -->
-          <ul class="list-unstyled list-inline mb-7 mb-md-0 text-center">
-            <li class="list-inline-item">
-              <a href="https://wa.me/5586994459897" target="_blank" class="text-gray-300">
-                <i class="fa-2x fab fa-whatsapp"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://www.instagram.com/dominus_distribuidora/" target="_blank" class="text-gray-300">
-                <i class="fa-2x fab fa-instagram"></i>
-              </a>
-            </li>
-          </ul>
+	<script>
+		$('.phone').mask('(00) 00000-0000');
+	</script>
+</body>
 
-        </div>
-        <div class="col-md-3">
-          <!-- Heading -->
-          <h6 class="heading-xxs mb-4 text-white">
-            Produtos
-          </h6>
-          <!-- Links -->
-          <ul class="list-unstyled mb-7 mb-sm-0">
-            <li>
-              <a class="text-gray-300" href="">Embalagens </a>
-            </li>
-            <li>
-              <a class="text-gray-300" href="">Máquinas e Equipamentos</a>
-            </li>
-            <li>
-              <a class="text-gray-300" href="">Saúde</a>
-            </li>
-            <li>
-              <a class="text-gray-300" href="">Utilidades Domésticas</a>
-            </li>
-            
-          </ul>
-        </div>
-        <div class="col-md-5">
-          <!-- Heading -->
-          <h6 class="heading-xxs mb-4 text-white">
-            Contato
-          </h6>
-          <!-- Links -->
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a class="text-gray-300" target="_blank" href="https://www.google.com/maps/place/Condom%C3%ADnio+Edif%C3%ADcio+Jesus+Thomaz+Tajra+-+R.+Rui+Barbosa,+146+-+308+-+Centro+(Sul),+Teresina+-+PI,+64000-090/@-3.7722139,-38.5795397,15z/data=!3m1!4b1!4m2!3m1!1s0x78e377b4e7fb103:0x602a5261095f246a"><i class="fas fa-map-marker-alt"></i> Rua Rui Barbosa 146, sala 308, Centro, Teresina - PI
-                </a>
-            </li>
-            <li>
-              <a class="text-gray-300" href="mailto:dominusdistribuidora@hotmail.com"><i class="fas fa-envelope"></i> dominusdistribuidora@hotmail.com</a>
-            </li>
-            <li>
-              <a class="text-gray-300" href="tel:86994459897"><i class="fas fa-phone-alt"></i> (86) 99445-9897</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-6">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <!-- Copyright -->
-          <p class="mb-3 mb-md-0 font-size-xxs text-white text-center">
-            © 2021 Todos os direitos reservados
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- JAVASCRIPT -->
-<!-- Libs JS -->
-<script src="./assets/libs/js/jquery.min.js"></script>
-<script src="./assets/libs/js/jquery.fancybox.min.js"></script>
-<script src="./assets/libs/js/bootstrap.bundle.min.js"></script>
-<script src="./assets/libs/js/flickity.js"></script>
-<script src="./assets/libs/js/highlight.pack.min.js"></script>
-<script src="./assets/libs/js/jarallax.min.js"></script>
-<script src="./assets/libs/js/list.min.js"></script>
-<script src="./assets/libs/js/simplebar.min.js"></script>
-<script src="./assets/libs/js/smooth-scroll.min.js"></script>
-<script src="./assets/libs/js/flickity-fade.js"></script>
-<!-- Map (replace the API key to enable) -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnKt8_N4-FKOnhI_pSaDL7g_g-XI1-R9E"></script>
-<!-- Theme JS -->
-<script src="./assets/js/theme.min.js"></script>
-  </body>
 </html>

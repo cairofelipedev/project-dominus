@@ -3,7 +3,7 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-        <a href="../index.php" class="simple-text logo-normal">
+        <a href="../home" class="simple-text logo-normal">
           <img class="img-fluid" src="../assets/images/logo3.png">
         </a>
       </div>
@@ -76,7 +76,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../index.php" target="_blank">
+                <a class="nav-link" href="../home" target="_blank">
                   <i class="now-ui-icons media-1_button-play"></i>
                 </a>
               </li>

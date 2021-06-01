@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-12 my-auto">
-            <h4 class="mb-6 text-white text-center"><img width="200px" src="./assets/images/logo3.png"></h4>
+            <h4 class="mb-6 text-white text-center"><img width="200px" src="<?php echo $URI->base('/assets/images/logo3.png')?>"></h4>
             <!-- Social -->
             <ul class="list-unstyled list-inline mb-7 mb-md-0 text-center">
               <li class="list-inline-item">

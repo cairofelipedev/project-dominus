@@ -15,15 +15,12 @@
               <img class="img-fluid" src="<?php echo $URI->base('/assets/images/logo3.png')?>" width="150" alt="logo">
             </a>
 
-            <form class="search mt-3 mt-lg-0" action="busca.php">
+            <form class="search mt-3 mt-lg-0" action="<?php echo $URI->base('/busca.php')?>">
               <input type="search"  name="pesquisa" id="pesquisa" placeholder="Pesquisar pelo seu produto" />
               <button class="btn" ><i class="fas fa-search"></i></button>
             </form>
 
             <ul class="navbar-nav d-none d-xl-flex">
-              <li class="nav-item">
-                <a href="<?php echo $URI->base('/produtos')?>" class="nav-link">Produtos</a>
-              </li>
               <li class="nav-item">
                 <li class="nav-item">
                   <a href="<?php echo $URI->base('/blog')?>" class="nav-link">Blog</a>
@@ -94,7 +91,7 @@
     <div class="contact-btn">
     <!-- Button trigger modal -->
     <button type="button" class="whatsapp btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <i class="fab fa-whatsapp"></i>
+    <i class="fas fa-phone-alt text-white"></i>
     </button>
   </div>
 

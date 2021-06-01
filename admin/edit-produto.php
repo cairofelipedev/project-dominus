@@ -11,7 +11,7 @@ error_reporting(~E_NOTICE);
 
 if (isset($_GET['edit_id']) && !empty($_GET['edit_id'])) {
   $id = $_GET['edit_id'];
-  $stmt_edit = $DB_con->prepare('SELECT nome,descricao,price,category,img,img2,img3,status FROM produtos WHERE id =:uid');
+  $stmt_edit = $DB_con->prepare('SELECT nome,descricao,price,category,img,img2,img3,img4,img5,img6,status,cod,altura,profu,largura,cor1,cor2,cor3,cor4,cor5,desconto,valor_desconto,peso FROM produtos WHERE id =:uid');
   $stmt_edit->execute(array(':uid' => $id));
   $edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
   extract($edit_row);
@@ -24,8 +24,19 @@ if (isset($_POST['btnsave'])) {
   $descricao = $_POST['descricao'];
   $price = $_POST['price'];
   $category = $_POST['category'];
-
   $status = $_POST['status'];
+  $cod = $_POST['cod'];
+  $altura = $_POST['altura'];
+  $profu = $_POST['profu'];
+  $largura = $_POST['largura'];
+  $cor1 = $_POST['cor1'];
+  $cor2 = $_POST['cor2'];
+  $cor3 = $_POST['cor3'];
+  $cor4 = $_POST['cor4'];
+  $cor5 = $_POST['cor5'];
+  $desconto = $_POST['desconto'];
+  $valor_desconto = $_POST['valor_desconto'];
+  $peso = $_POST['peso'];
 
   $imgFile = $_FILES['user_image']['name'];
   $tmp_dir = $_FILES['user_image']['tmp_name'];
@@ -39,6 +50,17 @@ if (isset($_POST['btnsave'])) {
   $tmp_dir3 = $_FILES['user_image3']['tmp_name'];
   $imgSize3 = $_FILES['user_image3']['size'];
 
+  $imgFile4 = $_FILES['user_image4']['name'];
+  $tmp_dir4 = $_FILES['user_image4']['tmp_name'];
+  $imgSize4 = $_FILES['user_image4']['size'];
+
+  $imgFile5 = $_FILES['user_image5']['name'];
+  $tmp_dir5 = $_FILES['user_image5']['tmp_name'];
+  $imgSize5 = $_FILES['user_image5']['size'];
+
+  $imgFile6 = $_FILES['user_image6']['name'];
+  $tmp_dir6 = $_FILES['user_image6']['tmp_name'];
+  $imgSize6 = $_FILES['user_image6']['size'];
 
 
   if (empty($nome)) {
@@ -102,17 +124,117 @@ if (isset($_POST['btnsave'])) {
     // if no image selected the old image remain as it is.
     $userpic3 = $edit_row['img3']; // old image from database
   }
+
+  if ($imgFile4) {
+    $upload_dir = 'uploads/produtos/'; // upload directory	
+    $imgExt4 = strtolower(pathinfo($imgFile4, PATHINFO_EXTENSION)); // get image extension
+    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+    $userpic4 = $nome . "-edit4." . $imgExt4;
+    if (in_array($imgExt3, $valid_extensions)) {
+      if ($imgSize4 < 5000000) {
+        unlink($upload_dir . $edit_row['img4']);
+        move_uploaded_file($tmp_dir4, $upload_dir . $userpic4);
+      } else {
+        $errMSG = "Imagem grande demais, max 5MB";
+      }
+    } else {
+      $errMSG = "Imagens apenas nos formatos JPG, JPEG, PNG & GIF";
+    }
+  } else {
+    // if no image selected the old image remain as it is.
+    $userpic4 = $edit_row['img4']; // old image from database
+  }
+
+  if ($imgFile5) {
+    $upload_dir = 'uploads/produtos/'; // upload directory	
+    $imgExt5 = strtolower(pathinfo($imgFile5, PATHINFO_EXTENSION)); // get image extension
+    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+    $userpic5 = $nome . "-edit5." . $imgExt5;
+    if (in_array($imgExt5, $valid_extensions)) {
+      if ($imgSize5 < 5000000) {
+        unlink($upload_dir . $edit_row['img5']);
+        move_uploaded_file($tmp_dir5, $upload_dir . $userpic5);
+      } else {
+        $errMSG = "Imagem grande demais, max 5MB";
+      }
+    } else {
+      $errMSG = "Imagens apenas nos formatos JPG, JPEG, PNG & GIF";
+    }
+  } else {
+    // if no image selected the old image remain as it is.
+    $userpic5 = $edit_row['img5']; // old image from database
+  }
+
+  if ($imgFile6) {
+    $upload_dir = 'uploads/produtos/'; // upload directory	
+    $imgExt6 = strtolower(pathinfo($imgFile6, PATHINFO_EXTENSION)); // get image extension
+    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+    $userpic6 = $nome . "-edit6." . $imgExt6;
+    if (in_array($imgExt6, $valid_extensions)) {
+      if ($imgSize6 < 5000000) {
+        unlink($upload_dir . $edit_row['img6']);
+        move_uploaded_file($tmp_dir6, $upload_dir . $userpic6);
+      } else {
+        $errMSG = "Imagem grande demais, max 5MB";
+      }
+    } else {
+      $errMSG = "Imagens apenas nos formatos JPG, JPEG, PNG & GIF";
+    }
+  } else {
+    // if no image selected the old image remain as it is.
+    $userpic6 = $edit_row['img6']; // old image from database
+  }
   if (!isset($errMSG)) {
-    $stmt = $DB_con->prepare('UPDATE produtos SET nome=:unome,descricao=:udescricao,price=:uprice,category=:ucategory,img=:upic,img2=:upic2,status=:ustatus,img3=:upic3 WHERE id=:uid');
+    $stmt = $DB_con->prepare('UPDATE produtos SET 
+    nome=:unome,
+    descricao=:udescricao,
+    price=:uprice,
+    category=:ucategory,
+    img=:upic,
+    img2=:upic2,
+    status=:ustatus,
+    cod=:ucod,
+    altura=:ualtura,
+    largura=:ulargura,
+    profu=:uprofu,
+    cor1=:ucor1,
+    cor2=:ucor2,
+    cor3=:ucor3,
+    cor4=:ucor4,
+    cor5=:ucor5,
+    desconto=:udesconto,
+    valor_desconto=:uvalor_desconto,
+    peso=:upeso,
+    img3=:upic3, 
+    img4=:upic4,
+    img5=:upic5,
+    img6=:upic6
+    WHERE id=:uid');
+    $stmt->bindParam(':uid', $id);
     $stmt->bindParam(':unome', $nome);
     $stmt->bindParam(':udescricao', $descricao);
     $stmt->bindParam(':uprice', $price);
     $stmt->bindParam(':ucategory', $category);
-    $stmt->bindParam(':uid', $id);
+    $stmt->bindParam(':ustatus', $status);
+    $stmt->bindParam(':ucod', $cod);
+    $stmt->bindParam(':ualtura', $altura);
+    $stmt->bindParam(':uprofu', $profu);
+    $stmt->bindParam(':ulargura', $largura);
+    $stmt->bindParam(':ucor1', $cor1);
+    $stmt->bindParam(':ucor2', $cor2);
+    $stmt->bindParam(':ucor3', $cor3);
+    $stmt->bindParam(':ucor4', $cor4);
+    $stmt->bindParam(':ucor5', $cor5);
+    $stmt->bindParam(':udesconto', $desconto);
+    $valor_desconto = $price - ($price / 100 * $desconto);
+    $stmt->bindParam(':uvalor_desconto', $valor_desconto);
+    $stmt->bindParam(':upeso', $peso);
     $stmt->bindParam(':upic', $userpic);
     $stmt->bindParam(':upic2', $userpic2);
     $stmt->bindParam(':upic3', $userpic3);
-    $stmt->bindParam(':ustatus', $status);
+    $stmt->bindParam(':upic4', $userpic4);
+    $stmt->bindParam(':upic5', $userpic5);
+    $stmt->bindParam(':upic6', $userpic6);
 
     if ($stmt->execute()) {
       echo ("<script type= 'text/javascript'>alert('Produto atualizado com sucesso.');</script>
@@ -163,33 +285,86 @@ if (isset($_POST['btnsave'])) {
               <h5 class="title">Adicionar produto</h5>
             </div>
             <div class="card-body">
-              <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="row">
-                  <div class="col-md-5">
+                  <div class="col-md-6">
                     <p class="title text-center">Informações</p>
                     <div class="border p-3 rounded">
-                      <div class="form-group">
-                        <label class="title">Nome do produto</label>
-                        <input value="<?php echo $nome; ?>" name="nome" type="text" class="form-control" placeholder="Nome">
-                      </div>
                       <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Nome do produto</label>
+                            <input value="<?php echo $nome; ?>" name="nome" type="text" class="form-control" placeholder="Nome">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Status</label>
+                            <select name="status" class="form-control">
+                              <option value='<?php echo $status; ?>'>
+                              <?php 
+                              if ($status=='1') {
+                                echo "ATIVO";
+                              }
+                              if ($status=='2') {
+                                echo "OFERTA";
+                              }
+                              if ($status=='3') {
+                                echo "NOVIDADE";
+                              }
+                              if ($status=='4') {
+                                echo "DESATIVADO";
+                              }
+                              ?>
+                              </option>
+                              <option value='1'>ATIVO</option>
+                              <option value='2'>OFERTA</option>
+                              <option value='3'>NOVIDADE</option>
+                              <option value='4'>DESATIVADO</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
                           <div class="form-group">
                             <label class="title">Valor</label>
                             <input value="<?php echo $price; ?>" name="price" type="text" class="form-control" placeholder="Valor do produto">
                           </div>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-6">
                           <div class="form-group">
+                            <label class="title">Desconto</label>
+                            <input value="<?php echo $desconto; ?>" name="desconto" type="text" class="form-control" placeholder="Desconto (Opcional)">
+                            <input value="<?php echo $valor_desconto; ?>" name="valor_desconto" type="hidden">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <a href="add-category.php">
+                              Adicionar Categoria <i class="bi bi-plus-circle-fill"></i>
+                            </a>
+                            <br>
                             <label class="title">Categoria</label>
                             <select name="category" class="form-control">
-
-                              <option value='<?php echo $category; ?>'><?php echo $category; ?></option>
-                              <option value='2'>Utilidades Domésticas</option>
-                              <option value='Jardinagem'>Jardinagem</option>
-                              <option value='Embalagem'>Embalagem</option>
-                              <option value='Pets'>Pets</option>
+                            <option value='<?php echo $category ?>'><?php echo $category ?></option>
+                              <?php
+                              $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='produto' ORDER BY id DESC");
+                              $stmt->execute();
+                              if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                  extract($row);
+                              ?>
+                                  <option value='<?php echo $nome ?>'><?php echo $nome ?></option>
+                              <?php
+                                }
+                              }
+                              ?>
                             </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Código de Referência</label>
+                            <input value="<?php echo $cod; ?>" name="cod" type="text" class="form-control" placeholder="Código do Produto">
                           </div>
                         </div>
                       </div>
@@ -197,16 +372,138 @@ if (isset($_POST['btnsave'])) {
                         <label class="title">Descrição</label>
                         <textarea rows="4" cols="80" name="descricao" class="form-control" placeholder="Descreva as principais caracteristicas do seu produto"><?php echo $descricao; ?></textarea>
                       </div>
-                      <div class="form-group">
-                        <label class="title">ATIVO</label>
-                        <select name="status" class="form-control">
-
-                          <option value='<?php echo $status; ?>'><?php echo $status; ?></option>
-                          <option value='1'>ATIVO</option>
-                              <option value='2'>OFERTA</option>
-                              <option value='3'>NOVIDADE</option>
-                              <option value='4'>DESATIVADO</option>
-                        </select>
+                      <p class="title text-center">Especificações</p>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Altura</label>
+                            <input value="<?php echo $altura; ?>" name="altura" type="text" class="form-control" placeholder="Altura do Produto">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Largura</label>
+                            <input value="<?php echo $largura; ?>" name="largura" type="text" class="form-control" placeholder="Largura do Produto">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Profundidade</label>
+                            <input value="<?php echo $profu; ?>" name="profu" type="text" class="form-control" placeholder="Profundidade do Produto">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Peso</label>
+                            <input value="<?php echo $peso; ?>" name="peso" type="text" class="form-control" placeholder="Peso do Produto">
+                          </div>
+                        </div>
+                      </div>
+                      <p class="title text-center">Cores</p>
+                      <a href="add-cor.php">
+                        Adicionar Cor <i class="bi bi-plus-circle-fill"></i>
+                      </a>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Cor 1</label>
+                            <select name="cor1" class="form-control">
+                            <option value='<?php echo $cor1; ?>'><?php echo $cor1; ?></option>
+                              <?php
+                              $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
+                              $stmt->execute();
+                              if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                  extract($row);
+                              ?>
+                                  <option value='<?php echo $cor ?>'><?php echo $cor ?></option>
+                              <?php
+                                }
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Cor 2</label>
+                            <select name="cor2" class="form-control">
+                            <option value='<?php echo $cor2; ?>'><?php echo $cor2; ?></option>
+                              <?php
+                              $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
+                              $stmt->execute();
+                              if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                  extract($row);
+                              ?>
+                                  <option value='<?php echo $cor ?>'><?php echo $cor ?></option>
+                              <?php
+                                }
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Cor 3</label>
+                            <select name="cor3" class="form-control">
+                            <option value='<?php echo $cor3; ?>'><?php echo $cor3; ?></option>
+                              <?php
+                              $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
+                              $stmt->execute();
+                              if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                  extract($row);
+                              ?>
+                                  <option value='<?php echo $cor ?>'><?php echo $cor ?></option>
+                              <?php
+                                }
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Cor 4</label>
+                            <select name="cor4" class="form-control">
+                            <option value='<?php echo $cor4; ?>'><?php echo $cor4; ?></option>
+                              <?php
+                              $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
+                              $stmt->execute();
+                              if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                  extract($row);
+                              ?>
+                                  <option value='<?php echo $cor ?>'><?php echo $cor ?></option>
+                              <?php
+                                }
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="title">Cor 5</label>
+                            <select name="cor5" class="form-control">
+                            <option value='<?php echo $cor5; ?>'><?php echo $cor5; ?></option>
+                              <?php
+                              $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
+                              $stmt->execute();
+                              if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                  extract($row);
+                              ?>
+                                  <option value='<?php echo $cor ?>'><?php echo $cor ?></option>
+                              <?php
+                                }
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -230,6 +527,24 @@ if (isset($_POST['btnsave'])) {
                         <br>
                         <img src="uploads/produtos/<?php echo $img3; ?>" class="img-fluid pb-2" onerror="this.src='./assets/img/sem.jpg'" width="150px" />
                         <input type="file" name="user_image3" accept="image/*" />
+                      </div>
+                      <div class="form-group">
+                        <label class="title">Imagem 4</label>
+                        <br>
+                        <img src="uploads/produtos/<?php echo $img4; ?>" class="img-fluid pb-2" onerror="this.src='./assets/img/sem.jpg'" width="150px" />
+                        <input type="file" name="user_image4" accept="image/*" />
+                      </div>
+                      <div class="form-group">
+                        <label class="title">Imagem 5</label>
+                        <br>
+                        <img src="uploads/produtos/<?php echo $img5; ?>" class="img-fluid pb-2" onerror="this.src='./assets/img/sem.jpg'" width="150px" />
+                        <input type="file" name="user_image5" accept="image/*" />
+                      </div>
+                      <div class="form-group">
+                        <label class="title">Imagem 6</label>
+                        <br>
+                        <img src="uploads/produtos/<?php echo $img6; ?>" class="img-fluid pb-2" onerror="this.src='./assets/img/sem.jpg'" width="150px" />
+                        <input type="file" name="user_image6" accept="image/*" />
                       </div>
                     </div>
                   </div>
