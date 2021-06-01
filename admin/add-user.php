@@ -90,13 +90,6 @@ if (isset($_POST['btnsave'])) {
   <link href="./assets/css/now-ui-dashboard.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
-<?php
-if ($_SESSION['type'] != 1) {
-  echo ("
-    <script type= 'text/javascript'>alert('Acesso Restrito!');</script>
-    <script>window.location = 'painel-controle.php';</script>");
-}
-?>
 
 <body>
   <div class="wrapper">

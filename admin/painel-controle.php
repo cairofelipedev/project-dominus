@@ -49,11 +49,10 @@ if (isset($_GET['delete_produto'])) {
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i>
                   <b><?php
                       $sth = $DB_con->prepare("SELECT count(*) as total from forms");
                       $sth->execute();
-                      print_r($sth->fetchColumn()); ?></b> Leads
+                      print_r($sth->fetchColumn()); ?></b> leads
                 </div>
               </div>
             </div>
@@ -68,7 +67,10 @@ if (isset($_GET['delete_produto'])) {
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> 1 novo serviço adicionado
+                  <b><?php
+                      $sth = $DB_con->prepare("SELECT count(*) as total from produtos");
+                      $sth->execute();
+                      print_r($sth->fetchColumn()); ?></b> produtos
                 </div>
               </div>
             </div>
@@ -82,7 +84,6 @@ if (isset($_GET['delete_produto'])) {
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i>Última atualização há 3 dias
                 </div>
               </div>
             </div>
@@ -96,7 +97,10 @@ if (isset($_GET['delete_produto'])) {
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> 1 novo serviço adicionado
+                <b><?php
+                      $sth = $DB_con->prepare("SELECT count(*) as total from posts");
+                      $sth->execute();
+                      print_r($sth->fetchColumn()); ?></b> posts
                 </div>
               </div>
             </div>
@@ -110,7 +114,10 @@ if (isset($_GET['delete_produto'])) {
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> 1 novo serviço adicionado
+                <b><?php
+                      $sth = $DB_con->prepare("SELECT count(*) as total from banners");
+                      $sth->execute();
+                      print_r($sth->fetchColumn()); ?></b> banners
                 </div>
               </div>
             </div>
@@ -124,16 +131,16 @@ if (isset($_GET['delete_produto'])) {
               </div>
               <div class="card-footer">
                 <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> 1 novo serviço adicionado
+                <b><?php
+                      $sth = $DB_con->prepare("SELECT count(*) as total from clientes");
+                      $sth->execute();
+                      print_r($sth->fetchColumn()); ?></b> clientes
                 </div>
               </div>
             </div>
           </a>
         </div>
       </div>
-      <?php
-      if (($_SESSION['type'] == 1) or ($_SESSION['type'] == 3)) {
-      ?>
         <div class="card">
           <div class="card-header">
             <div class="row">
@@ -192,7 +199,6 @@ if (isset($_GET['delete_produto'])) {
                 </div>
             <?php
               }
-            }
             ?>
             </div>
           </div>

@@ -96,19 +96,19 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                       <!-- Item -->
                       <?php if ($img != '') { ?>
                         <a class="w-100">
-                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>" alt="..." class="card-img-top">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>" alt="..." class="img-fluid">
                         </a>
                       <?php } ?>
                       <!-- Item -->
                       <?php if ($img2 != '') { ?>
                         <a class="w-100">
-                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img2'] . '') ?>" alt="..." class="card-img-top">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img2'] . '') ?>" alt="..." class="img-fluid">
                         </a>
                       <?php } ?>
                       <!-- Item -->
                       <?php if ($img3 != '') { ?>
                         <a class="w-100">
-                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>" alt="..." class="card-img-top">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>" alt="..." class="img-fluid">
                         </a>
                       <?php } ?>
                     </div>
@@ -119,21 +119,21 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     <?php if ($img != '') { ?>
                       <div class="col-12 px-2" style="max-width: 113px;">
                         <!-- Image -->
-                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>);"></div>
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
                       </div>
                     <?php } ?>
                     <!-- Item -->
                     <?php if ($img2 != '') { ?>
                       <div class="col-12 px-2" style="max-width: 113px;">
                         <!-- Image -->
-                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img2'] . '') ?>);"></div>
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img2'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
                       </div>
                     <?php } ?>
                     <!-- Item -->
                     <?php if ($img3 != '') { ?>
                       <div class="col-12 px-2" style="max-width: 113px;">
                         <!-- Image -->
-                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>);"></div>
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
                       </div>
                     <?php } ?>
                   </div>
@@ -143,7 +143,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                   <div class="row mb-1">
                     <div class="col">
                       <!-- Preheading -->
-                      <a class="text-muted" href="search.html"><?php echo $category ?></a>
+                      <a class="text-muted"><?php echo $category ?></a>
                     </div>
                   </div>
 
@@ -219,160 +219,64 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     }
   } ?>
 
-  <!-- PRODUCTS -->
-  <section class="pt-11">
+   <!-- Produtos -->
+   <section class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <!-- Heading -->
-          <h4 class="mb-10 text-center">Você pode gostar também</h4>
-          <!-- Items -->
-          <div class="row">
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-              <!-- Card -->
-              <a href="product.html">
-                <div class="card mb-7">
+          <h4 class="mb-5 pl-8"> <h4 class="mb-10 text-center">Você pode gostar também</h4></h4>
+          <!-- Slider -->
+          <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": true}'>
 
-                  <div class="card-img">
-                    <img class="card-img-top" src="assets/images/produto1.jpeg" alt="...">
-                  </div>
-                  <!-- Body -->
-                  <div class="card-body px-0">
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Embalagem</a>
-                    </div>
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="">
-                        Cachaça Burarama 600ml
+            <!-- Item -->
+            <?php
+            $stmt = $DB_con->prepare("SELECT id,nome,price,category,img,desconto,valor_desconto FROM produtos ORDER BY id DESC");
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+            ?>
+                <div class="col-lg-3 col-md-6" style="min-width: 220px;">
+                  <div class="card mb-7">
+
+                    <!-- Image -->
+                    <div class="card-img">
+                      <!-- Image -->
+                      <a class="card-img-hover" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                        <img class="card-img-top" src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img'] . '') ?>" alt="...">
                       </a>
                     </div>
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      R$11.00
+                    <!-- Body -->
+                    <div class="card-body px-0">
+                      <!-- Category -->
+                      <div class="font-size-xs">
+                        <a class="text-muted" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>"><?php echo $category ?></a>
+                      </div>
+                      <!-- Title -->
+                      <div class="font-weight-bold">
+                        <a class="text-body" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                          <?php echo $nome ?>
+                        </a>
+                      </div>
+                      <!-- Price -->
+                      <div class="font-weight-bold">
+
+                        <?php if ($valor_desconto  != '') { ?>
+                          <span class="text-primary"><?php echo "R$ " . $price ?></span>
+                        <?php } ?>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </a>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-              <!-- Card -->
-              <a href="product.html">
-                <div class="card mb-7">
-
-                  <div class="card-img">
-                    <img class="card-img-top" src="assets/images/produto9.jpeg" alt="...">
-                  </div>
-                  <!-- Body -->
-                  <div class="card-body px-0">
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="">
-                        Conjunto chá
-                      </a>
-                    </div>
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      R$76.00
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-              <!-- Card -->
-              <a href="product.html">
-                <div class="card mb-7">
-
-                  <div class="card-img">
-                    <img class="card-img-top" src="assets/images/produto5.jpeg" alt="...">
-                  </div>
-                  <!-- Body -->
-                  <div class="card-body px-0">
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="">
-                        Bowl de Porcelana
-                      </a>
-                    </div>
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      R$76.00
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
-              <!-- Card -->
-              <a href="product.html">
-                <div class="card mb-7">
-
-                  <div class="card-img">
-                    <img class="card-img-top" src="assets/images/produto10.jpeg" alt="...">
-                  </div>
-                  <!-- Body -->
-                  <div class="card-body px-0">
-                    <!-- Category -->
-                    <div class="font-size-xs">
-                      <a class="text-muted" href="search.html">Utilidades Domésticas</a>
-                    </div>
-                    <!-- Title -->
-                    <div class="font-weight-bold">
-                      <a class="text-body" href="">
-                        Pote de barro
-                      </a>
-                    </div>
-                    <!-- Price -->
-                    <div class="font-weight-bold text-muted">
-                      R$26.00
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-
+            <?php
+              }
+            }
+            ?>
           </div>
         </div>
       </div>
-  </section>
-
-  <!-- Whatsapp -->
-  <div class="whatsapp">
-    <a href="https://wa.me/5586994459897" target="_blank" class="text-white"><i class="fab fa-whatsapp"></i></a>
-  </div>
-
-  <section class="py-8" id="leads">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          Quer saber todos os lançamentos e promoções da nossa loja? Deixe seu email com a gente!
-        </div>
-
-        <div class="col-lg-8">
-          <form class="form-inline">
-            <input type="text" class="form-control mb-2" placeholder="Nome" required />
-            <input type="email" class="form-control mb-2" placeholder="Email" required />
-            <button type="submit" class="btn btn-primary mb-2">Casdastrar</button>
-          </form>
-        </div>
-
-      </div>
     </div>
-
   </section>
 
   <?php include "views/footer.php" ?>
@@ -381,7 +285,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <!-- Libs JS -->
   <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/jquery.fancybox.min.js') ?>"></script>
-  <script src="<?php echo $URI->base('/assets/libs/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/flickity.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/highlight.pack.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/jarallax.min.js') ?>"></script>
@@ -389,9 +294,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <script src="<?php echo $URI->base('/assets/libs/js/simplebar.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/smooth-scroll.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/flickity-fade.js') ?>"></script>
-
-  <!-- Theme JS -->
-  <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>./assets/js/theme.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+  <script src="<?php echo $URI->base('/assets/js/theme.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/js/jquery.mask.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/js/custom.js') ?>"></script>
   <script>
     $('.phone').mask('(00) 00000-0000');
   </script>

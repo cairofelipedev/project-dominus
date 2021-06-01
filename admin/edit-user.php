@@ -13,7 +13,7 @@ endif;
 
 if (isset($_GET['edit_id']) && !empty($_GET['edit_id'])) {
   $id = $_GET['edit_id'];
-  $stmt_edit = $DB_con->prepare('SELECT name,login,email,whats,type,img FROM users WHERE id =:uid');
+  $stmt_edit = $DB_con->prepare('SELECT name,login,email,whats,type,img,pass FROM users WHERE id =:uid');
   $stmt_edit->execute(array(':uid' => $id));
   $edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
   extract($edit_row);

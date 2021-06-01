@@ -7,7 +7,7 @@ if (isset($_SESSION['logado'])) :
 else :
   header("Location: login.php");
 endif;
-error_reporting(~E_NOTICE); // avoid notice
+error_reporting(~E_ALL); // avoid notice
 
 if (isset($_POST['btnsave'])) {
   $titulo = $_POST['titulo'];
