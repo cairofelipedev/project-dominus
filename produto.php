@@ -5,7 +5,7 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[4])) ? $idProduto = $url[4] : $idProduto = 1;
+(is_numeric($url[3])) ? $idProduto = $url[3] : $idProduto = 1;
 
 $stmt = $DB_con->prepare("SELECT nome,category FROM produtos where id='$idProduto' ORDER BY id DESC");
 $stmt->execute();

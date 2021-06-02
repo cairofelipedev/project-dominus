@@ -34,8 +34,10 @@ $dv = $_GET['dv'];
 <body>
   <?php include "views/nav.php" ?>
   <!-- SLIDER -->
-  <div class="intro intro-carousel">
-    <div id="carousel" class="owl-carousel owl-theme">
+  <section>
+    <div data-flickity='{"prevNextButtons": true,"pageDots": true, "autoPlay": true}'>
+
+      <!-- Item -->
       <?php
       $stmt = $DB_con->prepare("SELECT id,nome,data_create,img,img2 FROM banners ORDER BY id DESC");
       $stmt->execute();
@@ -43,15 +45,20 @@ $dv = $_GET['dv'];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           extract($row);
       ?>
-          <div class="carousel-item-a intro-item">
-            <img class="img-fluid" src="admin/uploads/banners/<?php echo $row['img']; ?>">
+          <div class="w-100 img-contain">
+            <picture>
+              <source media="(max-width: 576px)" srcset="admin/uploads/banners/<?php echo $row['img']; ?>">
+              <source media="(min-width: 577px)" srcset="admin/uploads/banners/<?php echo $row['img']; ?>">
+              <img class="w-100" src="admin/uploads/banners/<?php echo $row['img']; ?>">
+            </picture>
           </div>
       <?php
         }
       }
       ?>
     </div>
-  </div><!-- End Intro Section -->
+  </section>
+
 
   <!-- Categorias -->
   <section class="py-6">
@@ -115,7 +122,7 @@ $dv = $_GET['dv'];
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
-          <h4>NÓS LIGAMOS PRA VOCÊ</h4>
+          <h4>ATENDIMENTO DOMINUS. NÓS ENTRAMOS EM CONTATO COM VOCÊ</h4>
         </div>
 
         <div class="col-lg-8">
@@ -125,7 +132,7 @@ $dv = $_GET['dv'];
             <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
             <input type="hidden" name="tipo" value="2">
             <input type="hidden" name="status" value="1">
-            <button type="submit" name="submit2" class="btn btn-primary mb-2">Casdastrar</button>
+            <button type="submit" name="submit2" class="btn btn-primary mb-2">Cadastrar</button>
           </form>
         </div>
 
@@ -333,7 +340,7 @@ $dv = $_GET['dv'];
             <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
             <input type="hidden" name="tipo" value="3">
             <input type="hidden" name="status" value="1">
-            <button type="submit" name="submit3" class="btn btn-primary mb-2">Casdastrar</button>
+            <button type="submit" name="submit3" class="btn btn-primary mb-2">Cadastrar</button>
           </form>
         </div>
 

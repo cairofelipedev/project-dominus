@@ -28,7 +28,7 @@
               </li>
               <li class="nav-item">
                 <li class="nav-item">
-                  <a href="<?php echo $URI->base('/sobre')?>" class="nav-link">Sobre</a>
+                  <a href="<?php echo $URI->base('/quem_somos')?>" class="nav-link">Quem Somos</a>
                 </li>
               </li>
             </ul>

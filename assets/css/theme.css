@@ -16973,11 +16973,6 @@ a.text-decoration-underline:hover {
     opacity: 1;
 }
 
-@media (max-width: 991.98px) {
-    .flickity-button {
-        display: none;
-    }
-}
 
 .flickity-button::before {
     font-family: "Font Awesome 5 Free";
@@ -17184,3 +17179,4 @@ a.text-decoration-underline:hover {
     min-height: 200px;
     object-fit: cover;
 }
+
