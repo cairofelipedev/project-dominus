@@ -118,11 +118,13 @@
                 <form method="POST" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-md-6">
+                      <p class="title text-center">Sobre Nós</p>
                       <div class="form-group">
                         <label>Texto 1</label>
                         <textarea style="max-height: 300px;" rows="5" cols="80" name="home" class="form-control" ><?php echo $home; ?></textarea>
                       </div>
                       <div class="form-group">
+                      <p class="title text-center">Quem Somos</p>
                         <label>Texto 2</label>
                         <textarea style="max-height: 300px;" rows="5" cols="80" name="text_intro" class="form-control"><?php echo $text_intro; ?></textarea>
                       </div>
@@ -130,12 +132,13 @@
                       <label>Texto 3</label>
                       <textarea style="max-height: 300px;" rows="5" cols="80" name="texto1" class="form-control" placeholder="Texto principal da postagem"><?php echo $texto1; ?></textarea>
                     </div>
-                      <div class="form-group pt-3">
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-group pt-3">
+                      <p class="title text-center">Valores e Princípios</p>
                         <label>Texto 4</label>
                         <textarea style="max-height: 500px;"  rows="5" cols="80" name="texto2" class="form-control"><?php echo $texto2; ?></textarea>
                       </div>
-                    </div>
-                    <div class="col-md-6">
                       <div class="form-group pt-3">
                         <label>Texto 5</label>
                         <textarea style="max-height: 500px;" rows="5" cols="80" name="texto3" class="form-control"><?php echo $texto3; ?></textarea>

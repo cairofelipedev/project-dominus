@@ -213,24 +213,23 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
   </section>
 	<?php include "views/footer.php" ?>
 	<!-- JAVASCRIPT -->
-	<!-- Libs JS -->
-	<script src="./assets/libs/js/jquery.min.js"></script>
-	<script src="./assets/libs/js/jquery.fancybox.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-	<!-- <script src="https://flickity.metafizzy.co/flickity.pkgd.js"></script> -->
-	<script src="./assets/libs/js/flickity.js"></script>
-	<script src="./assets/libs/js/highlight.pack.min.js"></script>
-	<script src="./assets/libs/js/jarallax.min.js"></script>
-	<script src="./assets/libs/js/list.min.js"></script>
-	<script src="./assets/libs/js/simplebar.min.js"></script>
-	<script src="./assets/libs/js/smooth-scroll.min.js"></script>
-	<script src="./assets/libs/js/flickity-fade.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
-	<!-- Theme JS -->
-	<script src="./assets/js/theme.min.js"></script>
-	<script src="./assets/js/jquery.mask.min.js"></script>
-	<script src="./assets/js/custom.js"></script>
+  <!-- Libs JS -->
+  <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/jquery.fancybox.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/bootstrap.bundle.min.js') ?>"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/flickity.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/highlight.pack.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/jarallax.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/list.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/simplebar.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/smooth-scroll.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/libs/js/flickity-fade.js') ?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+  <script src="<?php echo $URI->base('/assets/js/theme.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/js/jquery.mask.min.js') ?>"></script>
+  <script src="<?php echo $URI->base('/assets/js/custom.js') ?>"></script>
 
 	<script>
 		$('.phone').mask('(00) 00000-0000');
