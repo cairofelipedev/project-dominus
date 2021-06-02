@@ -39,18 +39,21 @@ $dv = $_GET['dv'];
 
       <!-- Item -->
       <?php
-      $stmt = $DB_con->prepare("SELECT id,nome,data_create,img,img2 FROM banners ORDER BY id DESC");
+      $stmt = $DB_con->prepare("SELECT id,nome,data_create,img,img2,link FROM banners ORDER BY id DESC");
       $stmt->execute();
       if ($stmt->rowCount() > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           extract($row);
       ?>
+
           <div class="w-100 img-contain">
-            <picture>
-              <source media="(max-width: 576px)" srcset="admin/uploads/banners/<?php echo $row['img']; ?>">
-              <source media="(min-width: 577px)" srcset="admin/uploads/banners/<?php echo $row['img']; ?>">
-              <img class="w-100" src="admin/uploads/banners/<?php echo $row['img']; ?>">
-            </picture>
+            <a href="<?php echo $link ?>">
+              <picture>
+                <source media="(max-width: 576px)" srcset="admin/uploads/banners/<?php echo $row['img']; ?>">
+                <source media="(min-width: 577px)" srcset="admin/uploads/banners/<?php echo $row['img']; ?>">
+                <img class="w-100" src="admin/uploads/banners/<?php echo $row['img']; ?>">
+              </picture>
+            </a>
           </div>
       <?php
         }

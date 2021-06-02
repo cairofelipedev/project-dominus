@@ -189,12 +189,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 					</div>
 				</section>
 
-				<!-- FOOTER -->
+				<!-- FOOTER 
+
 				<footer class="pt-10">
 					<div class="container">
 						<div class="row">
 							<div class="col-12 text-center">
-								<!-- Buttons -->
+								 Buttons 
 								<a class="btn btn-facebook mr-3 mb-3" href="#!">
 									<i class="fab fa-facebook-f mr-2"></i>Facebook
 								</a>
@@ -211,7 +212,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 							</div>
 						</div>
 					</div>
-				</footer>
+				</footer>-->
 
 			</article>
 

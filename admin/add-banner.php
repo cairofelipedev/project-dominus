@@ -11,6 +11,7 @@ error_reporting(~E_ALL); // avoid notice
 
 if (isset($_POST['btnsave'])) {
   $nome = $_POST['nome'];
+  $link = $_POST['link'];
 
   $imgFile = $_FILES['user_image']['name'];
   $tmp_dir = $_FILES['user_image']['tmp_name'];
@@ -22,7 +23,11 @@ if (isset($_POST['btnsave'])) {
 
   if (empty($nome)) {
     $errMSG = "Por favor Insira o nome";
-  } else {
+  } 
+  if (empty($link)) {
+    $errMSG = "Por favor Insira o link do banner";
+  }
+  else {
     $upload_dir = 'uploads/banners/'; // upload directory
 
     $imgExt =  strtolower(pathinfo($imgFile, PATHINFO_EXTENSION));
@@ -54,8 +59,9 @@ if (isset($_POST['btnsave'])) {
     }
   }
   if (!isset($errMSG)) {
-    $stmt = $DB_con->prepare('INSERT INTO banners (nome,img,img2) VALUES(:unome,:upic,:upic2)');
+    $stmt = $DB_con->prepare('INSERT INTO banners (nome,img,img2,link) VALUES(:unome,:upic,:upic2,:ulink)');
     $stmt->bindParam(':unome', $nome);
+    $stmt->bindParam(':ulink', $link);
     $stmt->bindParam(':upic', $userpic);
     $stmt->bindParam(':upic2', $userpic2);
 
@@ -115,6 +121,10 @@ if (isset($_POST['btnsave'])) {
                     <div class="form-group">
                       <label>Nome</label>
                       <input value="<?php echo $nome; ?>" name="nome" type="text" class="form-control" placeholder="Nome do Banner">
+                    </div>
+                    <div class="form-group">
+                      <label>Link</label>
+                      <input value="<?php echo $link; ?>" name="link" type="text" class="form-control" placeholder="Link do Banner">
                     </div>
                     <div class="form-group">
                       <label>Banner Desktop</label>

@@ -3,17 +3,12 @@
           <nav>
             <ul>
               <li>
-                <a href="">
+                <a href="home">
                   Distribuidora Dominus
                 </a>
               </li>
               <li>
-                <a href="">
-                  Contato
-                </a>
-              </li>
-              <li>
-                <a href="">
+                <a href="https://api.whatsapp.com/send?phone=5586999633288&text=Cairo,%20estou%20precisando%20de%20suporte%20no%20site.">
                   Suporte
                 </a>
               </li>

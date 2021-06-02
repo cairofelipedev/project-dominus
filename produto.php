@@ -5,14 +5,15 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[3])) ? $idProduto = $url[3] : $idProduto = 1;
+(is_numeric($url[4])) ? $idProduto = $url[4] : $idProduto = 1;
 
-$stmt = $DB_con->prepare("SELECT nome,category FROM produtos where id='$idProduto' ORDER BY id DESC");
+$stmt = $DB_con->prepare("SELECT nome,category,descricao FROM produtos where id='$idProduto' ORDER BY id DESC");
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   extract($row);
   $produto = $nome;
   $category2 = $category;
+  $desc = $descricao;
 }
 ?>
 <!doctype html>
@@ -188,26 +189,30 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                     <div class="form-row mb-7">
                       <div class="col-12 col-lg">
-                        <!-- Submit -->
-                        <a class="btn btn-block btn-primary mb-2 text-white" target="_blank" href="https://api.whatsapp.com/send?phone=5586994459897&text=Ol%C3%A1!%20Gostaria%20de%20comprar%3A%20Tapete%20higi%C3%AAnico%20para%20carro">
-                          <i class="fab fa-whatsapp ml-2"></i> Solicitar
-                        </a>
+                        <?php
+
+                        $stmt = $DB_con->prepare("SELECT id, texto1 FROM whats where id='1'");
+                        $stmt->execute();
+
+                        if ($stmt->rowCount() > 0) {
+                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            extract($row);
+                        ?>
+                            <!-- Submit -->
+                            <a class="btn btn-block btn-primary mb-2 text-white" target="_blank" href="https://api.whatsapp.com/send?phone=5586994459897&text=<?php echo $texto1; ?>%20<?php echo $nome ?>">
+                              <i class="fab fa-whatsapp ml-2"></i> Solicitar
+                            </a>
+                        <?php }
+                        }
+                        ?>
+                        <!-- Share -->
+                        <p>
+                          <a onclick="share()" class="btn btn-circle btn-light text-gray-350" href="#!">
+                            Compartilhar <i class="ml-3 fas fa-share"></i>
+                          </a>
+                        </p>
                       </div>
                     </div>
-
-                    <!-- Share -->
-                    <p class="mb-0">
-                      <span class="mr-4">Compartilhar:</span>
-                      <a class="btn btn-xxs btn-circle btn-light font-size-xxxs text-gray-350" href="#!">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                      <a class="btn btn-xxs btn-circle btn-light font-size-xxxs text-gray-350" href="#!">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
-                      <a class="btn btn-xxs btn-circle btn-light font-size-xxxs text-gray-350" href="#!">
-                        <i class="fab fa-whatsapp"></i>
-                      </a>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -219,13 +224,15 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     }
   } ?>
 
-   <!-- Produtos -->
-   <section class="py-4">
+  <!-- Produtos -->
+  <section class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <!-- Heading -->
-          <h4 class="mb-5 pl-8"> <h4 class="mb-10 text-center">Você pode gostar também</h4></h4>
+          <h4 class="mb-5 pl-8">
+            <h4 class="mb-10 text-center">Você pode gostar também</h4>
+          </h4>
           <!-- Slider -->
           <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": true}'>
 
@@ -286,7 +293,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/jquery.fancybox.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/bootstrap.bundle.min.js') ?>"></script>
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/flickity.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/highlight.pack.min.js') ?>"></script>
@@ -301,6 +308,19 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <script src="<?php echo $URI->base('/assets/js/custom.js') ?>"></script>
   <script>
     $('.phone').mask('(00) 00000-0000');
+  </script>
+  <script>
+    function share() {
+      if (navigator.share !== undefined) {
+        navigator.share({
+            title: 'Distribuidora Dominus - <?php echo $produto; ?>',
+            text: '<?php echo $desc; ?>',
+            url: '<?php echo $URI->base('produto/' . $id . '/' . slugify($nome)); ?>',
+          })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      }
+    }
   </script>
 </body>
 

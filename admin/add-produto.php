@@ -141,12 +141,22 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':ucor3', $cor3);
     $stmt->bindParam(':ucor4', $cor4);
     $stmt->bindParam(':ucor5', $cor5);
-    $stmt->bindParam(':udesconto', $desconto);
-    $valor_desconto = $price - ($price / 100 * $desconto);
-    $stmt->bindParam(':uvalor_desconto', $valor_desconto);
     $stmt->bindParam(':upeso', $peso);
     $stmt->bindParam(':upic', $userpic);
-  
+    
+
+    if (empty($desconto)) {
+      $stmt->bindValue(':udesconto', $nulo);
+      $stmt->bindValue(':uvalor_desconto', $nulo);
+      $nulo = '';
+    }
+
+    if (!empty($desconto)) {
+      $stmt->bindParam(':udesconto', $desconto);
+      $valor_desconto = $price - ($price / 100 * $desconto);
+      $stmt->bindParam(':uvalor_desconto', $valor_desconto);
+    }
+
     if (empty($imgFile2)) {
       $stmt->bindValue(':upic2', $nulo);
       $nulo = '';

@@ -51,6 +51,12 @@
               <p>Usuários</p>
             </a>
           </li>
+          <li>
+            <a href="painel-whats.php?edit_id=1">
+            <i class="fab fa-whatsapp"></i>
+              <p>Whats</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
