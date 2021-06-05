@@ -169,6 +169,15 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     <p class="mb-5">
                       <?php echo $descricao ?>
                     </p>
+
+                    <h6>Cores disponíveis: </h6>
+                    <div class="d-flex">
+                      <div class="item-color" style="background-color: #000"></div>
+                      <div class="item-color" style="background-color: #000"></div>
+                    </div>
+                    
+
+
                     <hr>
                     <p>Especificações: </p>
                     <div class="row" style="font-size:14px;">
