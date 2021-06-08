@@ -110,7 +110,7 @@ if (isset($_POST['btnsave'])) {
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     extract($row);
                             ?>
-                                    <h6 class="title"><?php echo $nome ?> / <?php echo $tipo ?> <a class="text-danger pl-4" href="?delete_id=<?php echo $row['id']; ?>" title="clique para deletar" onclick="return confirm('Excluir categoria?')"><i class="now-ui-icons ui-1_simple-remove"></i> Excluir</a></h6>
+                                    <h6 class="title"><?php echo $nome ?> / <?php echo $tipo ?> <a class="text-danger pl-4 pr-4" href="?delete_id=<?php echo $row['id']; ?>" title="clique para deletar" onclick="return confirm('Excluir categoria?')"><i class="now-ui-icons ui-1_simple-remove"></i> Excluir</a> https://distribuidoradominus.com/busca.php?pesquisa=<?php echo $nome ?></h6>
 
                                 <?php
                                 }

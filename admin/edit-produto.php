@@ -225,9 +225,6 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':ucor3', $cor3);
     $stmt->bindParam(':ucor4', $cor4);
     $stmt->bindParam(':ucor5', $cor5);
-    $stmt->bindParam(':udesconto', $desconto);
-    $valor_desconto = $price - ($price / 100 * $desconto);
-    $stmt->bindParam(':uvalor_desconto', $valor_desconto);
     $stmt->bindParam(':upeso', $peso);
     $stmt->bindParam(':upic', $userpic);
     $stmt->bindParam(':upic2', $userpic2);
@@ -235,6 +232,18 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':upic4', $userpic4);
     $stmt->bindParam(':upic5', $userpic5);
     $stmt->bindParam(':upic6', $userpic6);
+
+    if (empty($desconto)) {
+      $stmt->bindValue(':udesconto', $nulo);
+      $stmt->bindValue(':uvalor_desconto', $nulo);
+      $nulo = '';
+    }
+
+    if (!empty($desconto)) {
+      $stmt->bindParam(':udesconto', $desconto);
+      $valor_desconto = $price - ($price / 100 * $desconto);
+      $stmt->bindParam(':uvalor_desconto', $valor_desconto);
+    }
 
     if ($stmt->execute()) {
       echo ("<script type= 'text/javascript'>alert('Produto atualizado com sucesso.');</script>

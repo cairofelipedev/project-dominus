@@ -71,7 +71,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <!-- PRODUCT -->
   <?php
 
-  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3,status,desconto,valor_desconto,altura,largura,profu,peso FROM produtos where nome='$produto'");
+  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3,img4,img5,img6,status,desconto,valor_desconto,altura,largura,profu,peso FROM produtos where nome='$produto'");
   $stmt->execute();
 
   if ($stmt->rowCount() > 0) {
@@ -112,6 +112,24 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                           <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>" alt="..." class="img-fluid">
                         </a>
                       <?php } ?>
+                      <!-- Item -->
+                      <?php if ($img4 != '') { ?>
+                        <a class="w-100">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img4'] . '') ?>" alt="..." class="img-fluid">
+                        </a>
+                      <?php } ?>
+                      <!-- Item -->
+                      <?php if ($img5 != '') { ?>
+                        <a class="w-100">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img5'] . '') ?>" alt="..." class="img-fluid">
+                        </a>
+                      <?php } ?>
+                      <!-- Item -->
+                      <?php if ($img6 != '') { ?>
+                        <a class="w-100">
+                          <img src="<?php echo $URI->base('/admin/uploads/produtos/' . $row['img6'] . '') ?>" alt="..." class="img-fluid">
+                        </a>
+                      <?php } ?>
                     </div>
                   </div>
                   <!-- Slider -->
@@ -135,6 +153,27 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                       <div class="col-12 px-2" style="max-width: 113px;">
                         <!-- Image -->
                         <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img3'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
+                      </div>
+                    <?php } ?>
+                    <!-- Item -->
+                    <?php if ($img4 != '') { ?>
+                      <div class="col-12 px-2" style="max-width: 113px;">
+                        <!-- Image -->
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img4'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
+                      </div>
+                    <?php } ?>
+                    <!-- Item -->
+                    <?php if ($img5 != '') { ?>
+                      <div class="col-12 px-2" style="max-width: 113px;">
+                        <!-- Image -->
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img5'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
+                      </div>
+                    <?php } ?>
+                    <!-- Item -->
+                    <?php if ($img6 != '') { ?>
+                      <div class="col-12 px-2" style="max-width: 113px;">
+                        <!-- Image -->
+                        <div class="embed-responsive embed-responsive-1by1 bg-cover" style="background-image: url(<?php echo $URI->base('/admin/uploads/produtos/' . $row['img6'] . '') ?>);background-size:contain;background-repeat: no-repeat;"></div>
                       </div>
                     <?php } ?>
                   </div>
@@ -172,14 +211,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                     <h6>Cores disponíveis: </h6>
                     <div class="d-flex">
-                      <div class="item-color" style="background-color: #000"></div>
+                      <div class="item-color" style="background-color: #542454"></div>
                       <div class="item-color" style="background-color: #000"></div>
                     </div>
-                    
-
-
+              
                     <hr>
+                    <?php if (($altura != '') or ($largura != '') or ($profu != '') or ($peso != '')){ ?>
                     <p>Especificações: </p>
+                    <?php } ?>
                     <div class="row" style="font-size:14px;">
                       <div class="col-md-6">
                         <p><span style="font-weight: bold;">Altura:</span> <?php echo $altura; ?></p>
