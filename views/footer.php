@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-12 my-auto">
-            <h4 class="mb-6 text-white text-center"><img width="200px" src="<?php echo $URI->base('/assets/images/logo3.png')?>"></h4>
+            <h4 class="mb-6 text-white text-center"><img width="200px" src="<?php echo $URI->base('/assets/images/logo3.png') ?>"></h4>
             <!-- Social -->
             <ul class="list-unstyled list-inline mb-7 mb-md-0 text-center">
               <li class="list-inline-item">
@@ -27,19 +27,25 @@
             </h6>
             <!-- Links -->
             <ul class="list-unstyled mb-7 mb-sm-0">
-              <li>
-                <a class="text-gray-300" href="">Embalagens </a>
-              </li>
-              <li>
-                <a class="text-gray-300" href="">Máquinas e Equipamentos</a>
-              </li>
-              <li>
-                <a class="text-gray-300" href="">Saúde</a>
-              </li>
-              <li>
-                <a class="text-gray-300" href="">Utilidades Domésticas</a>
-              </li>
+              <?php
 
+              $stmt = $DB_con->prepare("SELECT id, nome, tipo FROM categorys where tipo='produto'");
+              $stmt->execute();
+
+              if ($stmt->rowCount() > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                  extract($row);
+              ?>
+                  <li>
+                    <a class="text-gray-300" href="<?php echo $URI->base("/busca.php?pesquisa=$nome") ?>"><?php echo $nome ?></a>
+                  </li>
+              <?php
+                }
+              }
+              ?>
+              <li>
+                <a class="text-gray-300" href="<?php echo $URI->base("/busca.php") ?>">Todas as Categorias</a>
+              </li>
             </ul>
           </div>
           <div class="col-md-5">
@@ -60,7 +66,7 @@
                 <a class="text-gray-300" href="tel:86994459897"><i class="fas fa-phone-alt"></i> (86) 99445-9897</a>
               </li>
               <li>
-                <a class="text-gray-300" href="<?php echo $URI->base('/admin/login.php')?>"><i class="fas fa-sign-out-alt"></i> Login</a>
+                <a class="text-gray-300" href="<?php echo $URI->base('/admin/login.php') ?>"><i class="fas fa-sign-out-alt"></i> Login</a>
               </li>
             </ul>
           </div>

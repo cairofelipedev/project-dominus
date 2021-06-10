@@ -63,10 +63,10 @@ $dv = $_GET['dv'];
   </section>
 
 
-  <!-- Categorias -->
+  <!-- Categorias 
   <section class="py-6">
     <div class="container">
-      <!-- Slider -->
+       Slider 
       <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": false,"cellAlign": "center", "contain": true, "groupCells": true, "pageDots": false}'>
 
         <div class="category">
@@ -120,7 +120,7 @@ $dv = $_GET['dv'];
 
       </div>
     </div>
-  </section>
+  </section> -->
   <section class="py-8" id="leads">
     <div class="container">
       <div class="row">

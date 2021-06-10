@@ -5,7 +5,7 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[3])) ? $idProduto = $url[3] : $idProduto = 1;
+(is_numeric($url[4])) ? $idProduto = $url[4] : $idProduto = 1;
 
 $stmt = $DB_con->prepare("SELECT nome,category,descricao FROM produtos where id='$idProduto' ORDER BY id DESC");
 $stmt->execute();
@@ -57,7 +57,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
               <a class="text-gray-400" href="<?php echo $URI->base('/home') ?>">Página inicial <i class="fas fa-angle-right"></i></a>
             </li>
             <li class="breadcrumb-item">
-              <a class="text-gray-400" href="<?php echo $URI->base('/busca.php?pesquisa=' . $category2 . ''); ?>"><?php echo $category2; ?><i class="fas fa-angle-right"></i></a>
+              <a class="text-gray-400" href="<?php echo $URI->base('/busca.php?pesquisa=' . $category2 . ''); ?>"><?php echo $category2; ?> <i class="fas fa-angle-right"></i></a>
             </li>
             <li class="breadcrumb-item active">
               <?php echo $produto; ?>
@@ -71,7 +71,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
   <!-- PRODUCT -->
   <?php
 
-  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3,img4,img5,img6,status,desconto,valor_desconto,altura,largura,profu,peso FROM produtos where nome='$produto'");
+  $stmt = $DB_con->prepare("SELECT id, nome, descricao,category,price, img,img2,img3,img4,img5,img6,status,desconto,valor_desconto,altura,largura,profu,peso,cor1,cor2,cor3,cor4,cor5 FROM produtos where nome='$produto'");
   $stmt->execute();
 
   if ($stmt->rowCount() > 0) {
@@ -208,37 +208,100 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     <p class="mb-5">
                       <?php echo $descricao ?>
                     </p>
-
-                    <h6>Cores disponíveis: </h6>
+                    <?php if (($cor1 != '') or ($cor2 != '') or ($cor3 != '') or ($cor4 != '')  or ($cor5 != '')) { ?>
+                      <h6>Cores disponíveis: </h6>
+                    <?php } ?>
                     <div class="d-flex">
-                      <div class="item-color" style="background-color: #542454"></div>
-                      <div class="item-color" style="background-color: #000"></div>
+                      <?php if ($cor1 != '') { ?>
+                        <?php $stmt = $DB_con->prepare("SELECT id, cor,valor_cor FROM colors where cor='$cor1'");
+                        $stmt->execute();
+                        if ($stmt->rowCount() > 0) {
+                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            extract($row);
+                        ?>
+                            <div class="item-color" style="background-color: <?php echo $valor_cor; ?>"></div>
+                      <?php
+                          }
+                        }
+                      }
+                      ?>
+                      <?php if ($cor2 != '') { ?>
+                        <?php $stmt = $DB_con->prepare("SELECT id, cor,valor_cor FROM colors where cor='$cor2'");
+                        $stmt->execute();
+                        if ($stmt->rowCount() > 0) {
+                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            extract($row);
+                        ?>
+                            <div class="item-color" style="background-color: <?php echo $valor_cor; ?>"></div>
+                      <?php
+                          }
+                        }
+                      }
+                      ?>
+                      <?php if ($cor3 != '') { ?>
+                        <?php $stmt = $DB_con->prepare("SELECT id, cor,valor_cor FROM colors where cor='$cor3'");
+                        $stmt->execute();
+                        if ($stmt->rowCount() > 0) {
+                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            extract($row);
+                        ?>
+                            <div class="item-color" style="background-color: <?php echo $valor_cor; ?>"></div>
+                      <?php
+                          }
+                        }
+                      }
+                      ?>
+                      <?php if ($cor4 != '') { ?>
+                        <?php $stmt = $DB_con->prepare("SELECT id, cor,valor_cor FROM colors where cor='$cor4'");
+                        $stmt->execute();
+                        if ($stmt->rowCount() > 0) {
+                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            extract($row);
+                        ?>
+                            <div class="item-color" style="background-color: <?php echo $valor_cor; ?>"></div>
+                      <?php
+                          }
+                        }
+                      }
+                      ?>
+                      <?php if ($cor5 != '') { ?>
+                        <?php $stmt = $DB_con->prepare("SELECT id, cor,valor_cor FROM colors where cor='$cor5'");
+                        $stmt->execute();
+                        if ($stmt->rowCount() > 0) {
+                          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            extract($row);
+                        ?>
+                            <div class="item-color" style="background-color: <?php echo $valor_cor; ?>"></div>
+                      <?php
+                          }
+                        }
+                      }
+                      ?>
                     </div>
-              
                     <hr>
-                    <?php if (($altura != '') or ($largura != '') or ($profu != '') or ($peso != '')){ ?>
-                    <p>Especificações: </p>
+                    <?php if (($altura != '') or ($largura != '') or ($profu != '') or ($peso != '')) { ?>
+                      <p>Especificações: </p>
                     <?php } ?>
                     <div class="row" style="font-size:14px;">
-                    <?php if ($altura != '') { ?>
-                      <div class="col-md-6">
-                        <p><span style="font-weight: bold;">Altura:</span> <?php echo $altura; ?></p>
-                      </div>
-                    <?php } ?>
-                    <?php if ($largura != '') { ?>
-                      <div class="col-md-6">
-                        <p><span style="font-weight: bold;">Largura:</span> <?php echo $largura; ?></p>
-                      </div>
+                      <?php if ($altura != '') { ?>
+                        <div class="col-md-6">
+                          <p><span style="font-weight: bold;">Altura:</span> <?php echo $altura; ?></p>
+                        </div>
+                      <?php } ?>
+                      <?php if ($largura != '') { ?>
+                        <div class="col-md-6">
+                          <p><span style="font-weight: bold;">Largura:</span> <?php echo $largura; ?></p>
+                        </div>
                       <?php } ?>
                       <?php if ($profu != '') { ?>
-                      <div class="col-md-6">
-                        <p><span style="font-weight: bold;">Profundidade:</span> <?php echo $profu; ?></p>
-                      </div>
+                        <div class="col-md-6">
+                          <p><span style="font-weight: bold;">Profundidade:</span> <?php echo $profu; ?></p>
+                        </div>
                       <?php } ?>
                       <?php if ($peso != '') { ?>
-                      <div class="col-md-6">
-                        <p><span style="font-weight: bold;">Peso:</span> <?php echo $peso; ?></p>
-                      </div>
+                        <div class="col-md-6">
+                          <p><span style="font-weight: bold;">Peso:</span> <?php echo $peso; ?></p>
+                        </div>
                       <?php } ?>
                     </div>
                     <!-- Radio -->

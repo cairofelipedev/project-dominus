@@ -91,7 +91,7 @@ if (isset($_POST['btnsave'])) {
                                         <div class="form-group">
                                             <label class="title">VALOR HEXADECIMAL DA COR</label>
                                             <input value="<?php echo $valor_cor; ?>" name="valor_cor" type="text" class="form-control" placeholder="Valor da cor">
-                                            <p>Cores</p>
+                                            <p>Adicione os valores das cores com seu nome em inglês ou seu valor hexadecimal acompanhado do simbolo #. Ex: azul = blue ou #0000FF</p>
                                         </div>
                                     </div>
                                 </div>

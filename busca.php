@@ -65,38 +65,27 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
                           Todos os produtos
                         </a>
                       </li>
-                      <li class="list-styled-item">
+                      <?php
 
-                        <!-- Toggle -->
-                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=embalagens')?>">
-                          Embalagens
-                        </a>
+                      $stmt = $DB_con->prepare("SELECT id, nome, tipo FROM categorys where tipo='produto'");
+                      $stmt->execute();
 
-                      </li>
-                      <li class="list-styled-item">
+                      if ($stmt->rowCount() > 0) {
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                          extract($row);
+                      ?>
+                          <li class="list-styled-item">
 
-                        <!-- Toggle -->
-                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=maquinas')?>">
-                          Máquinas e Equipamentos
-                        </a>
+                            <!-- Toggle -->
+                            <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base("/busca.php?pesquisa=$nome") ?>">
+                            <?php echo $nome ?>
+                            </a>
 
-                      </li>
-                      <li class="list-styled-item">
-
-                        <!-- Toggle -->
-                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=saude')?>" aria-expanded="false">
-                          Saúde
-                        </a>
-
-                      </li>
-                      <li class="list-styled-item">
-
-                        <!-- Toggle -->
-                        <a class="list-styled-link" data-toggle="collapse" href="<?php echo $URI->base('/busca.php?pesquisa=utilidades')?>">
-                          Utilidades Domésticas
-                        </a>
-
-                      </li>
+                          </li>
+                      <?php
+                        }
+                      }
+                      ?>
 
                     </ul>
                   </div>
@@ -180,29 +169,29 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
           </div>
           <div class="form-busca-else pt-4">
             <form action="" method="POST">
-            <p>Ajudamos você a encontrar o seu produto ideal, preencha o formulário</p>
-            <div class="row">
-              <div class="form-group col-lg-6 col-6">
-                <label class="modal-label" for="NomeSobrenome">Nome</label>
-                <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
+              <p>Ajudamos você a encontrar o seu produto ideal, preencha o formulário</p>
+              <div class="row">
+                <div class="form-group col-lg-6 col-6">
+                  <label class="modal-label" for="NomeSobrenome">Nome</label>
+                  <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
+                </div>
+                <div class="form-group col-lg-6 col-6">
+                  <label class="modal-label" for="Whats">Whatsapp</label>
+                  <input size="20" maxlength="14" type="tel" class="form-control shadow-none phone" name="whats" placeholder="Número" required>
+                </div>
               </div>
-              <div class="form-group col-lg-6 col-6">
-                <label class="modal-label" for="Whats">Whatsapp</label>
-                <input size="20" maxlength="14" type="tel" class="form-control shadow-none phone" name="whats" placeholder="Número" required>
+              <div class="form-group">
+                <label class="modal-label" for="Email">Email</label>
+                <input type="text" class="form-control shadow-none" name="email" id="email" placeholder="E-mail" required />
               </div>
-            </div>
-            <div class="form-group">
-              <label class="modal-label" for="Email">Email</label>
-              <input type="text" class="form-control shadow-none" name="email" id="email" placeholder="E-mail" required />
-            </div>
-            <div class="form-group pb-3">
-              <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>
-            </div>
-            <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
-            <input type="hidden" name="tipo" value="1">
-            <input type="hidden" name="status" value="1">
-            <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
-          </form>
+              <div class="form-group pb-3">
+                <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>
+              </div>
+              <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
+              <input type="hidden" name="tipo" value="1">
+              <input type="hidden" name="status" value="1">
+              <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
+            </form>
           </div>
         </div>
       <?php endif; ?>
@@ -211,13 +200,13 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     </div>
   </section>
-	<?php include "views/footer.php" ?>
-	<!-- JAVASCRIPT -->
+  <?php include "views/footer.php" ?>
+  <!-- JAVASCRIPT -->
   <!-- Libs JS -->
   <script src="<?php echo $URI->base('/assets/libs/js/jquery.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/jquery.fancybox.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/bootstrap.bundle.min.js') ?>"></script>
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/flickity.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/libs/js/highlight.pack.min.js') ?>"></script>
@@ -231,9 +220,9 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <script src="<?php echo $URI->base('/assets/js/jquery.mask.min.js') ?>"></script>
   <script src="<?php echo $URI->base('/assets/js/custom.js') ?>"></script>
 
-	<script>
-		$('.phone').mask('(00) 00000-0000');
-	</script>
+  <script>
+    $('.phone').mask('(00) 00000-0000');
+  </script>
 </body>
 
 </html>
