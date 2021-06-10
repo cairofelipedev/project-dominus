@@ -5,7 +5,7 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[4])) ? $idProduto = $url[4] : $idProduto = 1;
+(is_numeric($url[3])) ? $idProduto = $url[3] : $idProduto = 1;
 
 $stmt = $DB_con->prepare("SELECT nome,category,descricao FROM produtos where id='$idProduto' ORDER BY id DESC");
 $stmt->execute();
@@ -220,18 +220,26 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     <p>Especificações: </p>
                     <?php } ?>
                     <div class="row" style="font-size:14px;">
+                    <?php if ($altura != '') { ?>
                       <div class="col-md-6">
                         <p><span style="font-weight: bold;">Altura:</span> <?php echo $altura; ?></p>
                       </div>
+                    <?php } ?>
+                    <?php if ($largura != '') { ?>
                       <div class="col-md-6">
                         <p><span style="font-weight: bold;">Largura:</span> <?php echo $largura; ?></p>
                       </div>
+                      <?php } ?>
+                      <?php if ($profu != '') { ?>
                       <div class="col-md-6">
                         <p><span style="font-weight: bold;">Profundidade:</span> <?php echo $profu; ?></p>
                       </div>
+                      <?php } ?>
+                      <?php if ($peso != '') { ?>
                       <div class="col-md-6">
                         <p><span style="font-weight: bold;">Peso:</span> <?php echo $peso; ?></p>
                       </div>
+                      <?php } ?>
                     </div>
                     <!-- Radio -->
 

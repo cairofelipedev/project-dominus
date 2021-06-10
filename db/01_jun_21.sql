@@ -1,6 +1,6 @@
 /*
 SQLyog Community
-MySQL - 5.6.43-log : Database - dominus
+MySQL - 10.4.17-MariaDB : Database - dominus
 *********************************************************************
 */
 
@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS `banners`;
 CREATE TABLE `banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `img` varchar(200) DEFAULT NULL,
-  `data_create` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_create` timestamp NULL DEFAULT current_timestamp(),
   `nome` varchar(200) DEFAULT NULL,
   `img2` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -29,23 +29,6 @@ CREATE TABLE `banners` (
 
 insert  into `banners`(`id`,`img`,`data_create`,`nome`,`img2`) values 
 (4,'banner-Banner2.jpeg','2021-04-08 22:43:31','Banner 2','banner2-Banner2.jpeg');
-
-/*Table structure for table `categorys` */
-
-DROP TABLE IF EXISTS `categorys`;
-
-CREATE TABLE `categorys` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) DEFAULT NULL,
-  `tipo` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
-/*Data for the table `categorys` */
-
-insert  into `categorys`(`id`,`nome`,`tipo`) values 
-(1,'Categoria Teste','produto'),
-(2,'CATEGORIA TESTE 2','blog');
 
 /*Table structure for table `clientes` */
 
@@ -77,24 +60,6 @@ insert  into `clientes`(`id`,`nome`,`cpf_cnpj`,`email`,`endereco`,`whats`,`telef
 (184,'Cairo Felipe','072.546.683-95','cairoofelipe@gmail.com','Quadra 14 Mocambinho 1 - Setor B','86999069329','86999069329','CPF','Cairo Felipe',NULL,NULL,NULL,'teste'),
 (185,'Cairo Felipe','072.546.683-95','cairoofelipe@gmail.com','Quadra 14 Mocambinho 1 - Setor B','86999069329','86999069329','CPF','Cairo Felipe','000000','07/02/1998','CairoFelipe-arquivo1.png','Cairo Felipe');
 
-/*Table structure for table `colors` */
-
-DROP TABLE IF EXISTS `colors`;
-
-CREATE TABLE `colors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cor` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-/*Data for the table `colors` */
-
-insert  into `colors`(`id`,`cor`) values 
-(1,'AZUL'),
-(2,'AMARELO'),
-(3,'VERMELHO'),
-(4,'VERDE');
-
 /*Table structure for table `forms` */
 
 DROP TABLE IF EXISTS `forms`;
@@ -106,7 +71,7 @@ CREATE TABLE `forms` (
   `opc` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `mensagem` varchar(1000) DEFAULT NULL,
-  `data_envio` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_envio` timestamp NULL DEFAULT current_timestamp(),
   `dv` varchar(100) DEFAULT NULL,
   `tipo` varchar(10) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
@@ -130,10 +95,10 @@ DROP TABLE IF EXISTS `logs1`;
 CREATE TABLE `logs1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) DEFAULT NULL,
-  `data_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `data_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `tipo` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1724 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1727 DEFAULT CHARSET=utf8;
 
 /*Data for the table `logs1` */
 
@@ -159,7 +124,10 @@ insert  into `logs1`(`id`,`nome`,`data_hora`,`tipo`) values
 (1720,'Cairo Felipe','2021-04-17 11:51:56','login'),
 (1721,'Cairo Felipe','2021-04-30 21:00:50','login'),
 (1722,'Cairo Felipe','2021-05-03 20:20:14','login'),
-(1723,'Cairo Felipe','2021-05-31 20:57:50','login');
+(1723,'Cairo Felipe','2021-05-08 20:41:42','login'),
+(1724,'Cairo Felipe','2021-05-08 20:54:57','login'),
+(1725,'Cairo Felipe','2021-05-09 01:39:02','login'),
+(1726,'Cairo Felipe','2021-05-09 19:45:05','login');
 
 /*Table structure for table `posts` */
 
@@ -179,16 +147,13 @@ CREATE TABLE `posts` (
   `categoria_1` varchar(100) DEFAULT NULL,
   `categoria_2` varchar(100) DEFAULT NULL,
   `categoria_3` varchar(100) DEFAULT NULL,
-  `data_criacao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_criacao` timestamp NULL DEFAULT current_timestamp(),
   `data_update` varchar(50) DEFAULT NULL,
   `autor` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `posts` */
-
-insert  into `posts`(`id`,`titulo`,`sub_titulo`,`texto_1`,`texto_2`,`texto_3`,`texto_4`,`img1`,`img2`,`img3`,`categoria_1`,`categoria_2`,`categoria_3`,`data_criacao`,`data_update`,`autor`) values 
-(1,'texto grande no blog em 20019','Teste Sub','tedasdasdasdasdas','tadasdasdsa','tedsadsadasdsad','tadasdasdasdas','texto grande no blog em 200191.jpeg','texto grande no blog em 200192.jpeg','texto grande no blog em 200193.jpeg','CATEGORIA TESTE 2','CATEGORIA TESTE 2','CATEGORIA TESTE 2','2021-06-01 01:04:40',NULL,NULL);
 
 /*Table structure for table `produtos` */
 
@@ -197,43 +162,29 @@ DROP TABLE IF EXISTS `produtos`;
 CREATE TABLE `produtos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) DEFAULT NULL,
-  `data_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data_add` timestamp NOT NULL DEFAULT current_timestamp(),
   `descricao` varchar(2000) DEFAULT NULL,
   `img` varchar(200) DEFAULT NULL,
   `img2` varchar(200) DEFAULT NULL,
   `price` varchar(100) DEFAULT NULL,
   `category` varchar(100) DEFAULT NULL,
   `img3` varchar(200) DEFAULT NULL,
-  `img4` varchar(200) DEFAULT NULL,
-  `img5` varchar(200) DEFAULT NULL,
-  `img6` varchar(200) DEFAULT NULL,
-  `status` varchar(50) DEFAULT NULL,
-  `cod` varchar(50) DEFAULT NULL,
-  `altura` varchar(50) DEFAULT NULL,
-  `profu` varchar(50) DEFAULT NULL,
-  `largura` varchar(50) DEFAULT NULL,
-  `cor1` varchar(50) DEFAULT NULL,
-  `cor2` varchar(50) DEFAULT NULL,
-  `cor3` varchar(50) DEFAULT NULL,
-  `cor4` varchar(50) DEFAULT NULL,
-  `cor5` varchar(50) DEFAULT NULL,
-  `desconto` varchar(50) DEFAULT NULL,
-  `valor_desconto` varchar(50) DEFAULT NULL,
-  `peso` varchar(50) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `produtos` */
 
-insert  into `produtos`(`id`,`nome`,`data_add`,`descricao`,`img`,`img2`,`price`,`category`,`img3`,`img4`,`img5`,`img6`,`status`,`cod`,`altura`,`profu`,`largura`,`cor1`,`cor2`,`cor3`,`cor4`,`cor5`,`desconto`,`valor_desconto`,`peso`) values 
-(14,'Oferta 1','2021-05-31 22:33:43','DescriÃ§Ã£o do produto teste','Oferta1-img1.jpeg','Oferta1-img2.jpeg','199','Categoria Teste','Oferta1-img3.jpeg',NULL,'','','2','00000','30 cm','00 cm','100 cm','AMARELO','AZUL','VERDE','VERDE','VERMELHO','35','129.35','2 kg'),
-(15,'teste','2021-05-31 22:34:46','','teste-img1.jpeg',NULL,'50','Categoria Teste','','','','','1','','','','','VERDE','VERDE','VERDE','VERDE','VERDE','','0','');
+insert  into `produtos`(`id`,`nome`,`data_add`,`descricao`,`img`,`img2`,`price`,`category`,`img3`,`status`) values 
+(2,'Conjunto chá','2021-04-14 23:09:48','Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, Conjunto chá completo de porcelana, ','Conjuntochá.jpeg','Conjuntochá.jpeg','R$76.00','Utilidades Domésticas','Conjuntochá.jpeg',NULL),
+(3,'Pote de barro','2021-04-14 23:11:24','Pote de barro de um litro, Pote de barro de um litro Pote de barro de um litro Pote de barro de um litro Pote de barro de um litroPote de barro de um litro Pote de barro de um litro Pote de barro de um litro ','Potedebarro.jpeg','Potedebarro.jpeg','R$76.00','Utilidades Domésticas','Potedebarro.jpeg',NULL);
 
 /*Table structure for table `quem_somos` */
 
 DROP TABLE IF EXISTS `quem_somos`;
 
 CREATE TABLE `quem_somos` (
+  `id` int(11) DEFAULT NULL,
   `home` varchar(500) DEFAULT NULL,
   `text_intro` varchar(500) DEFAULT NULL,
   `texto1` varchar(500) DEFAULT NULL,
@@ -241,14 +192,11 @@ CREATE TABLE `quem_somos` (
   `texto3` varchar(500) DEFAULT NULL,
   `texto4` varchar(1000) DEFAULT NULL,
   `texto5` varchar(500) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `img` varchar(200) DEFAULT NULL,
+  `img2` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `quem_somos` */
-
-insert  into `quem_somos`(`home`,`text_intro`,`texto1`,`texto2`,`texto3`,`texto4`,`texto5`,`id`) values 
-('Localizada Teresina, PiauÃ­, a Distribuidora Dominus Ã© uma empresa especializada em equipamentos para agropecuÃ¡ria (kits de irrigaÃ§Ã£o, itens para apicultura), embalagens, utensÃ­lios domÃ©sticos e decoraÃ§Ã£o de casa.','Somos muito mais que uma distribuidora, somos a Dominus. Nascemos de um sonho para desenvolver e melhorar os negÃ³cios no PiauÃ­ e Brasil. Acreditamos que podemos fomentar o desenvolvimento da nossa economia gerando oportunidades de negÃ³cios para todos.','Com um profundo conhecimento logÃ­sticos de comÃ©rcio internacional e nacional, com mais de 30 anos com atuaÃ§Ã£o no segmento, desenvolvemos uma rede de parceiros e fornecedores localizados no Brasil, Ãsia, em todos os continentes, para oferecer serviÃ§os e facilitar o acesso a produtos e equipamentos para inovaÃ§Ã£o e geraÃ§Ã£o de valor para nossos clientes.','A Dominus Ã© definida pelos seus valores:\r\nIntegridade. CooperaÃ§Ã£o. InovaÃ§Ã£o. ExcelÃªncia. Simplicidade. Vontade de resolver problemas. O ideal de fazer o bem ao mundo.','Desde a nossa concepÃ§Ã£o, temos por objetivo atuar com empreendedores, donos de organizaÃ§Ãµes e consumidores para facilitar o acesso a produtos e serviÃ§os logÃ­sticos, para o motor de desenvolvimento econÃ´mico e social, nas mÃ£os do maior nÃºmero possÃ­vel de pessoas. Nossas portas estÃ£o e estarÃ£o abertas Ã s pessoas com brilho nos olhos, vontade e coraÃ§Ã£o aberto, independente de suas origens, posiÃ§Ã£o social ou decisÃµes pessoais.','Nosso comprometimento Ã© com uma cultura de qualidade, foco no cliente, que assume os riscos de melhorias contÃ­nuas e incentiva a criatividade, a lideranÃ§a, e, principalmente, o espÃ­rito empreendedor. Encorajamos pessoas a tomarem iniciativa, agirem e fazerem a diferenÃ§a. NÃ£o importa onde vocÃª esteja, vocÃª pode ser um parceiro e cliente da DOMINUS.','Esse Ã© um convite ao empreendedorismo e co-criaÃ§Ã£o.\r\n\r\nCom carinho,\r\n\r\nDominus Distribuidora',1);
 
 /*Table structure for table `users` */
 

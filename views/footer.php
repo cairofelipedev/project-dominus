@@ -60,7 +60,7 @@
                 <a class="text-gray-300" href="tel:86994459897"><i class="fas fa-phone-alt"></i> (86) 99445-9897</a>
               </li>
               <li>
-                <a class="text-gray-300" href="admin/login.php"><i class="fas fa-sign-out-alt"></i> Login</a>
+                <a class="text-gray-300" href="<?php echo $URI->base('/admin/login.php')?>"><i class="fas fa-sign-out-alt"></i> Login</a>
               </li>
             </ul>
           </div>

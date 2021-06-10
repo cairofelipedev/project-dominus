@@ -20,14 +20,16 @@ if (isset($_GET['delete_id'])) {
 
 if (isset($_POST['btnsave'])) {
     $cor = $_POST['cor'];
+    $valor_cor = $_POST['valor_cor'];
 
     if (empty($cor)) {
         $errMSG = "Por favor insira o nome da cor";
     }
 
     if (!isset($errMSG)) {
-        $stmt = $DB_con->prepare('INSERT INTO colors (cor) VALUES(:ucor)');
+        $stmt = $DB_con->prepare('INSERT INTO colors (cor,valor_cor) VALUES(:ucor,:uvalor_cor)');
         $stmt->bindParam(':ucor', $cor);
+        $stmt->bindParam(':uvalor_cor', $valor_cor);
 
         if ($stmt->execute()) {
             echo ("<script>window.location = 'add-produto.php';</script>");
@@ -85,6 +87,11 @@ if (isset($_POST['btnsave'])) {
                                         <div class="form-group">
                                             <label class="title">COR</label>
                                             <input value="<?php echo $cor; ?>" name="cor" type="text" class="form-control" placeholder="Cor">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="title">VALOR HEXADECIMAL DA COR</label>
+                                            <input value="<?php echo $valor_cor; ?>" name="valor_cor" type="text" class="form-control" placeholder="Valor da cor">
+                                            <p>Cores</p>
                                         </div>
                                     </div>
                                 </div>
