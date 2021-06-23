@@ -9,7 +9,7 @@ else :
 endif;
 if (isset($_GET['edit_id']) && !empty($_GET['edit_id'])) {
   $id = $_GET['edit_id'];
-  $stmt_edit = $DB_con->prepare('SELECT titulo,sub_titulo,texto_1,texto_2,texto_3,texto_4,img1, img2, img3, categoria_1,categoria_2,categoria_3,data_criacao,autor FROM posts WHERE id =:uid');
+  $stmt_edit = $DB_con->prepare('SELECT titulo,sub_titulo,texto_1,texto_2,texto_3,texto_4,img1, img2, img3, categoria_1,categoria_2,categoria_3,data_criacao,autor,incorporar FROM posts WHERE id =:uid');
   $stmt_edit->execute(array(':uid' => $id));
   $edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
   extract($edit_row);
@@ -43,7 +43,7 @@ if (isset($_POST['btnsave'])) {
   $imgSize3 = $_FILES['user_image3']['size'];
 
   if ($imgFile) {
-    $upload_dir = 'uploads/'; // upload directory	
+    $upload_dir = 'uploads/blog/'; // upload directory	
     $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
     $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
     $userpic = rand(1000, 1000000) . "." . $imgExt;
@@ -63,7 +63,7 @@ if (isset($_POST['btnsave'])) {
   }
 
   if ($imgFile2) {
-    $upload_dir = 'uploads/'; // upload directory	
+    $upload_dir = 'uploads/blog/'; // upload directory	
     $imgExt2 = strtolower(pathinfo($imgFile2, PATHINFO_EXTENSION)); // get image extension
     $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
     $userpic2 = rand(1000, 1000000) . "." . $imgExt2;
@@ -82,7 +82,7 @@ if (isset($_POST['btnsave'])) {
     $userpic2 = $edit_row['img2']; // old image from database
   }
   if ($imgFile3) {
-    $upload_dir = 'uploads/'; // upload directory	
+    $upload_dir = 'uploads/blog/'; // upload directory	
     $imgExt3 = strtolower(pathinfo($imgFile2, PATHINFO_EXTENSION)); // get image extension
     $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
     $userpic3 = rand(1000, 1000000) . "." . $imgExt2;
@@ -117,7 +117,8 @@ if (isset($_POST['btnsave'])) {
                         categoria_1=:ucategoria_1,
                         categoria_2=:ucategoria_2,
                         categoria_3=:ucategoria_3,
-                    autor=:uautor
+                    autor=:uautor,
+                    incorporar=:uincorporar
 								       WHERE id=:uid');
     $stmt->bindParam(':utitulo', $titulo);
     $stmt->bindParam(':usub_titulo', $sub_titulo);
@@ -132,6 +133,7 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':ucategoria_2', $categoria_2);
     $stmt->bindParam(':ucategoria_3', $categoria_3);
     $stmt->bindParam(':uautor', $autor);
+    $stmt->bindParam(':uincorporar', $incorporar);
     $stmt->bindParam(':uid', $id);
 
     if ($stmt->execute()) {
@@ -207,29 +209,71 @@ if (isset($_POST['btnsave'])) {
                       <input value="<?php echo $sub_titulo; ?>" name="sub_titulo" type="text" class="form-control" placeholder="Subtítulo da postagem">
                     </div>
                     <div class="row">
-                      <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="form-group">
-                          <label>Categoria 1</label>
-                          <input value="<?php echo $categoria_1; ?>" name="categoria_1" type="text" class="form-control" placeholder="Insira uma categoria">
+                          <label class="title">Categoria 1</label>
+                          <select name="categoria_1" class="form-control">
+                          <option value='<?php echo $categoria_1 ?>'><?php echo $categoria_1 ?></option>
+                            <?php
+                            $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
+                            $stmt->execute();
+                            if ($stmt->rowCount() > 0) {
+                              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                extract($row);
+                            ?>
+                                <option value='<?php echo $nome ?>'><?php echo $nome ?></option>
+                            <?php
+                              }
+                            }
+                            ?>
+                          </select>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label>Categoria 2</label>
-                          <input value="<?php echo $categoria_2; ?>" name="categoria_2" type="text" class="form-control" placeholder="Insira mais uma categoria">
+                          <label class="title">Categoria 2</label>
+                          <select name="categoria_2" class="form-control">
+                          <option value='<?php echo $categoria_2 ?>'><?php echo $categoria_2 ?></option>
+                            <?php
+                            $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
+                            $stmt->execute();
+                            if ($stmt->rowCount() > 0) {
+                              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                extract($row);
+                            ?>
+                                <option value='<?php echo $nome ?>'><?php echo $nome ?></option>
+                            <?php
+                              }
+                            }
+                            ?>
+                          </select>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label>Categoria 3</label>
-                          <input value="<?php echo $categoria_3; ?>" name="categoria_3" type="text" class="form-control" placeholder="Insira mais uma categoria">
+                          <label class="title">Categoria 3</label>
+                          <select name="categoria_3" class="form-control">
+                          <option value='<?php echo $categoria_3 ?>'><?php echo $categoria_3 ?></option>
+                            <?php
+                            $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
+                            $stmt->execute();
+                            if ($stmt->rowCount() > 0) {
+                              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                extract($row);
+                            ?>
+                                <option value='<?php echo $nome ?>'><?php echo $nome ?></option>
+                            <?php
+                              }
+                            }
+                            ?>
+                          </select>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Imagem Capa</label>
                       <br>
-                      <img src="uploads/<?php echo $img1; ?>" class="img-fluid" onerror="this.src='./assets/img/sem.jpg'" />
+                      <img src="uploads/blog/<?php echo $img1; ?>" class="img-fluid" onerror="this.src='./assets/img/sem.jpg'" />
                       <input type="file" name="user_image" accept="image/*" />
                     </div>
                     <div class="form-group pt-3">
@@ -240,7 +284,7 @@ if (isset($_POST['btnsave'])) {
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Imagem 2</label>
-                      <img src="uploads/<?php echo $img2; ?>" class="img-fluid" onerror="this.src='./assets/img/sem.jpg'" />
+                      <img src="uploads/blog/<?php echo $img2; ?>" class="img-fluid" onerror="this.src='./assets/img/sem.jpg'" />
                       <br>
                       <input type="file" name="user_image2" accept="image/*" />
                     </div>
@@ -250,7 +294,7 @@ if (isset($_POST['btnsave'])) {
                     </div>
                     <div class="form-group">
                       <label>Imagem 3, após texto 2 (Opcional)</label>
-                      <img src="uploads/<?php echo $img3; ?>" class="img-fluid" onerror="this.src='./assets/img/sem.jpg'" />
+                      <img src="uploads/blog/<?php echo $img3; ?>" class="img-fluid" onerror="this.src='./assets/img/sem.jpg'" />
                       <br>
                       <input type="file" name="user_image3" accept="image/*" />
                     </div>
@@ -261,6 +305,11 @@ if (isset($_POST['btnsave'])) {
                     <div class="form-group pt-3">
                       <label>Texto 4</label>
                       <textarea rows="5" cols="80" name="texto_4" class="form-control" placeholder="Texto 4, após texto 3 (Opcional)"><?php echo $texto_4; ?></textarea>
+                    </div>
+                    <div class="form-group pt-3">
+                      <label>Incorporar Link do Ig</label>
+                      <input value="" name="incorporar" type="text" class="form-control" placeholder="Incorporar link do instagram">
+                      <?php echo $incorporar; ?>
                     </div>
                   </div>
                 </div>

@@ -5,7 +5,7 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[5])) ? $idPost = $url[5] : $idPost = 1;
+(is_numeric($url[4])) ? $idPost = $url[4] : $idPost = 1;
 
 $stmt = $DB_con->prepare("SELECT titulo,categoria_1 FROM posts where id='$idPost' ORDER BY id DESC");
 $stmt->execute();
@@ -44,7 +44,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 	<?php include "views/nav.php" ?>
 	<?php
 
-	$stmt = $DB_con->prepare("SELECT id, titulo, sub_titulo,texto_1,texto_2,texto_3,texto_4, img1,img2,img3,data_criacao,categoria_1,autor FROM posts where titulo='$post'");
+	$stmt = $DB_con->prepare("SELECT id, titulo, sub_titulo,texto_1,texto_2,texto_3,texto_4, img1,img2,img3,data_criacao,categoria_1,autor,incorporar FROM posts where titulo='$post'");
 	$stmt->execute();
 
 	if ($stmt->rowCount() > 0) {
@@ -108,13 +108,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								echo $date4;
 								?>
 							</p>
-
+							<h5 class="mb-7 text-body"><?php echo $sub_titulo ?></h5>
 						</div>
 					</div>
 				</header>
 
 				<!-- Image -->
-				<section class="pt-10">
+				<section class="pt-2">
 					<div class="container">
 						<div class="row">
 							<div class="col-12">
@@ -128,14 +128,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				</section>
 
 				<!-- Content -->
-				<section class="pt-10">
+				<section class="pt-5">
 					<div class="container">
 						<div class="row justify-content-center">
 							<div class="col-12 col-md-10 font-size-lg text-gray-500">
 
 								<!-- Heading -->
-								<h5 class="mb-7 text-body"><?php echo $sub_titulo ?></h5>
-
 								<p>
 									<?php echo $texto_1 ?>
 								</p>
@@ -145,7 +143,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				</section>
 
 				<!-- Images -->
-				<section class="pt-10">
+				<section class="pt-5">
 					<div class="container">
 						<div class="row">
 							<div class="col-6">
@@ -185,6 +183,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 								</p>
 
 							</div>
+							<div class="col-md-6 pt-3">
+							<h5 class="text-center">Acompanhe nas redes sociais também</h5>
+							<?php echo $incorporar; ?>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -219,7 +221,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			<!-- BLOG -->
 			<section class="py-12">
 				<div class="container">
-					<div class="row align-items-center mb-10">
+					<div class="row align-items-center mb-5">
 						<div class="col-12">
 
 							<!-- Heading -->

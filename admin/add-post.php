@@ -45,6 +45,8 @@ if (isset($_POST['btnsave'])) {
   $tmp_dir6 = $_FILES['user_image6']['tmp_name'];
   $imgSize6 = $_FILES['user_image6']['size'];
 
+  $incorporar = $_POST['incorporar'];
+
   if (empty($titulo)) {
     $errMSG = "Por favor Insira o Titulo";
   } else if (empty($imgFile)) {
@@ -94,7 +96,7 @@ if (isset($_POST['btnsave'])) {
     }
   }
   if (!isset($errMSG)) {
-    $stmt = $DB_con->prepare('INSERT INTO posts (titulo,sub_titulo,texto_1,texto_2,texto_3,texto_4,categoria_1,categoria_2,categoria_3,autor,img1,img2,img3) VALUES(:utitulo,:usub_titulo,:utexto_1,:utexto_2,:utexto_3,:utexto_4,:ucategoria_1,:ucategoria_2,:ucategoria_3,:uautor,:upic,:upic2, :upic3)');
+    $stmt = $DB_con->prepare('INSERT INTO posts (titulo,sub_titulo,texto_1,texto_2,texto_3,texto_4,categoria_1,categoria_2,categoria_3,autor,img1,img2,img3,incorporar) VALUES(:utitulo,:usub_titulo,:utexto_1,:utexto_2,:utexto_3,:utexto_4,:ucategoria_1,:ucategoria_2,:ucategoria_3,:uautor,:upic,:upic2, :upic3,:uincorporar)');
     $stmt->bindParam(':utitulo', $titulo);
     $stmt->bindParam(':usub_titulo', $sub_titulo);
     $stmt->bindParam(':utexto_1', $texto_1);
@@ -106,6 +108,7 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':ucategoria_3', $categoria_3);
     $stmt->bindParam(':uautor', $autor);
     $stmt->bindParam(':upic', $userpic);
+    $stmt->bindParam(':uincorporar', $incorporar);
 
     if (empty($imgFile2)) {
       $stmt->bindValue(':upic2', $nulo);
@@ -201,6 +204,7 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 1</label>
                           <select name="categoria_1" class="form-control">
+                          <option value=''>Escolha uma categoria</option>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -220,6 +224,7 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 2</label>
                           <select name="categoria_2" class="form-control">
+                          <option value=''>Escolha uma categoria</option>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -239,6 +244,7 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 3</label>
                           <select name="categoria_3" class="form-control">
+                          <option value=''>Escolha uma categoria</option>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -287,6 +293,10 @@ if (isset($_POST['btnsave'])) {
                     <div class="form-group pt-3">
                       <label>Texto 4</label>
                       <textarea rows="5" cols="80" name="texto_4" class="form-control" placeholder="Texto 4, após texto 3 (Opcional)"><?php echo $texto_4; ?></textarea>
+                    </div>
+                    <div class="form-group pt-3">
+                      <label>Incorporar post do ig</label>
+                      <input value="<?php echo $incorporar; ?>" name="incorporar" type="text" class="form-control" placeholder="Incorporar link do instagram">
                     </div>
                   </div>
                 </div>
