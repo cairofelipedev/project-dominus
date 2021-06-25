@@ -168,7 +168,7 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button class="btn btn-primary">Nenhum resultado encontrado...</button>
           </div>
           <div class="form-busca-else pt-4">
-            <form action="" method="POST">
+            <form action="envia-email.php" method="POST">
               <p>Ajudamos você a encontrar o seu produto ideal, preencha o formulário</p>
               <div class="row">
                 <div class="form-group col-lg-6 col-6">
@@ -188,9 +188,9 @@ $busca = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>
               </div>
               <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
-              <input type="hidden" name="tipo" value="1">
+              <input type="hidden" name="tipo" value="4">
               <input type="hidden" name="status" value="1">
-              <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
+              <div class="text-center"><button type="submit" class="btn btn-primary">Enviar</button></div>
             </form>
           </div>
         </div>

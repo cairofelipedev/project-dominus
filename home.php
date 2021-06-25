@@ -129,13 +129,13 @@ $dv = $_GET['dv'];
         </div>
 
         <div class="col-lg-8">
-          <form class="form-inline" action="" method="POST">
+          <form class="form-inline" action="envia-email.php" method="POST">
             <input type="text" name="nome" class="form-control mb-2" placeholder="Nome" required />
             <input type="text" class="form-control mb-2 phone" name="whats" placeholder="Número" required />
             <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
             <input type="hidden" name="tipo" value="2">
             <input type="hidden" name="status" value="1">
-            <button type="submit" name="submit2" class="btn btn-primary mb-2">Cadastrar</button>
+            <button type="submit" class="btn btn-primary mb-2">Cadastrar</button>
           </form>
         </div>
 
@@ -337,13 +337,13 @@ $dv = $_GET['dv'];
         </div>
 
         <div class="col-lg-8">
-          <form class="form-inline" action="" method="POST">
+          <form class="form-inline" action="envia-email.php" method="POST">
             <input type="text" name="nome" class="form-control mb-2" placeholder="Nome" required />
             <input type="text" class="form-control mb-2" name="email" placeholder="Email" required />
             <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
             <input type="hidden" name="tipo" value="3">
             <input type="hidden" name="status" value="1">
-            <button type="submit" name="submit3" class="btn btn-primary mb-2">Cadastrar</button>
+            <button type="submit" class="btn btn-primary mb-2">Cadastrar</button>
           </form>
         </div>
 

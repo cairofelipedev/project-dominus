@@ -109,7 +109,7 @@
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <form action="" method="POST">
+            <form action="envia-email.php" method="POST">
               <div class="row">
                 <div class="form-group col-lg-6 col-6">
                   <label class="modal-label" for="NomeSobrenome">Nome</label>
@@ -130,7 +130,7 @@
               <input type="hidden" type="text" name="dv" value="<?php echo $dv; ?>" />
               <input type="hidden" name="tipo" value="1">
               <input type="hidden" name="status" value="1">
-              <div class="text-center"><button type="submit" class="btn btn-primary" name="submit">Enviar</button></div>
+              <div class="text-center"><button type="submit" class="btn btn-primary">Enviar</button></div>
             </form>
           </div>
           <div class="modal-footer">
