@@ -30,6 +30,8 @@ if (isset($_POST['btnsave'])) {
   $categoria_3 = $_POST['categoria_3'];
   $autor = $_POST['autor'];
 
+  $incorporar = $_POST['incorporar'];
+
   $imgFile = $_FILES['user_image']['name'];
   $tmp_dir = $_FILES['user_image']['tmp_name'];
   $imgSize = $_FILES['user_image']['size'];
@@ -213,7 +215,14 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 1</label>
                           <select name="categoria_1" class="form-control">
-                          <option value='<?php echo $categoria_1 ?>'><?php echo $categoria_1 ?></option>
+                          <?php 
+                            if ($categoria_1 == '') {
+                              echo "<option value=''>Escolha uma categoria</option>";
+                            }
+                            else {
+                              echo "<option value='$categoria_1'>$categoria_1</option>";
+                            }
+                          ?>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -233,7 +242,14 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 2</label>
                           <select name="categoria_2" class="form-control">
-                          <option value='<?php echo $categoria_2 ?>'><?php echo $categoria_2 ?></option>
+                          <?php 
+                            if ($categoria_2 == '') {
+                              echo "<option value=''>Escolha uma categoria</option>";
+                            }
+                            else {
+                              echo "<option value='$categoria_2'>$categoria_2</option>";
+                            }
+                          ?>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -253,7 +269,14 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 3</label>
                           <select name="categoria_3" class="form-control">
-                          <option value='<?php echo $categoria_3 ?>'><?php echo $categoria_3 ?></option>
+                          <?php 
+                            if ($categoria_3 == '') {
+                              echo "<option value=''>Escolha uma categoria</option>";
+                            }
+                            else {
+                              echo "<option value='$categoria_3'>$categoria_3</option>";
+                            }
+                          ?>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();

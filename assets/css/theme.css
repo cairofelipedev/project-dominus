@@ -13325,7 +13325,6 @@ a.card-img-overlay:hover {
 
 .card-img-hover .card-img-top {
     transition: opacity 0.2s ease-in-out;
-    height: 200px;
 }
 
 .card-img-hover .card-img-back {
@@ -15068,15 +15067,6 @@ a.card-img-overlay:hover {
     .navbar.navbar-expand-xl.navbar-boxed .dropdown-collapse .card {
         box-shadow: inset 0 0 0 1px #e5e5e5 !important;
     }
-}
-
-@media (min-width: 1200px) {
-    .navbar:not(.navbar-vertical).navbar-expand-xl .navbar-nav:first-child {
-        /* margin-left: -1rem; */
-    }
-    /* .navbar:not(.navbar-vertical).navbar-expand-xl .navbar-nav:last-child {
-        margin-right: -1rem;
-    } */
 }
 
 @media (min-width: 1200px) {

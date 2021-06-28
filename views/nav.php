@@ -113,16 +113,16 @@
               <div class="row">
                 <div class="form-group col-lg-6 col-6">
                   <label class="modal-label" for="NomeSobrenome">Nome</label>
-                  <input type="text" name="nome" class="form-control shadow-none" id="nome" placeholder="Digite seu nome" required>
+                  <input type="text" name="nome" class="form-control shadow-none" id="nome" required>
                 </div>
                 <div class="form-group col-lg-6 col-6">
-                  <label class="modal-label" for="Whats">Whatsapp</label>
-                  <input size="20" maxlength="14" type="tel" class="form-control shadow-none phone" name="whats" placeholder="Número" required>
+                  <label class="modal-label" for="Whats">Whats-app</label>
+                  <input size="20" maxlength="14" type="tel" class="form-control shadow-none phone" name="whats" required>
                 </div>
               </div>
               <div class="form-group">
                 <label class="modal-label" for="Email">Email</label>
-                <input type="text" class="form-control shadow-none" name="email" id="email" placeholder="E-mail" required />
+                <input type="text" class="form-control shadow-none" name="email" id="email" required />
               </div>
               <div class="form-group pb-3">
                 <textarea class="form-control shadow-none" name="mensagem" rows="3" placeholder="Nos deixe uma mensagem (Opcional)"></textarea>

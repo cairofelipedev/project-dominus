@@ -296,7 +296,7 @@ if (isset($_POST['btnsave'])) {
               <h5 class="title">Adicionar produto</h5>
             </div>
             <div class="card-body">
-            <form method="POST" enctype="multipart/form-data">
+              <form method="POST" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-md-6">
                     <p class="title text-center">Informações</p>
@@ -313,20 +313,20 @@ if (isset($_POST['btnsave'])) {
                             <label class="title">Status</label>
                             <select name="status" class="form-control">
                               <option value='<?php echo $status; ?>'>
-                              <?php 
-                              if ($status=='1') {
-                                echo "ATIVO";
-                              }
-                              if ($status=='2') {
-                                echo "OFERTA";
-                              }
-                              if ($status=='3') {
-                                echo "NOVIDADE";
-                              }
-                              if ($status=='4') {
-                                echo "DESATIVADO";
-                              }
-                              ?>
+                                <?php
+                                if ($status == '1') {
+                                  echo "ATIVO";
+                                }
+                                if ($status == '2') {
+                                  echo "OFERTA";
+                                }
+                                if ($status == '3') {
+                                  echo "NOVIDADE";
+                                }
+                                if ($status == '4') {
+                                  echo "DESATIVADO";
+                                }
+                                ?>
                               </option>
                               <option value='1'>ATIVO</option>
                               <option value='2'>OFERTA</option>
@@ -356,7 +356,7 @@ if (isset($_POST['btnsave'])) {
                             <br>
                             <label class="title">Categoria</label>
                             <select name="category" class="form-control">
-                            <option value='<?php echo $category ?>'><?php echo $category ?></option>
+                              <option value='<?php echo $category ?>'><?php echo $category ?></option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='produto' ORDER BY id DESC");
                               $stmt->execute();
@@ -419,7 +419,14 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 1</label>
                             <select name="cor1" class="form-control">
-                            <option value='<?php echo $cor1; ?>'><?php echo $cor1; ?></option>
+                              <?php
+                              if ($cor1 == '') {
+                                echo "<option value=''>Escolha uma cor</option>";
+                              } else {
+                                echo "<option value='$cor1'>$cor1</option>";
+                              }
+                              ?>
+                              <option value=''>Remover Cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -439,7 +446,14 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 2</label>
                             <select name="cor2" class="form-control">
-                            <option value='<?php echo $cor2; ?>'><?php echo $cor2; ?></option>
+                              <?php
+                              if ($cor2 == '') {
+                                echo "<option value=''>Escolha uma cor</option>";
+                              } else {
+                                echo "<option value='$cor2'>$cor2</option>";
+                              }
+                              ?>
+                              <option value=''>Remover Cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -459,7 +473,14 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 3</label>
                             <select name="cor3" class="form-control">
-                            <option value='<?php echo $cor3; ?>'><?php echo $cor3; ?></option>
+                              <?php
+                              if ($cor3 == '') {
+                                echo "<option value=''>Escolha uma cor</option>";
+                              } else {
+                                echo "<option value='$cor3'>$cor3</option>";
+                              }
+                              ?>
+                              <option value=''>Remover Cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -479,7 +500,14 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 4</label>
                             <select name="cor4" class="form-control">
-                            <option value='<?php echo $cor4; ?>'><?php echo $cor4; ?></option>
+                              <?php
+                              if ($cor4 == '') {
+                                echo "<option value=''>Escolha uma cor</option>";
+                              } else {
+                                echo "<option value='$cor4'>$cor4</option>";
+                              }
+                              ?>
+                              <option value=''>Remover Cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -499,7 +527,14 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 5</label>
                             <select name="cor5" class="form-control">
-                            <option value='<?php echo $cor5; ?>'><?php echo $cor5; ?></option>
+                              <?php
+                              if ($cor5 == '') {
+                                echo "<option value=''>Escolha uma cor</option>";
+                              } else {
+                                echo "<option value='$cor5'>$cor5</option>";
+                              }
+                              ?>
+                              <option value=''>Remover Cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();

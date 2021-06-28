@@ -64,7 +64,7 @@ if (isset($_GET['delete_id'])) {
                   <img class="img-center" src="uploads/produtos/<?php echo $row['img']; ?>" onerror="this.src='./assets/img/sem.jpg'">
                   </div>
                   <div class="col-md-6">
-                  <h4><?php echo $nome ?></h4>
+                  <h5><?php echo $nome ?></h5>
                   <?php if ($status == '1') { ?>
                     <p style="color:green;font-weight:bold;">ATIVO</p>
                   <?php } ?>

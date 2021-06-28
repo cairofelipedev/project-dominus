@@ -360,6 +360,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 1</label>
                             <select name="cor1" class="form-control">
+                            <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -379,6 +380,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 2</label>
                             <select name="cor2" class="form-control">
+                            <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -398,6 +400,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 3</label>
                             <select name="cor3" class="form-control">
+                            <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -417,6 +420,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 4</label>
                             <select name="cor4" class="form-control">
+                            <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -436,6 +440,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 5</label>
                             <select name="cor5" class="form-control">
+                            <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
