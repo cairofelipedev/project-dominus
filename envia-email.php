@@ -9,6 +9,37 @@ $tipo = $_POST['tipo'];
 $data_envio = date('d/m/Y');
 $hora_envio = date('H:i:s');
 
+$msg_explodida = (explode(" ", $mensagem));
+if (in_array($texto, $msg_explodida)) {
+  echo ("<script type= 'text/javascript'>alert('Mensagem não enviada, tente novamente!');</script>
+            <script>window.location = 'home';</script>");
+}
+
+function substr_in_array($needle, $haystack)
+{
+  /*** cast to array ***/
+  $needle = (array) $needle;
+
+  /*** map with preg_quote ***/
+  $needle = array_map('preg_quote', $needle);
+
+  /*** loop of the array to get the search pattern ***/
+  foreach ($needle as $pattern) {
+    if (count(preg_grep("/$pattern/", $haystack)) > 0)
+      return true;
+  }
+  /*** if it is not found ***/
+  return false;
+}
+
+$strings = array('http', 'sexy', '<a', 'sex', 'sexual', 'pussy', 'tudo', 'photo', 'https', 'porn', 'porno', 'HTTP', 'HTTPS', 'PORN', 'casino');
+
+if (substr_in_array($strings, $msg_explodida) == true) {
+  echo ("<script type= 'text/javascript'>alert('Mensagem não enviada, tente novamente!');</script>
+            <script>window.location = 'home';</script>");
+}
+
+
 $arquivo = "
   <style type='text/css'>
   body {
@@ -68,10 +99,10 @@ $headers .= "From: $nome <cairofelipedev@gmail.com>";
 
 $enviaremail = mail($destino, $assunto, $arquivo, $headers);
 if ($enviaremail) {
-    $mgm = "E-MAIL ENVIADO COM SUCESSO! <br> O link será enviado para o e-mail fornecido no formulário";
-    echo ("<script type= 'text/javascript'>alert('Obrigado! Em breve entramos em contato com você');</script>
+  $mgm = "E-MAIL ENVIADO COM SUCESSO! <br> O link será enviado para o e-mail fornecido no formulário";
+  echo ("<script type= 'text/javascript'>alert('Obrigado! Em breve entramos em contato com você');</script>
             <script>window.location = 'home';</script>");
 } else {
-    $mgm = "ERRO AO ENVIAR E-MAIL!";
-    echo "";
-} 
+  $mgm = "ERRO AO ENVIAR E-MAIL!";
+  echo "";
+}
