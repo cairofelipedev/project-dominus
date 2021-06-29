@@ -5,7 +5,7 @@ $URI = new URI();
 require_once './admin/dbconfig.php';
 include './admin/lead-insert.php';
 $url = explode("/", $_SERVER['REQUEST_URI']);
-(is_numeric($url[4])) ? $idPost = $url[4] : $idPost = 1;
+(is_numeric($url[3])) ? $idPost = $url[3] : $idPost = 1;
 
 $stmt = $DB_con->prepare("SELECT titulo,categoria_1 FROM posts where id='$idPost' ORDER BY id DESC");
 $stmt->execute();
@@ -116,8 +116,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				<!-- Image -->
 				<section class="pt-2">
 					<div class="container">
-						<div class="row">
-							<div class="col-12">
+						<div class="row justify-content-center">
+							<div class="col-12 col-md-8">
 
 								<!-- Image -->
 								<img class="img-fluid" src="<?php echo $URI->base('/admin/uploads/blog/' . $row['img1'] . '') ?>" alt="...">
@@ -145,19 +145,22 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				<!-- Images -->
 				<section class="pt-5">
 					<div class="container">
-						<div class="row">
+						<div class="row justify-content-center">
+						<?php if ($img2 != '') { ?>
 							<div class="col-6">
 
 								<!-- Image -->
 								<img class="img-fluid" src="<?php echo $URI->base('/admin/uploads/blog/' . $row['img2'] . '') ?>" alt="...">
-
+						<?php }?>
 							</div>
+							<?php if ($img3 != '') { ?>
 							<div class="col-6">
 
 								<!-- Image -->
 								<img class="img-fluid" src="<?php echo $URI->base('/admin/uploads/blog/' . $row['img3'] . '') ?>" alt="...">
 
 							</div>
+							<?php }?>
 						</div>
 					</div>
 				</section>
@@ -169,17 +172,18 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 							<div class="col-12 col-md-10">
 
 								<!-- Heading -->
-								<h5 class="mb-7"><?php echo $texto_3 ?></h5>
-
+								<h5 class="mb-7"><?php echo $texto_2 ?></h5>
+								<?php if ($texto_3 != '') { ?>
 								<!-- Blockquote -->
 								<blockquote class="blockquote-2 my-7 mx-md-7">
 									<p class="mb-0">
-										<?php echo $texto_4 ?>
+										<?php echo $texto_3 ?>
 									</p>
 								</blockquote>
+								<?php }?>
 
 								<p class="mb-0">
-									<?php echo $texto_2 ?>
+									<?php echo $texto_4 ?>
 								</p>
 
 							</div>

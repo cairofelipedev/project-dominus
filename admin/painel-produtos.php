@@ -74,7 +74,7 @@ if (isset($_GET['delete_id'])) {
                   <?php if ($status == '3') { ?>
                     <p style="color:yellow;font-weight:bold;">NOVIDADE</p>
                   <?php } ?>
-                  <?php if ($status == '3') { ?>
+                  <?php if ($status == '4') { ?>
                     <p style="color:red;font-weight:bold;">DESATIVADO</p>
                   <?php } ?>    
                   <h5 style="margin:0%;"><?php echo "R$ ".$price ?></h5>

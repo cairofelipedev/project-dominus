@@ -287,7 +287,7 @@ if (isset($_POST['btnsave'])) {
                       <input type="file" name="user_image3" accept="image/*" />
                     </div>
                     <div class="form-group pt-3">
-                      <label>Texto 3</label>
+                      <label>Texto 3, comentário ou opnião (Opcional)</label>
                       <textarea rows="5" cols="80" name="texto_3" class="form-control" placeholder="Texto 3, após imagem 3 (Opcional)"><?php echo $texto_3; ?></textarea>
                     </div>
                     <div class="form-group pt-3">

@@ -144,6 +144,64 @@ $dv = $_GET['dv'];
 
   </section>
   <!-- Produtos -->
+  <section class="py-4" style="background-color:#ebecf1">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!-- Heading -->
+          <h4 class="mb-5 pl-8">Novidades</h4>
+          <!-- Slider -->
+          <div class="flickity-buttons-lg flickity-buttons-offset px-lg-7 carousel" data-flickity='{"prevNextButtons": true}'>
+
+            <!-- Item -->
+            <?php
+            $stmt = $DB_con->prepare("SELECT id,nome,price,category,img,desconto,valor_desconto FROM produtos where status='3' ORDER BY id DESC");
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+              while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+            ?>
+                <div class="col-lg-3 col-md-6" style="min-width: 220px;">
+                  <div class="card mb-7 shadow">
+
+                    <!-- Image -->
+                    <div class="card-img">
+                      <!-- Image -->
+                      <a class="card-img-hover" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                        <img class="card-img-top" src="admin/uploads/produtos/<?php echo $row['img']; ?>" alt="...">
+                      </a>
+                    </div>
+                    <!-- Body -->
+                    <div class="card-body  m-2 px-0">
+                      <!-- Category -->
+                      <div class="font-size-xs">
+                        <a class="text-muted" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>"><?php echo $category ?></a>
+                      </div>
+                      <!-- Title -->
+                      <div class="font-weight-bold">
+                        <a class="text-body" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>">
+                          <?php echo $nome ?>
+                        </a>
+                      </div>
+                      <!-- Price -->
+                      <div class="font-weight-bold">
+
+                          <span class="text-primary"><?php echo "R$ " . $price ?></span>
+          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <?php
+              }
+            }
+            ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Produtos em Oferta -->
   <section class="py-4">
     <div class="container">
       <div class="row">
@@ -177,7 +235,7 @@ $dv = $_GET['dv'];
                       </a>
                     </div>
                     <!-- Body -->
-                    <div class="card-body px-0">
+                    <div class="card-body px-0 m-2">
                       <!-- Category -->
                       <div class="font-size-xs">
                         <a class="text-muted" href="<?php echo $URI->base('/produto/' . $id . '/' . slugify($nome)); ?>"><?php echo $category ?></a>
@@ -252,9 +310,8 @@ $dv = $_GET['dv'];
                       <!-- Price -->
                       <div class="font-weight-bold">
 
-                        <?php if ($valor_desconto  != '') { ?>
                           <span class="text-primary"><?php echo "R$ " . $price ?></span>
-                        <?php } ?>
+          
                       </div>
                     </div>
                   </div>
