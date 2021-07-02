@@ -157,6 +157,7 @@ if (isset($_POST['btnsave'])) {
   <link href="./assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="./assets/demo/demo.css" rel="stylesheet" />
+  <link href="./assets/css/fileinput.css" rel="stylesheet" />
 </head>
 
 <body class="user-profile">
@@ -204,7 +205,7 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 1</label>
                           <select name="categoria_1" class="form-control">
-                          <option value=''>Escolha uma categoria</option>
+                            <option value=''>Escolha uma categoria</option>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -224,7 +225,7 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 2</label>
                           <select name="categoria_2" class="form-control">
-                          <option value=''>Escolha uma categoria</option>
+                            <option value=''>Escolha uma categoria</option>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -244,7 +245,7 @@ if (isset($_POST['btnsave'])) {
                         <div class="form-group">
                           <label class="title">Categoria 3</label>
                           <select name="categoria_3" class="form-control">
-                          <option value=''>Escolha uma categoria</option>
+                            <option value=''>Escolha uma categoria</option>
                             <?php
                             $stmt = $DB_con->prepare("SELECT id,nome,tipo FROM categorys where tipo='blog' ORDER BY id DESC");
                             $stmt->execute();
@@ -264,7 +265,9 @@ if (isset($_POST['btnsave'])) {
                     <div class="form-group">
                       <label>Imagem Capa</label>
                       <br>
-                      <input type="file" name="user_image" accept="image/*" />
+                      <div class="file-loading">
+                        <input class="file" data-theme="fas" type="file" name="user_image" accept="image/*">
+                      </div>
                     </div>
                     <div class="form-group pt-3">
                       <label>Texto Principal</label>
@@ -275,7 +278,9 @@ if (isset($_POST['btnsave'])) {
                     <div class="form-group">
                       <label>Imagem 2</label>
                       <br>
-                      <input type="file" name="user_image2" accept="image/*" />
+                      <div class="file-loading">
+                        <input class="file" data-theme="fas" type="file" name="user_image2" accept="image/*">
+                      </div>
                     </div>
                     <div class="form-group pt-3">
                       <label>Texto 2</label>
@@ -284,7 +289,9 @@ if (isset($_POST['btnsave'])) {
                     <div class="form-group">
                       <label>Imagem 3, após texto 2 (Opcional)</label>
                       <br>
-                      <input type="file" name="user_image3" accept="image/*" />
+                      <div class="file-loading">
+                        <input class="file" data-theme="fas" type="file" name="user_image6" accept="image/*">
+                      </div>
                     </div>
                     <div class="form-group pt-3">
                       <label>Texto 3, comentário ou opnião (Opcional)</label>
@@ -321,6 +328,7 @@ if (isset($_POST['btnsave'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="./js/fileinput.js"></script>
   <!--  Notifications Plugin    -->
   <script src="./assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->

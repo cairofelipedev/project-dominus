@@ -143,7 +143,7 @@ if (isset($_POST['btnsave'])) {
     $stmt->bindParam(':ucor5', $cor5);
     $stmt->bindParam(':upeso', $peso);
     $stmt->bindParam(':upic', $userpic);
-    
+
 
     if (empty($desconto)) {
       $stmt->bindValue(':udesconto', $nulo);
@@ -230,9 +230,7 @@ if (isset($_POST['btnsave'])) {
   <!-- CSS Files -->
   <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="./assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="./assets/demo/demo.css" rel="stylesheet" />
-</head>
+  <link href="./assets/css/fileinput.css" rel="stylesheet" />
 
 <body class="user-profile">
   <div class="wrapper ">
@@ -360,7 +358,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 1</label>
                             <select name="cor1" class="form-control">
-                            <option value=''>Escolha uma cor</option>
+                              <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -380,7 +378,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 2</label>
                             <select name="cor2" class="form-control">
-                            <option value=''>Escolha uma cor</option>
+                              <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -400,7 +398,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 3</label>
                             <select name="cor3" class="form-control">
-                            <option value=''>Escolha uma cor</option>
+                              <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -420,7 +418,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 4</label>
                             <select name="cor4" class="form-control">
-                            <option value=''>Escolha uma cor</option>
+                              <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -440,7 +438,7 @@ if (isset($_POST['btnsave'])) {
                           <div class="form-group">
                             <label class="title">Cor 5</label>
                             <select name="cor5" class="form-control">
-                            <option value=''>Escolha uma cor</option>
+                              <option value=''>Escolha uma cor</option>
                               <?php
                               $stmt = $DB_con->prepare("SELECT id,cor FROM colors ORDER BY id DESC");
                               $stmt->execute();
@@ -456,41 +454,69 @@ if (isset($_POST['btnsave'])) {
                             </select>
                           </div>
                         </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="title">Imagem 1</label>
+                              <br>
+                              <div class="file-loading">
+                                <input id="curriculo" class="file" data-theme="fas" type="file" name="user_image" accept="image/*">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="title">Imagem 2</label>
+                              <br>
+                              <div class="file-loading">
+                                <input id="curriculo" class="file" data-theme="fas" type="file" name="user_image2" accept="image/*">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <p class="title text-center">Imagens</p>
                     <div class="border p-3 rounded">
-                      <div class="form-group">
-                        <label class="title">Imagem 1</label>
-                        <br>
-                        <input type="file" name="user_image" accept="image/*" />
-                      </div>
-                      <div class="form-group">
-                        <label class="title">Imagem 2</label>
-                        <br>
-                        <input type="file" name="user_image2" accept="image/*" />
-                      </div>
-                      <div class="form-group">
-                        <label class="title">Imagem 3</label>
-                        <br>
-                        <input type="file" name="user_image3" accept="image/*" />
-                      </div>
-                      <div class="form-group">
-                        <label class="title">Imagem 4</label>
-                        <br>
-                        <input type="file" name="user_image4" accept="image/*" />
-                      </div>
-                      <div class="form-group">
-                        <label class="title">Imagem 5</label>
-                        <br>
-                        <input type="file" name="user_image5" accept="image/*" />
-                      </div>
-                      <div class="form-group">
-                        <label class="title">Imagem 6</label>
-                        <br>
-                        <input type="file" name="user_image6" accept="image/*" />
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Imagem 3</label>
+                            <br>
+                            <div class="file-loading">
+                              <input id="curriculo" class="file" data-theme="fas" type="file" name="user_image3" accept="image/*">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Imagem 4</label>
+                            <br>
+                            <div class="file-loading">
+                              <input id="curriculo" class="file" data-theme="fas" type="file" name="user_image4" accept="image/*">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Imagem 5</label>
+                            <br>
+                            <div class="file-loading">
+                              <input id="curriculo" class="file" data-theme="fas" type="file" name="user_image5" accept="image/*">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="title">Imagem 6</label>
+                            <br>
+                            <div class="file-loading">
+                              <input id="curriculo" class="file" data-theme="fas" type="file" name="user_image6" accept="image/*">
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -511,8 +537,9 @@ if (isset($_POST['btnsave'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="./assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="./js/fileinput.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 </body>

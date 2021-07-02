@@ -87,7 +87,7 @@ $arquivo = "
 //enviar
 
 // emails para quem será enviado o formulário
-$emailenviar = "alexandre.barros@distribuidoradominus.com,okubobarros@gmail.com";
+$emailenviar = "cairoofelipe@gmail.com";
 $destino = $emailenviar;
 $assunto = "Contato pelo Site";
 
